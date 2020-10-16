@@ -50,7 +50,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-[Use-Cases](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-youvotewetalk/blob/master/doc/use-cases-diagram.png)
+![Use-Cases](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-youvotewetalk/blob/master/doc/use-cases-diagram.png)
 
 Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
 

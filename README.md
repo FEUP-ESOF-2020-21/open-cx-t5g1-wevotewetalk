@@ -26,7 +26,12 @@ Please contact us!
 
 Thank you!
 
-*team members names*
+[Afonso Caiado](https://github.com/afonsocaiado)  
+[Diogo Reis Diogo](https://github.com/DiogoReisrr)  
+[João Ferreira](https://github.com/joaoferreira987)  
+[José Eduardo Henriques](https://github.com/Zeze35H)  
+[Ricardo Cardoso](https://github.com/ricardofdc)  
+
 
 ---
 

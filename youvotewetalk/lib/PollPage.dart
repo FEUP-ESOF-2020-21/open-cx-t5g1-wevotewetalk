@@ -10,6 +10,27 @@ class PollPage extends StatefulWidget {
   _PollPageState createState() => _PollPageState();
 }
 
+Widget emailInput() {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: 10.0,
+      horizontal: 20.0,
+    ),
+    child: TextField(
+      obscureText: false,
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16.0,
+      ),
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Topics you are interested",
+          border:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    ),
+  );
+}
+
 class _PollPageState extends State<PollPage> {
   int _counter = 0;
   void _incrementCounter() {
@@ -79,6 +100,7 @@ class _PollPageState extends State<PollPage> {
               new Container(
                   child: new Column(
                 children: <Widget>[
+                  emailInput(),
                   pollButton('Submit'),
                 ],
               ))

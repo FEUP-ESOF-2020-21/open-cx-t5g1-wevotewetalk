@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Schedule.dart';
+
 class PollPage extends StatefulWidget {
   PollPage({Key key, this.title}) : super(key: key);
   final String title;
@@ -23,7 +25,9 @@ class _PollPageState extends State<PollPage> {
         horizontal: 20.0,
       ),
       child: MaterialButton(
-        onPressed: () => _incrementCounter,
+        onPressed: () {
+          navigateToSchedulePage(context);
+        },
         child: Text(
           txt,
           style: TextStyle(
@@ -38,9 +42,18 @@ class _PollPageState extends State<PollPage> {
         minWidth: 200.0,
         height: 45.0,
         shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       ),
     );
+  }
+
+  Future navigateToSchedulePage(context) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Schedule(
+                  title: 'Schedule',
+                )));
   }
 
   @override
@@ -56,7 +69,7 @@ class _PollPageState extends State<PollPage> {
             children: [
               new Container(
                 child: Text(
-                  '\nEnter your suggestion:\n',
+                  '\nYour Suggestion\n',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 32.0,
@@ -65,10 +78,10 @@ class _PollPageState extends State<PollPage> {
               ),
               new Container(
                   child: new Column(
-                    children: <Widget>[
-                      pollButton('Submit'),
-                    ],
-                  ))
+                children: <Widget>[
+                  pollButton('Submit'),
+                ],
+              ))
             ],
           )), // This trailing comma mak
       // es auto-formatting nicer for build methods.

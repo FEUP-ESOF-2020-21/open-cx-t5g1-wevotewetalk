@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Login.dart';
 
 class MainPage extends StatelessWidget {
@@ -7,7 +6,9 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('You Vote We Talk'),
+        title: Text(
+          "You Vote We Talk",
+        ),
       ),
       body: Center(
         child: Column(
@@ -16,7 +17,7 @@ class MainPage extends StatelessWidget {
             Text('Welcome to You Vote We Talk'),
             RaisedButton(
               textColor: Colors.white,
-              color: Colors.blue,
+              color: Colors.indigo,
               child: Text('Login'),
               onPressed: () {
                 navigateToLogin(context);

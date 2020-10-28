@@ -9,11 +9,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Navigation',
+      theme: ThemeData(
+        primaryColor: Colors.indigo,
+        fontFamily: 'San Francisco',
+      ),
       home: MainPage(),
     );
   }
 }
-
-
-
-

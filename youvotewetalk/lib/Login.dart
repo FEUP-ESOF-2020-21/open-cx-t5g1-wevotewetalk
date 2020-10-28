@@ -80,7 +80,6 @@ class Login extends StatelessWidget {
     Navigator.push(context, MaterialPageRoute(builder: (context) => PollPage(title: 'PollPage',)));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +93,7 @@ class Login extends StatelessWidget {
             children: [
               new Container(
                 child: Text(
-                  '\nLogin:\n',
+                  '\nLogin\n',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 32.0,

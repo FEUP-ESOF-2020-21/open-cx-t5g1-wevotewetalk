@@ -1,6 +1,6 @@
-# openCX-*YouVoteWeTalk* Development Report
+# openCX-*WeVoteWeTalk* Development Report
 
-Welcome to the documentation pages of the *your (sub)product name* of **openCX**!
+Welcome to the documentation pages of the *We Vote We Talk* of **openCX**!
 
 You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP): 
 
@@ -37,7 +37,7 @@ Thank you!
 
 ## Product Vision
 
-You Vote We Talk - An online event running Open Space Technology, where participants choose what they want to talk about based on their personal interests.
+We Vote We Talk - An online event running Open Space Technology, where participants choose what they want to talk about based on their personal interests.
 
 ---
 ## Elevator Pitch
@@ -55,7 +55,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-![Use-Cases](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-youvotewetalk/blob/master/doc/use-cases-diagram.png)
+![Use-Cases](use-cases-diagram.png)
 
 Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
 

@@ -1,4 +1,4 @@
-# ESOF 2020/2021 - You Vote We Talk
+# ESOF 2020/2021 - We Vote We Talk
 
 [Link to report](docs/README.md)
 

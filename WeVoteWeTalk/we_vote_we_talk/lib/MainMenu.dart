@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Brainstorm.dart';
 import 'GenericWidgets.dart';
+import 'ModeratorOptions.dart';
 import 'TalksOverview.dart';
 import 'Vote.dart';
 
@@ -12,20 +13,35 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  bool _moderator = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                button('Brainstorm', navigateToBrainstorm),
-                button('Vote', navigateToVote),
-                button('Join Talks', navigateToTalks),
-              ],
+              children: _moderator ? moderatorUser() : generalUser(),
             )
         )
     );
+  }
+
+  List<Widget> generalUser(){
+    List<Widget> list = new List();
+    list.add(button('Brainstorm', navigateToBrainstorm));
+    list.add(button('Vote', navigateToVote));
+    list.add(button('Join Talks', navigateToTalks));
+    return list;
+  }
+
+  List<Widget> moderatorUser(){
+    List<Widget> list = new List();
+    list.add(button('Brainstorm', navigateToBrainstorm));
+    list.add(button('Vote', navigateToVote)); 
+    list.add(button('Join Talks', navigateToTalks));
+    list.add(button('Moderator Options', navigateToModeratorOptions));
+    return list;
   }
 
   Future navigateToBrainstorm() async {
@@ -38,6 +54,10 @@ class _MainMenuState extends State<MainMenu> {
 
   Future navigateToTalks() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => TalksOverview()));
+  }
+
+  Future navigateToModeratorOptions() async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions()));
   }
 
 }

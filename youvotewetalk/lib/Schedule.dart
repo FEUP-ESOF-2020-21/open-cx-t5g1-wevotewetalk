@@ -25,7 +25,6 @@ class _ScheduleState extends State<Schedule> {
                 child: Text(
                   '\nSchedule\n',
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 32.0,
                   ),
                 ),

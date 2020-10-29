@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'Schedule.dart';
 
 class PollPage extends StatefulWidget {
-  PollPage({Key key, this.title}) : super(key: key);
-  final String title;
+  PollPage({Key key}) : super(key: key);
+
   @override
   _PollPageState createState() => _PollPageState();
 }
 
-Widget emailInput() {
+Widget topicInput() {
   return Padding(
     padding: EdgeInsets.symmetric(
       vertical: 10.0,
@@ -39,7 +39,7 @@ class _PollPageState extends State<PollPage> {
     });
   }
 
-  Widget pollButton(String txt) {
+  Widget pollButton() {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 10.0,
@@ -50,7 +50,7 @@ class _PollPageState extends State<PollPage> {
           navigateToSchedulePage(context);
         },
         child: Text(
-          txt,
+          "Submit",
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -81,7 +81,7 @@ class _PollPageState extends State<PollPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Poll Page"),
       ),
       body: new Container(
           height: 500.0,
@@ -92,7 +92,6 @@ class _PollPageState extends State<PollPage> {
                 child: Text(
                   '\nYour Suggestion\n',
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 32.0,
                   ),
                 ),
@@ -100,8 +99,8 @@ class _PollPageState extends State<PollPage> {
               new Container(
                   child: new Column(
                 children: <Widget>[
-                  emailInput(),
-                  pollButton('Submit'),
+                  topicInput(),
+                  pollButton(),
                 ],
               ))
             ],

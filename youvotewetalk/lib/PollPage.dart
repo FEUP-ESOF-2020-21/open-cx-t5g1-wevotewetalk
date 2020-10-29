@@ -56,7 +56,7 @@ class _PollPageState extends State<PollPage> {
             children: [
               new Container(
                 child: Text(
-                  '\nPoll Question\n',
+                  '\nEnter your suggestion:\n',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 32.0,
@@ -66,10 +66,7 @@ class _PollPageState extends State<PollPage> {
               new Container(
                   child: new Column(
                     children: <Widget>[
-                      pollButton('Answer #1'),
-                      pollButton('Answer #2'),
-                      pollButton('Answer #3'),
-                      pollButton('Answer #4'),
+                      pollButton('Submit'),
                     ],
                   ))
             ],

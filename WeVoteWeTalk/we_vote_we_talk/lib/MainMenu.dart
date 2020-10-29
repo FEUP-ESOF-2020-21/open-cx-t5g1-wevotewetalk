@@ -38,7 +38,7 @@ class _MainMenuState extends State<MainMenu> {
   List<Widget> moderatorUser(){
     List<Widget> list = new List();
     list.add(button('Brainstorm', navigateToBrainstorm));
-    list.add(button('Vote', navigateToVote)); 
+    list.add(button('Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
     list.add(button('Moderator Options', navigateToModeratorOptions));
     return list;

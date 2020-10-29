@@ -1,6 +1,6 @@
 # ESOF 2020/2021 - We Vote We Talk
 
-[Link to report](docs/README.md)
+[Link to report](docs/README.md)  
 
 Project developed by:  
 Afonso Caiado  

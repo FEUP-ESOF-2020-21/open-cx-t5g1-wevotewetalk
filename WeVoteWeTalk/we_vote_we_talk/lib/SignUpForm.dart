@@ -30,7 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
       body: new Form(
           key: _formKey,
-          child: new ListView(
+          child: ListView(
             children: getListWidget(),
           )
       ),
@@ -151,12 +151,11 @@ class _SignUpFormState extends State<SignUpForm> {
       _password = tecPassword.text;
     });
 
-    /*
-            if (_formKey.currentState.validate()){
-              navigateToStartPage();
-            }
-            */
-    navigateToStartPage();
+
+    if (_formKey.currentState.validate()){
+      navigateToStartPage();
+    }
+
   }
 
   Future navigateToStartPage() async {

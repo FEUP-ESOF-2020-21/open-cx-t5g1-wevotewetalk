@@ -13,7 +13,7 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
-  bool _moderator = false;
+  bool _moderator = true;
 
   @override
   Widget build(BuildContext context) {

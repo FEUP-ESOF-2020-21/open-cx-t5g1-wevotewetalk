@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:we_vote_we_talk/GenericWidgets.dart';
+import 'GenericWidgets.dart';
 
 class Vote extends StatefulWidget {
 
@@ -110,7 +110,6 @@ class _VoteState extends State<Vote> {
         onPressed: () {
           setState(() {
             likes[i] = !like;
-            print(likes);
           });
         }
     );

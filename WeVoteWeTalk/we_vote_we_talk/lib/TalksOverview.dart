@@ -17,6 +17,16 @@ class _TalksOverviewState extends State<TalksOverview> {
     talks.add("tema3");
     talks.add("tema4");
     talks.add("tema5");
+    talks.add("tema1");
+    talks.add("tema2");
+    talks.add("tema3");
+    talks.add("tema4");
+    talks.add("tema5");
+    talks.add("tema1");
+    talks.add("tema2");
+    talks.add("tema3");
+    talks.add("tema4");
+    talks.add("tema5");
   }
 
   @override
@@ -27,6 +37,7 @@ class _TalksOverviewState extends State<TalksOverview> {
         ),
         body: Center(
             child: ListView(
+              shrinkWrap: true,
               children: getListTalks(),
             )
         )

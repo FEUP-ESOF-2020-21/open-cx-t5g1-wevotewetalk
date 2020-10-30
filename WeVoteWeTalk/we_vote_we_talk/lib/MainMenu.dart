@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Brainstorm.dart';
 import 'GenericWidgets.dart';
 import 'ModeratorOptions.dart';
+import 'StartPage.dart';
 import 'TalksOverview.dart';
 import 'Vote.dart';
 
@@ -32,6 +33,7 @@ class _MainMenuState extends State<MainMenu> {
     list.add(button('Brainstorm', navigateToBrainstorm));
     list.add(button('Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
+    list.add(button('Sign Out', navigateToStartPage));
     return list;
   }
 
@@ -41,6 +43,7 @@ class _MainMenuState extends State<MainMenu> {
     list.add(button('Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
     list.add(button('Moderator Options', navigateToModeratorOptions));
+    list.add(button('Sign Out', navigateToStartPage));
     return list;
   }
 
@@ -58,6 +61,10 @@ class _MainMenuState extends State<MainMenu> {
 
   Future navigateToModeratorOptions() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions()));
+  }
+
+  Future navigateToStartPage() async {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => StartPage()), (Route<dynamic> route) => false);
   }
 
 }

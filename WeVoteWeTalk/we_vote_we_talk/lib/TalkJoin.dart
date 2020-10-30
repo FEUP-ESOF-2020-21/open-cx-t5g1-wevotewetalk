@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 
 class TalkJoin extends StatefulWidget{
-  final talk;
-  TalkJoin(this.talk);
+  final String talk;
+  TalkJoin({this.talk});
 
   @override
-  _TalkJoinState createState() => _TalkJoinState(talk);
+  _TalkJoinState createState() => _TalkJoinState(talk: talk);
 }
 
 class _TalkJoinState extends State<TalkJoin> {
-  final talk;
-  _TalkJoinState(this.talk);
+  final String talk;
+  _TalkJoinState({this.talk});
 
   @override
   Widget build(BuildContext context) {

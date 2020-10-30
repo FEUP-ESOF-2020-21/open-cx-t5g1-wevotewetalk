@@ -73,7 +73,7 @@ class _TalksOverviewState extends State<TalksOverview> {
   }
 
   Future navigateToTalk(talk) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => TalkJoin(talk)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => TalkJoin(talk: talk)));
   }
 
 }

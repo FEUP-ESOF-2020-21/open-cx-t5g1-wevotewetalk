@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'Brainstorm.dart';
 import 'GenericWidgets.dart';
-import 'ModeratorOptions.dart';
+import 'Moderator/ModeratorOptions.dart';
 import 'StartPage.dart';
 import 'TalksOverview.dart';
 import 'Vote.dart';
@@ -31,7 +31,7 @@ class _MainMenuState extends State<MainMenu> {
   List<Widget> generalUser(){
     List<Widget> list = new List();
     list.add(button('Brainstorm', navigateToBrainstorm));
-    list.add(button('Vote', navigateToVote));
+    list.add(button('Themes Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
     list.add(button('Sign Out', navigateToStartPage));
     return list;

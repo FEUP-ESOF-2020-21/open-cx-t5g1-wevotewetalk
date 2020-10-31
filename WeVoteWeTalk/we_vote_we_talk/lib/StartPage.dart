@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Login.dart';
 import 'SignInForm.dart';
 import 'SignUpForm.dart';
 
@@ -77,7 +78,7 @@ class StartPage extends StatelessWidget {
   }
 
   Future navigateToLogin(BuildContext context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignInForm()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 
   Future navigateToRegister(BuildContext context) async {

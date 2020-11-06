@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'Authentication/Auth.dart';
 import 'Brainstorm.dart';
-import 'GenericWidgets.dart';
+import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
-import 'StartPage.dart';
 import 'TalksOverview.dart';
 import 'Vote.dart';
 
@@ -15,10 +14,23 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   bool _moderator = true;
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('We Vote We Talk'),
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Logout'),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            ),
+          ],
+        ),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +45,6 @@ class _MainMenuState extends State<MainMenu> {
     list.add(button('Brainstorm', navigateToBrainstorm));
     list.add(button('Themes Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
-    list.add(button('Sign Out', navigateToStartPage));
     return list;
   }
 
@@ -43,7 +54,6 @@ class _MainMenuState extends State<MainMenu> {
     list.add(button('Vote', navigateToVote));
     list.add(button('Join Talks', navigateToTalks));
     list.add(button('Moderator Options', navigateToModeratorOptions));
-    list.add(button('Sign Out', navigateToStartPage));
     return list;
   }
 
@@ -61,10 +71,6 @@ class _MainMenuState extends State<MainMenu> {
 
   Future navigateToModeratorOptions() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions()));
-  }
-
-  Future navigateToStartPage() async {
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => StartPage()), (Route<dynamic> route) => false);
   }
 
 }

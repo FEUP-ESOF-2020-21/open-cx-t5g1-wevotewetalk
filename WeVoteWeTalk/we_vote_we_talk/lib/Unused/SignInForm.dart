@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'MainMenu.dart';
+import '../MainMenu.dart';
 
 
 class SignInForm extends StatelessWidget {

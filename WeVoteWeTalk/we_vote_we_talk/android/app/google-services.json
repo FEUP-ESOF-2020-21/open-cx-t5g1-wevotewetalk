@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "574262193972",
+    "firebase_url": "https://wevotewetalk.firebaseio.com",
+    "project_id": "wevotewetalk",
+    "storage_bucket": "wevotewetalk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574262193972:android:57961720823e411bdbbf61",
+        "android_client_info": {
+          "package_name": "com.esof2020.we_vote_we_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574262193972-28o16qhbodar7bf4m9t52q5sf39ko2fv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmHfuR-drG6F8_squ0Z4z0X2te-bA-IoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574262193972-28o16qhbodar7bf4m9t52q5sf39ko2fv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

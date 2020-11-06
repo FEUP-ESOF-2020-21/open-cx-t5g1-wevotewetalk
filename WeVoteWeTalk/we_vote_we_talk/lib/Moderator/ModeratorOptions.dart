@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../GenericWidgets.dart';
+import '../shared/GenericWidgets.dart';
 import 'ManageUsers.dart';
 import 'MaganeUserInterface.dart';
 import 'ManageSchedule.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'GenericWidgets.dart';
+import 'shared/GenericWidgets.dart';
 
 class Vote extends StatefulWidget {
 

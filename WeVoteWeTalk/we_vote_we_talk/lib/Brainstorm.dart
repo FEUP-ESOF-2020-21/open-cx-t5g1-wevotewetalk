@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'GenericWidgets.dart';
+import 'shared/GenericWidgets.dart';
 
 class Brainstorm extends StatefulWidget {
 

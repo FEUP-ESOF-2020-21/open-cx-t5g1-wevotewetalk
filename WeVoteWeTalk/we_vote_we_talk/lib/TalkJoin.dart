@@ -11,10 +11,10 @@ class TalkJoin extends StatefulWidget {
   final String talk;
   TalkJoin({this.talk});
   @override
-  _MyAppState createState() => _MyAppState();
+  _TalkJoinState createState() => _TalkJoinState();
 }
 
-class _MyAppState extends State<TalkJoin> {
+class _TalkJoinState extends State<TalkJoin> {
   final serverText = TextEditingController();
   final roomText = TextEditingController(text: "plugintestroom");
   final subjectText = TextEditingController(text: "My Plugin Test Meeting");

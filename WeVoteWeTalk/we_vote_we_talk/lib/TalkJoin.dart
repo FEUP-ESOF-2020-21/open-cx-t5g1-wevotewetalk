@@ -16,10 +16,10 @@ class TalkJoin extends StatefulWidget {
 
 class _MyAppState extends State<TalkJoin> {
   final serverText = TextEditingController();
-  final roomText = TextEditingController(text: "Room Name");
-  final subjectText = TextEditingController(text: "Subject Name");
-  final nameText = TextEditingController(text: "User Name");
-  final emailText = TextEditingController(text: "User Email");
+  final roomText = TextEditingController(text: "plugintestroom");
+  final subjectText = TextEditingController(text: "My Plugin Test Meeting");
+  final nameText = TextEditingController(text: "Plugin Test User");
+  final emailText = TextEditingController(text: "fake@email.com");
   var isAudioOnly = true;
   var isAudioMuted = true;
   var isVideoMuted = true;

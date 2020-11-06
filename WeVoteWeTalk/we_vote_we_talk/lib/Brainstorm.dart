@@ -1,73 +1,65 @@
 import 'package:flutter/material.dart';
-
-import 'shared/GenericWidgets.dart';
+import 'Idea.dart';
+import 'IdeasList.dart';
+import 'package:we_vote_we_talk/Database.dart';
+import 'package:provider/provider.dart';
 
 class Brainstorm extends StatefulWidget {
-
-
   @override
   _BrainstormState createState() => _BrainstormState();
 }
 
 class _BrainstormState extends State<Brainstorm> {
-  var themes = new List();
-
-  TextEditingController tecThemeIdea = new TextEditingController();
-  String _themeIdea = "";
-
-  final _formKey = GlobalKey<FormState>();
-
-  _BrainstormState(){
-    themes.add("tema1");
-    themes.add("tema2");
-    themes.add("tema3");
-    themes.add("tema4");
-    themes.add("tema5");
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('We Vote We Talk'),
-      ),
-      body: Column(
-          children: [
-            Expanded(
-                flex: 6,
-                child: ListView(
-                  reverse: true,
-                  children: getListThemes(),
+    return StreamProvider<List<Idea>>.value(
+      value: DatabaseService().ideas,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('We Vote We Talk'),
+        ),
+        body: IdeasList(),
 
-                )
-            ),
-            Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 8,
-                            child: themeInput()
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: sendButton()
-                        ),
-                      ],
-
-                    ),
-                    button('Main Menu', navigateBackToMainMenu)
-                  ],
-                )
-            ),
-          ]
       ),
     );
   }
+}
 
+
+/*Column(
+            children: [
+              Expanded(
+                  flex: 6,
+                  child: ListView(
+                    reverse: true,
+                    children: getListThemes(),
+
+                  )
+              ),
+              Expanded(
+                  flex: 3,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 8,
+                              child: themeInput()
+                          ),
+                          Expanded(
+                              flex: 2,
+                              child: sendButton()
+                          ),
+                        ],
+
+                      ),
+                      button('Main Menu', navigateBackToMainMenu)
+                    ],
+                  )*/
+
+/*
   Future navigateBackToMainMenu() async {
     Navigator.pop(context);
   }
@@ -144,3 +136,4 @@ class _BrainstormState extends State<Brainstorm> {
   }
 
 }
+*/

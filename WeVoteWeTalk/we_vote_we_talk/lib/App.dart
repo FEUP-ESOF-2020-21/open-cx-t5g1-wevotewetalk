@@ -10,9 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'We Vote We Talk',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.indigo
-      ),
+      theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       home: StartPage(),
     );

@@ -1,18 +1,19 @@
-import 'package:flutter/cupertino.dart';
+import 'Wrapper.dart';
+import 'Auth.dart';
 import 'package:flutter/material.dart';
-import 'StartPage.dart';
+import 'package:provider/provider.dart';
+import 'User.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'We Vote We Talk',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      home: StartPage(),
+      return StreamProvider<User>.value(
+          value: AuthService().user,
+          child: MaterialApp(
+          home: Wrapper(),
+      ),
     );
   }
 }

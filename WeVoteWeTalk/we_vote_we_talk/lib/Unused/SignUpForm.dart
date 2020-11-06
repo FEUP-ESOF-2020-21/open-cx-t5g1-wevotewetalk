@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'shared/GenericWidgets.dart';
-import 'StartPage.dart';
+import '../shared/GenericWidgets.dart';
+import '../StartPage.dart';
 
 class SignUpForm extends StatefulWidget {
 

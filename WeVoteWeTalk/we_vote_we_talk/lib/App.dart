@@ -1,8 +1,8 @@
-import 'Wrapper.dart';
-import 'Auth.dart';
+import 'Authentication/Auth.dart';
+import 'Authentication/User.dart';
+import 'Authentication/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'User.dart';
 
 void main() => runApp(App());
 

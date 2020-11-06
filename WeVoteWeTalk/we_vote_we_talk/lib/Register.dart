@@ -1,7 +1,8 @@
-import 'Auth.dart';
 import 'package:we_vote_we_talk/shared/Constants.dart';
 import 'package:we_vote_we_talk/shared/Loading.dart';
 import 'package:flutter/material.dart';
+
+import 'Authentication/Auth.dart';
 
 
 class Register extends StatefulWidget {

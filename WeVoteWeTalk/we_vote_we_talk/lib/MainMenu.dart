@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Auth.dart';
+import 'Authentication/Auth.dart';
 import 'Brainstorm.dart';
-import 'GenericWidgets.dart';
+import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
-import 'StartPage.dart';
 import 'TalksOverview.dart';
 import 'Vote.dart';
 

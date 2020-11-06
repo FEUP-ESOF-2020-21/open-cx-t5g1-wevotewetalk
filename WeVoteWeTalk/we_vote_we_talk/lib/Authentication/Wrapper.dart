@@ -1,8 +1,9 @@
-import 'User.dart';
-import 'Authenticate.dart';
-import 'MainMenu.dart';
+import '../Authenticate.dart';
+import '../MainMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'User.dart';
 
 class Wrapper extends StatelessWidget {
   @override

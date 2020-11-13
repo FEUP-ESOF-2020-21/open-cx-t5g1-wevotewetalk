@@ -16,26 +16,15 @@ class Repeated extends StatelessWidget {
   Widget build(BuildContext context) {
     print(value);
     final ideas = Provider.of<List<Idea>>(context);
-    print(ideas.length);
-    if (ideas != null) {
-      return ListView.builder(
-          itemCount: ideas.length,
-          itemBuilder: (context, index) {
-            print(ideas[index].name);
-            if (ideas[index].name == value)
-            {
-              result = true;
-              return null;
-            }
-            return null;
-          }
-      );
-    }
-    else
-    {
-      result = true;
-      return null;
-    }
+    ideas.forEach((idea) {
+      print(idea.name);
+      if(idea.name == value)
+      {
+        result = true;
+        return null;
+      }
+    });
+    return null;
   }
 
 }

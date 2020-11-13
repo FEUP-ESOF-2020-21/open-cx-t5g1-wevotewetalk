@@ -11,20 +11,59 @@ class Brainstorm extends StatefulWidget {
 
 class _BrainstormState extends State<Brainstorm> {
 
+  TextEditingController tecThemeIdea = new TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Idea>>.value(
       value: DatabaseService().ideas,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('We Vote We Talk'),
-        ),
-        body: IdeasList(),
-
-      ),
+          appBar: AppBar(
+            title: Text('We Vote We Talk'),
+          ),
+          body: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: constraints.copyWith(
+                      minHeight: constraints.maxHeight,
+                      maxHeight: double.infinity,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            height: 300.0,
+                            child: IdeasList(),
+                          ),
+                          Expanded(
+                            child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        child: themeInput()
+                                    ),
+                                    Expanded(
+                                        child: sendButton()
+                                    ),
+                                  ],
+                                ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              ),
+      )
     );
   }
-}
 
 
 /*Column(
@@ -37,27 +76,7 @@ class _BrainstormState extends State<Brainstorm> {
 
                   )
               ),
-              Expanded(
-                  flex: 3,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                              flex: 8,
-                              child: themeInput()
-                          ),
-                          Expanded(
-                              flex: 2,
-                              child: sendButton()
-                          ),
-                        ],
-
-                      ),
-                      button('Main Menu', navigateBackToMainMenu)
-                    ],
-                  )*/
+              */
 
 /*
   Future navigateBackToMainMenu() async {
@@ -85,55 +104,50 @@ class _BrainstormState extends State<Brainstorm> {
       ),
     );
   }
-
-  Widget themeInput() {
-    return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 10.0,
-          horizontal: 20.0,
-        ),
-        child: Form(
-          key: _formKey,
-          child: TextFormField(
-            controller: tecThemeIdea,
-            decoration: InputDecoration(labelText: 'Your theme idea:'),
-            validator: (value) {
-              return value.isEmpty || themes.contains(value) ? 'Enter a new theme idea.' : null;
-            },
-          ),
-        )
-    );
-  }
-
-  Widget sendButton() {
-    return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 5.0,
-          horizontal: 5.0,
-        ),
-        child:MaterialButton(
-          textColor: Colors.white,
-          color: Colors.black87,
-          child: Text('Send'),
-          onPressed: () {
-            sendThemeIdea();
+*/
+Widget themeInput() {
+  return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 20.0,
+      ),
+      child: Form(
+        key: _formKey,
+        child: TextFormField(
+          controller: tecThemeIdea,
+          decoration: InputDecoration(labelText: 'Your theme idea:'),
+          validator: (value) {
+            return value.isEmpty ? 'Enter a new theme idea.' : null;
           },
-          minWidth: 200.0,
-          height: 45.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        )
-    );
-  }
+        ),
+      )
+  );
+}
 
-  sendThemeIdea(){
-    if (_formKey.currentState.validate()) {
-      setState(() {
-        _themeIdea = tecThemeIdea.text;
-        themes.insert(0,_themeIdea);
-        tecThemeIdea.text = "";
-      });
-    }
+Widget sendButton() {
+  return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: 5.0,
+      ),
+      child:MaterialButton(
+        textColor: Colors.white,
+        color: Colors.black87,
+        child: Text('Send'),
+        onPressed: () {
+          sendThemeIdea();
+        },
+        minWidth: 200.0,
+        height: 45.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      )
+  );
+}
+
+sendThemeIdea() async {
+  if(_formKey.currentState.validate()){
+    await DatabaseService().addIdea(tecThemeIdea.text, 0);
   }
+}
 
 }
-*/

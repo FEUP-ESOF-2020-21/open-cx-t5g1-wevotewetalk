@@ -1,5 +1,6 @@
 class Idea {
-  final String idea;
+  final String name;
+  int votes;
 
-  Idea ({this.idea});
+  Idea ({this.name, this.votes});
 }

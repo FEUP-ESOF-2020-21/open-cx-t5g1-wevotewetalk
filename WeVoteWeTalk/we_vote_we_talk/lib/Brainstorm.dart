@@ -4,6 +4,8 @@ import 'IdeasList.dart';
 import 'package:we_vote_we_talk/Database.dart';
 import 'package:provider/provider.dart';
 
+import 'Repeated.dart';
+
 class Brainstorm extends StatefulWidget {
   @override
   _BrainstormState createState() => _BrainstormState();
@@ -105,6 +107,14 @@ class _BrainstormState extends State<Brainstorm> {
     );
   }
 */
+
+
+isRepeated(value)
+{
+  Repeated aux = Repeated(value: value);
+  return aux.result;
+}
+
 Widget themeInput() {
   return Padding(
       padding: EdgeInsets.symmetric(
@@ -117,7 +127,7 @@ Widget themeInput() {
           controller: tecThemeIdea,
           decoration: InputDecoration(labelText: 'Your theme idea:'),
           validator: (value) {
-            return value.isEmpty ? 'Enter a new theme idea.' : null;
+            return value.isEmpty || isRepeated(value) ? 'Enter a new theme idea.' : null;
           },
         ),
       )

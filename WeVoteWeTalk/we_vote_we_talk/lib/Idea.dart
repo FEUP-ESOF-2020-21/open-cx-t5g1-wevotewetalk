@@ -3,4 +3,5 @@ class Idea {
   int votes;
 
   Idea ({this.name, this.votes});
+
 }

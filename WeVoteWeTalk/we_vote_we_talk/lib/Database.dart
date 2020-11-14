@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'Idea.dart';
+import 'Brainstorm/Idea.dart';
 
 class DatabaseService {
 

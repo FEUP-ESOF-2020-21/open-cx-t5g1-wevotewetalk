@@ -4,10 +4,10 @@ import 'Idea.dart';
 
 
 // ignore: must_be_immutable
-class Repeated extends StatelessWidget {
+class IdeaRepeated extends StatelessWidget {
   String value;
 
-  Repeated({this.value}){
+  IdeaRepeated({this.value}){
     print(value);
   }
 
@@ -16,10 +16,8 @@ class Repeated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(value);
     final ideas = Provider.of<List<Idea>>(context);
     ideas.forEach((idea) {
-      print(idea.name);
       if(idea.name == value)
       {
         result = true;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Authentication/Auth.dart';
-import 'Brainstorm.dart';
+import 'Brainstorm/Brainstorm.dart';
 import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
 import 'TalksOverview.dart';

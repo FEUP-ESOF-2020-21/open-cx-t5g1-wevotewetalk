@@ -4,23 +4,23 @@ import 'package:provider/provider.dart';
 import 'Idea.dart';
 
 // ignore: must_be_immutable
-class ThemeInput extends StatefulWidget {
+class IdeaInput extends StatefulWidget {
 
   TextEditingController tecThemeIdea;
   var formKey;
 
-  ThemeInput({this.formKey, this.tecThemeIdea});
+  IdeaInput({this.formKey, this.tecThemeIdea});
 
   @override
-  _ThemeInputState createState() => _ThemeInputState(formKey, tecThemeIdea);
+  _IdeaInputState createState() => _IdeaInputState(formKey, tecThemeIdea);
 }
 
-class _ThemeInputState extends State<ThemeInput> {
+class _IdeaInputState extends State<IdeaInput> {
 
   TextEditingController tecThemeIdea;
   var formKey;
-  _ThemeInputState(formKey, tecThemeIdea)
-  {
+
+  _IdeaInputState(formKey, tecThemeIdea) {
     this.tecThemeIdea = tecThemeIdea;
     this.formKey = formKey;
   }
@@ -47,10 +47,8 @@ class _ThemeInputState extends State<ThemeInput> {
     );
   }
 
-  isRepeated(value,ideas)
-  {
-    for(int i = 0; i < ideas.length; i++)
-    {
+  isRepeated(value,ideas) {
+    for(int i = 0; i < ideas.length; i++) {
       if(ideas[i].name == value)
         return true;
     }

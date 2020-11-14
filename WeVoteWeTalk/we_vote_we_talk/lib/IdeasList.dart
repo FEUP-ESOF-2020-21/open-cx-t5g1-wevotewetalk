@@ -4,29 +4,17 @@ import 'package:we_vote_we_talk/shared/Loading.dart';
 import 'Idea.dart';
 
 class IdeasList extends StatefulWidget {
-  List<Idea> themes;
-
-  IdeasList(List<Idea> themes){
-    this.themes = themes;
-  }
-
   @override
-  _IdeasListState createState() => _IdeasListState(themes);
+  _IdeasListState createState() => _IdeasListState();
 }
 
 class _IdeasListState extends State<IdeasList> {
-  List<Idea> themes;
-
-  _IdeasListState(List<Idea> themes){
-    this.themes = themes;
-  }
-
   @override
   Widget build(BuildContext context) {
 
     final ideas = Provider.of<List<Idea>>(context);
-    this.themes = ideas;
     if(ideas != null) {
+      ideas.sort();
       return ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -48,4 +36,6 @@ class _IdeasListState extends State<IdeasList> {
     else
       return Loading();
   }
+
+
 }

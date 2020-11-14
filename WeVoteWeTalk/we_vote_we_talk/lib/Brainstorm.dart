@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'Idea.dart';
 import 'IdeasList.dart';
@@ -6,126 +5,134 @@ import 'package:we_vote_we_talk/Database.dart';
 import 'package:provider/provider.dart';
 
 import 'Repeated.dart';
+import 'ThemeInput.dart';
 
 class Brainstorm extends StatefulWidget {
-
   @override
   _BrainstormState createState() => _BrainstormState();
 }
 
 class _BrainstormState extends State<Brainstorm> {
 
-  List<Idea> themes;
-
   TextEditingController tecThemeIdea = new TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('We Vote We Talk'),
-      ),
-      body: Column(
-          children: [
-            Expanded(
-                flex: 6,
-                child: _buildListBody(context),
-
-            ),
-            Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 8,
-                            child: themeInput()
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: sendButton()
-                        ),
-                      ],
-
+    return StreamProvider<List<Idea>>.value(
+        value: DatabaseService().ideas,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('We Vote We Talk'),
+          ),
+          body: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: constraints.copyWith(
+                      minHeight: constraints.maxHeight,
+                      maxHeight: double.infinity,
                     ),
-                  ],
-                )
-            ),
-          ]
-      ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            height: 300.0,
+                            child: IdeasList(),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: ThemeInput(formKey: formKey, tecThemeIdea: tecThemeIdea)
+                                  ),
+                                  Expanded(
+                                      child: sendButton()
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+          ),
+        )
     );
   }
 
-  Widget _buildListBody(BuildContext context) {
-    return StreamBuilder(
-        stream: DatabaseService().ideas,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return LinearProgressIndicator();
 
-          return _buildList(context, snapshot.data.documents);
-        }
-    );
+/*Column(
+            children: [
+              Expanded(
+                  flex: 6,
+                  child: ListView(
+                    reverse: true,
+                    children: getListThemes(),
+
+                  )
+              ),
+              */
+
+/*
+  Future navigateBackToMainMenu() async {
+    Navigator.pop(context);
   }
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot){
-    return ListView(
-      padding: const EdgeInsets.only(top: 20.0),
-      children: snapshot.map((data) => _buildListItem(context, data)).toList(),
-    );
+  List<Widget> getListThemes() {
+    List<Widget> list = new List();
 
+    for(int i=0; i<themes.length; i++){
+      list.add(listElement(themes[i]));
+    }
+    return list;
   }
-  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final idea = Idea.fromSnapshot(data);
 
+  Widget listElement(theme){
     return Padding(
-      key: ValueKey(idea.name),
       padding: EdgeInsets.symmetric(
         vertical: 5.0,
         horizontal: 20.0,
       ),
-
       child: Text(
-        idea.name,
+        theme,
         textAlign: TextAlign.center,
       ),
     );
   }
+*/
 
 
-
-
-
-isRepeated(value)
+  isRepeated(value)
   {
-    Repeated aux = Repeated(value: value).build(context);
+    Repeated aux = Repeated(value: value);
     return aux.result;
   }
 
   Widget themeInput() {
-    return StreamProvider<List<Idea>>.value(
-        value: DatabaseService().ideas,
-        child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 10.0,
-              horizontal: 20.0,
-            ),
-            child: Form(
-              key: _formKey,
-              child: TextFormField(
-                controller: tecThemeIdea,
-                decoration: InputDecoration(labelText: 'Your theme idea:'),
-                validator: (value) {
-                  return value.isEmpty || isRepeated(value) ? 'Enter a new theme idea.' : null;
-                },
-              ),
-            )
+    return Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: 20.0,
+        ),
+        child: Form(
+          key: formKey,
+          child: TextFormField(
+            controller: tecThemeIdea,
+            decoration: InputDecoration(labelText: 'Your theme idea:'),
+            validator: (value) {
+              return value.isEmpty || isRepeated(value) ? 'Enter a new theme idea.' : null;
+            },
+          ),
         )
-    ) ;
-
-
+    );
   }
 
   Widget sendButton() {
@@ -149,11 +156,9 @@ isRepeated(value)
   }
 
   sendThemeIdea() async {
-    if(_formKey.currentState.validate()){
+    if(formKey.currentState.validate()){
       await DatabaseService().addIdea(tecThemeIdea.text, 0);
     }
   }
-
-
 
 }

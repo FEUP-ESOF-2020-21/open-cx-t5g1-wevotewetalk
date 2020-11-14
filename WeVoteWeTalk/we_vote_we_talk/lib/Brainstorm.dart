@@ -5,6 +5,7 @@ import 'package:we_vote_we_talk/Database.dart';
 import 'package:provider/provider.dart';
 
 import 'Repeated.dart';
+import 'ThemeInput.dart';
 
 class Brainstorm extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class Brainstorm extends StatefulWidget {
 class _BrainstormState extends State<Brainstorm> {
 
   TextEditingController tecThemeIdea = new TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Idea>>.value(
@@ -47,7 +48,7 @@ class _BrainstormState extends State<Brainstorm> {
                                 child: Row(
                                   children: [
                                     Expanded(
-                                        child: themeInput()
+                                        child: ThemeInput(formKey: formKey, tecThemeIdea: tecThemeIdea)
                                     ),
                                     Expanded(
                                         child: sendButton()
@@ -122,7 +123,7 @@ Widget themeInput() {
         horizontal: 20.0,
       ),
       child: Form(
-        key: _formKey,
+        key: formKey,
         child: TextFormField(
           controller: tecThemeIdea,
           decoration: InputDecoration(labelText: 'Your theme idea:'),
@@ -155,7 +156,7 @@ Widget sendButton() {
 }
 
 sendThemeIdea() async {
-  if(_formKey.currentState.validate()){
+  if(formKey.currentState.validate()){
     await DatabaseService().addIdea(tecThemeIdea.text, 0);
   }
 }

@@ -14,6 +14,7 @@ class _IdeasListState extends State<IdeasList> {
 
     final ideas = Provider.of<List<Idea>>(context);
     if(ideas != null) {
+      ideas.sort();
       return ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -35,4 +36,6 @@ class _IdeasListState extends State<IdeasList> {
     else
       return Loading();
   }
+
+
 }

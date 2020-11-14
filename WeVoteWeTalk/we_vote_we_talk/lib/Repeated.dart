@@ -7,7 +7,9 @@ import 'Idea.dart';
 class Repeated extends StatelessWidget {
   String value;
 
-  Repeated({this.value});
+  Repeated({this.value}){
+    print(value);
+  }
 
   bool result = false;
 

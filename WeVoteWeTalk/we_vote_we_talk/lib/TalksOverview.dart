@@ -12,21 +12,11 @@ class _TalksOverviewState extends State<TalksOverview> {
   var talks = new List();
 
   _TalksOverviewState(){
-    talks.add("tema1");
-    talks.add("tema2");
-    talks.add("tema3");
-    talks.add("tema4");
-    talks.add("tema5");
-    talks.add("tema1");
-    talks.add("tema2");
-    talks.add("tema3");
-    talks.add("tema4");
-    talks.add("tema5");
-    talks.add("tema1");
-    talks.add("tema2");
-    talks.add("tema3");
-    talks.add("tema4");
-    talks.add("tema5");
+    talks.add("Theme1");
+    talks.add("Theme2");
+    talks.add("Theme3");
+    talks.add("Theme4");
+    talks.add("Theme5");
   }
 
   @override

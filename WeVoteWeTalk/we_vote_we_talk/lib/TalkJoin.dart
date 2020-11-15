@@ -15,12 +15,11 @@ class TalkJoin extends StatefulWidget {
 }
 
 class _TalkJoinState extends State<TalkJoin> {
-  final String talk = "lol";
   final serverText = TextEditingController();
-  TextEditingController roomText = TextEditingController(text: "Theme");
+  final roomText = TextEditingController();
   final subjectText = TextEditingController(text: "WeVoteWeTalk");
-  final nameText = TextEditingController(text: "Username");
-  final emailText = TextEditingController(text: "Email");
+  final nameText = TextEditingController();
+  final emailText = TextEditingController();
   var isAudioOnly = true;
   var isAudioMuted = true;
   var isVideoMuted = true;
@@ -43,11 +42,13 @@ class _TalkJoinState extends State<TalkJoin> {
 
   @override
   Widget build(BuildContext context) {
+    roomText.text = widget.talk;
+    nameText.text = "Diogo Mobile";
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Join A Talk'),
+          title: const Text("Join A Talk"),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(
@@ -57,15 +58,13 @@ class _TalkJoinState extends State<TalkJoin> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 16.0,
-                ),
-                TextField(
-                  controller: roomText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Theme",
+                  height: 50.0,
+                  child: Text(
+                    widget.talk,
+                    style: TextStyle(fontSize: 25.0),
                   ),
                 ),
+                /*
                 SizedBox(
                   height: 16.0,
                 ),
@@ -76,6 +75,8 @@ class _TalkJoinState extends State<TalkJoin> {
                     labelText: "Username",
                   ),
                 ),
+                */
+                /*
                 SizedBox(
                   height: 16.0,
                 ),
@@ -86,6 +87,7 @@ class _TalkJoinState extends State<TalkJoin> {
                     labelText: "Email",
                   ),
                 ),
+                 */
                 SizedBox(
                   height: 16.0,
                 ),

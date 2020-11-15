@@ -15,11 +15,12 @@ class TalkJoin extends StatefulWidget {
 }
 
 class _TalkJoinState extends State<TalkJoin> {
+  final String talk = "lol";
   final serverText = TextEditingController();
-  final roomText = TextEditingController(text: "plugintestroom");
-  final subjectText = TextEditingController(text: "My Plugin Test Meeting");
-  final nameText = TextEditingController(text: "Plugin Test User");
-  final emailText = TextEditingController(text: "fake@email.com");
+  TextEditingController roomText = TextEditingController(text: "Theme");
+  final subjectText = TextEditingController(text: "WeVoteWeTalk");
+  final nameText = TextEditingController(text: "Username");
+  final emailText = TextEditingController(text: "Email");
   var isAudioOnly = true;
   var isAudioMuted = true;
   var isVideoMuted = true;
@@ -43,7 +44,7 @@ class _TalkJoinState extends State<TalkJoin> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.indigo),
+      theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Join A Talk'),
@@ -56,33 +57,13 @@ class _TalkJoinState extends State<TalkJoin> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 24.0,
-                ),
-                TextField(
-                  controller: serverText,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Server URL",
-                      hintText: "Hint: Leave empty for meet.jitsi.si"),
-                ),
-                SizedBox(
                   height: 16.0,
                 ),
                 TextField(
                   controller: roomText,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Room",
-                  ),
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                TextField(
-                  controller: subjectText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Subject",
+                    labelText: "Theme",
                   ),
                 ),
                 SizedBox(
@@ -92,7 +73,7 @@ class _TalkJoinState extends State<TalkJoin> {
                   controller: nameText,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Display Name",
+                    labelText: "Username",
                   ),
                 ),
                 SizedBox(
@@ -147,7 +128,7 @@ class _TalkJoinState extends State<TalkJoin> {
                       "Join Meeting",
                       style: TextStyle(color: Colors.white),
                     ),
-                    color: Colors.indigo,
+                    color: Colors.blue,
                   ),
                 ),
                 SizedBox(

@@ -17,7 +17,7 @@ class TalkJoin extends StatefulWidget {
 class _TalkJoinState extends State<TalkJoin> {
   final serverText = TextEditingController();
   final roomText = TextEditingController();
-  final subjectText = TextEditingController(text: "WeVoteWeTalk");
+  final subjectText = TextEditingController();
   final nameText = TextEditingController();
   final emailText = TextEditingController();
   var isAudioOnly = true;
@@ -42,8 +42,7 @@ class _TalkJoinState extends State<TalkJoin> {
 
   @override
   Widget build(BuildContext context) {
-    roomText.text = widget.talk;
-    nameText.text = "Diogo Mobile";
+    roomText.text = widget.talk.replaceAll(new RegExp(r"\s+"), "");
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
@@ -59,12 +58,14 @@ class _TalkJoinState extends State<TalkJoin> {
               children: <Widget>[
                 SizedBox(
                   height: 50.0,
-                  child: Text(
-                    widget.talk,
-                    style: TextStyle(fontSize: 25.0),
+                  child: Center(
+                    child: Text(
+                      "Joining " + widget.talk,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 25.0, color: Colors.blue),
+                    ),
                   ),
                 ),
-                /*
                 SizedBox(
                   height: 16.0,
                 ),
@@ -72,10 +73,9 @@ class _TalkJoinState extends State<TalkJoin> {
                   controller: nameText,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Username",
+                    labelText: "Text Chat Username",
                   ),
                 ),
-                */
                 /*
                 SizedBox(
                   height: 16.0,
@@ -88,9 +88,6 @@ class _TalkJoinState extends State<TalkJoin> {
                   ),
                 ),
                  */
-                SizedBox(
-                  height: 16.0,
-                ),
                 SizedBox(
                   height: 16.0,
                 ),

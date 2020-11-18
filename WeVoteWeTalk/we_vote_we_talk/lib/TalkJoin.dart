@@ -16,10 +16,10 @@ class TalkJoin extends StatefulWidget {
 
 class _TalkJoinState extends State<TalkJoin> {
   final serverText = TextEditingController();
-  final roomText = TextEditingController(text: "plugintestroom");
-  final subjectText = TextEditingController(text: "My Plugin Test Meeting");
-  final nameText = TextEditingController(text: "Plugin Test User");
-  final emailText = TextEditingController(text: "fake@email.com");
+  final roomText = TextEditingController();
+  final subjectText = TextEditingController();
+  final nameText = TextEditingController();
+  final emailText = TextEditingController();
   var isAudioOnly = true;
   var isAudioMuted = true;
   var isVideoMuted = true;
@@ -42,11 +42,12 @@ class _TalkJoinState extends State<TalkJoin> {
 
   @override
   Widget build(BuildContext context) {
+    roomText.text = widget.talk.replaceAll(new RegExp(r"\s+"), "");
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.indigo),
+      theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Join A Talk'),
+          title: const Text("Join A Talk"),
         ),
         body: Container(
           padding: const EdgeInsets.symmetric(
@@ -56,33 +57,13 @@ class _TalkJoinState extends State<TalkJoin> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 24.0,
-                ),
-                TextField(
-                  controller: serverText,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Server URL",
-                      hintText: "Hint: Leave empty for meet.jitsi.si"),
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                TextField(
-                  controller: roomText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Room",
-                  ),
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                TextField(
-                  controller: subjectText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Subject",
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      "Joining " + widget.talk,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 25.0, color: Colors.blue),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -92,9 +73,10 @@ class _TalkJoinState extends State<TalkJoin> {
                   controller: nameText,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Display Name",
+                    labelText: "Text Chat Username",
                   ),
                 ),
+                /*
                 SizedBox(
                   height: 16.0,
                 ),
@@ -105,9 +87,7 @@ class _TalkJoinState extends State<TalkJoin> {
                     labelText: "Email",
                   ),
                 ),
-                SizedBox(
-                  height: 16.0,
-                ),
+                 */
                 SizedBox(
                   height: 16.0,
                 ),
@@ -147,7 +127,7 @@ class _TalkJoinState extends State<TalkJoin> {
                       "Join Meeting",
                       style: TextStyle(color: Colors.white),
                     ),
-                    color: Colors.indigo,
+                    color: Colors.blue,
                   ),
                 ),
                 SizedBox(

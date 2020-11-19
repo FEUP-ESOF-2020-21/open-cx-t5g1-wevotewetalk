@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'Authentication/Auth.dart';
 import 'Brainstorm/Brainstorm.dart';
+import 'Vote.dart';
 import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
 import 'TalksOverview.dart';
-import 'Vote.dart';
+import 'package:we_vote_we_talk/Voting/Voting.dart';
 
 class MainMenu extends StatefulWidget {
 
@@ -62,7 +63,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToVote() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Vote()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting()));
   }
 
   Future navigateToTalks() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Idea.dart';
+import '../Shared/Idea.dart';
 
 // ignore: must_be_immutable
 class IdeaInput extends StatefulWidget {

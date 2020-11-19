@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'Brainstorm/Idea.dart';
+import 'Shared/Idea.dart';
 
 class DatabaseService {
+
+  final String docID;
+  DatabaseService({ this.docID });
 
   // collection reference
   final CollectionReference ideasCollection = Firestore.instance.collection('ideas');
@@ -14,7 +17,7 @@ class DatabaseService {
   }
 
   Future<void> updateIdeas(String idea, int votes) async {
-    return await ideasCollection.document('ideas').setData({
+    return await ideasCollection.document(docID).updateData({
       'name' : idea,
       'votes' : votes,
     });
@@ -25,7 +28,8 @@ class DatabaseService {
     return snapshot.documents.map((doc){
       return Idea(
           name: doc.data['name'] ?? '',
-          votes: doc.data['votes'] ?? 0);
+          votes: doc.data['votes'] ?? 0,
+          documentID: doc.documentID);
     }).toList();
   }
 

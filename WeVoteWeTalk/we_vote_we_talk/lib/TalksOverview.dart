@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Brainstorm/Idea.dart';
+import 'Shared/Idea.dart';
 import 'TalkJoin.dart';
 import 'Brainstorm/IdeasList.dart';
 

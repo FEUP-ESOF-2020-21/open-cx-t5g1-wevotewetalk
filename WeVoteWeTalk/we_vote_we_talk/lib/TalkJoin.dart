@@ -43,6 +43,7 @@ class _TalkJoinState extends State<TalkJoin> {
   @override
   Widget build(BuildContext context) {
     roomText.text = widget.talk.replaceAll(new RegExp(r"\s+"), "");
+    roomText.text += "_WVWT";
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.blue),
       home: Scaffold(
@@ -73,7 +74,7 @@ class _TalkJoinState extends State<TalkJoin> {
                   controller: nameText,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Text Chat Username",
+                    labelText: "Text Chat Username (Optional)",
                   ),
                 ),
                 /*

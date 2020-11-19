@@ -5,7 +5,6 @@ import 'Idea.dart';
 
 // ignore: must_be_immutable
 class IdeaInput extends StatefulWidget {
-
   TextEditingController tecThemeIdea;
   var formKey;
 
@@ -16,7 +15,6 @@ class IdeaInput extends StatefulWidget {
 }
 
 class _IdeaInputState extends State<IdeaInput> {
-
   TextEditingController tecThemeIdea;
   var formKey;
 
@@ -40,19 +38,18 @@ class _IdeaInputState extends State<IdeaInput> {
             controller: tecThemeIdea,
             decoration: InputDecoration(labelText: 'Your theme idea:'),
             validator: (value) {
-              return value.isEmpty || isRepeated(value,ideas) ? 'Enter a new theme idea.' : null;
+              return value.isEmpty || isRepeated(value, ideas)
+                  ? 'Enter a new theme idea.'
+                  : null;
             },
           ),
-        )
-    );
+        ));
   }
 
-  isRepeated(value,ideas) {
-    for(int i = 0; i < ideas.length; i++) {
-      if(ideas[i].name == value)
-        return true;
+  isRepeated(value, ideas) {
+    for (int i = 0; i < ideas.length; i++) {
+      if (ideas[i].name == value) return true;
     }
     return false;
   }
-
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_vote_we_talk/shared/Loading.dart';
 import 'Idea.dart';
+import '../TalksOverview.dart';
 
 class IdeasList extends StatefulWidget {
   @override
@@ -11,9 +12,9 @@ class IdeasList extends StatefulWidget {
 class _IdeasListState extends State<IdeasList> {
   @override
   Widget build(BuildContext context) {
-
     final ideas = Provider.of<List<Idea>>(context);
-    if(ideas != null) {
+    ideasList = ideas;
+    if (ideas != null) {
       ideas.sort();
       return ListView.builder(
           scrollDirection: Axis.vertical,
@@ -28,14 +29,11 @@ class _IdeasListState extends State<IdeasList> {
               child: Text(
                 ideas[index].name,
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25.0),
               ),
             );
-          }
-      );
-    }
-    else
+          });
+    } else
       return Loading();
   }
-
-
 }

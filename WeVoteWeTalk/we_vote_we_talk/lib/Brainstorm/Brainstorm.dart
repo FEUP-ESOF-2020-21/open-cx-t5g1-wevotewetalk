@@ -12,7 +12,6 @@ class Brainstorm extends StatefulWidget {
 }
 
 class _BrainstormState extends State<Brainstorm> {
-
   TextEditingController tecThemeIdea = new TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
@@ -23,39 +22,27 @@ class _BrainstormState extends State<Brainstorm> {
           appBar: AppBar(
             title: Text('We Vote We Talk'),
           ),
-          body:Column(
-              children: [
-                Expanded(
-                    flex: 6,
-                    child: IdeasList()
-                ),
-                Expanded(
-                    flex: 3,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          body: Column(children: [
+            Expanded(flex: 6, child: IdeasList()),
+            Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                                flex: 8,
-                                child: IdeaInput(formKey: formKey, tecThemeIdea: tecThemeIdea)
-                            ),
-                            Expanded(
-                                flex: 2,
-                                child: sendButton()
-                            ),
-                          ],
-
-                        ),
+                        Expanded(
+                            flex: 8,
+                            child: IdeaInput(
+                                formKey: formKey, tecThemeIdea: tecThemeIdea)),
+                        Expanded(flex: 3, child: sendButton()),
                       ],
-                    )
-                ),
-              ]
-          ),
-        )
-    );
+                    ),
+                  ],
+                )),
+          ]),
+        ));
   }
-
 
   Widget sendButton() {
     return Padding(
@@ -63,7 +50,7 @@ class _BrainstormState extends State<Brainstorm> {
           vertical: 5.0,
           horizontal: 5.0,
         ),
-        child:MaterialButton(
+        child: MaterialButton(
           textColor: Colors.white,
           color: Colors.black87,
           child: Text('Send'),
@@ -72,16 +59,15 @@ class _BrainstormState extends State<Brainstorm> {
           },
           minWidth: 200.0,
           height: 45.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        )
-    );
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        ));
   }
 
   sendThemeIdea() async {
-    if(formKey.currentState.validate()){
+    if (formKey.currentState.validate()) {
       await DatabaseService().addIdea(tecThemeIdea.text, 0);
       tecThemeIdea.text = "";
     }
   }
-
 }

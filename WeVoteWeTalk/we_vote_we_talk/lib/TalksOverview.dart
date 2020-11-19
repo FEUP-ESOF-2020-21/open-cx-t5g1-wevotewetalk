@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Brainstorm/Idea.dart';
 import 'TalkJoin.dart';
+import 'Brainstorm/IdeasList.dart';
+
+List<Idea> ideasList;
 
 class TalksOverview extends StatefulWidget {
   @override
@@ -7,19 +11,16 @@ class TalksOverview extends StatefulWidget {
 }
 
 class _TalksOverviewState extends State<TalksOverview> {
-
   var talks = new List();
 
-  _TalksOverviewState() {
-    talks.add("Theme 1");
-    talks.add("Theme 2");
-    talks.add("Theme 3");
-    talks.add("Theme 4");
-    talks.add("Theme 5");
-  }
+  _TalksOverviewState() {}
 
   @override
   Widget build(BuildContext context) {
+    for (int i = 0; i < ideasList.length; i++) {
+      if (ideasList[i].name != null) talks.add(ideasList[i].name);
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text('We Vote We Talk'),
@@ -61,8 +62,6 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   Future navigateToTalk(talk) async {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => TalkJoin(talk: talk)));
+        context, MaterialPageRoute(builder: (context) => TalkJoin(talk: talk)));
   }
 }

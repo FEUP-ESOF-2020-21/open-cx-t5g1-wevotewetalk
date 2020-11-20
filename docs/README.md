@@ -37,11 +37,12 @@ Thank you!
 
 ## Product Vision
 
-We Vote We Talk - An online event running Open Space Technology, where participants choose what they want to talk about based on their personal interests.
+We Vote We Talk - An online event running Open Space Technology, where participants are able to join talks based on their personal interests by voting from a group of talks to then generate a schedule with the top voted topics.
 
 ---
 ## Elevator Pitch
-We want to increase people's interest in an online conference event. What better way to do so than to talk about what people actually want to listen to? 
+
+We want to increase people's interest in an online Open Space event. What better way to do so than to talk about what people actually want to listen to? 
 We let people say want they want to talk about, then vote on the ideas that were given and finnaly a moderator generates a schedule that best suits all the attendant's interests.
 After that the talks begin! Any user is free to enter/leave any talk at any moment. Thanks to this there are two roles that a participant can have: bumblebees and buterflies. Bumblebees fly from group to group cross-pollinating the discussions while Butterflies sit around looking relaxed.
 Interesting discussions emerge around them as people find them and pause to chat.

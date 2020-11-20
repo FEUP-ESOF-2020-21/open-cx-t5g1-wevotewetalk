@@ -59,6 +59,22 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ![Use-Cases](use-cases-diagram.png) 
 
+##### Suggest Themes
+
+* **Actor**: User
+* **Description**: This use case's purpose is to allow the user to enter a theme that he would like to talk about.
+* **Preconditions and Postconditions**: The user must have previously logged in or registered into his account for the app. After he suggests a theme, the theme will appear in real time as an existing suggestion for all users.
+* **Normal Flow**:
+  1. The User logs in to his account.
+  2. The User presses the brainstorm button to start suggesting themes.
+  3. The User writes the theme he desires.
+  4. The User presses the send button and the theme is suggested.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User presses the brainstorm button to start suggesting themes.
+  3. The User writes a theme that already exists in the themes list.
+  4. The App rejects the theme and asks the user to rewrite.
+
 Briefly describe each use case mentioning the following:
 
 * **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. 

@@ -48,9 +48,9 @@ class _VotingListState extends State<VotingList> {
                           Icon(false? Icons.favorite_outlined : Icons.favorite_border_outlined),
                           onPressed: () async {
                             if(false)
-                              await DatabaseService(docID : ideas[index].documentID).updateIdeas(ideas[index].name, ideas[index].votes-1);
+                              await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes-1, ideas[index].documentID);
                             else
-                              await DatabaseService(docID : ideas[index].documentID).updateIdeas(ideas[index].name, ideas[index].votes+1);
+                              await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes+1, ideas[index].documentID);
                           }
                       ),
                     ),

@@ -10,11 +10,15 @@ class User {
 
 class UserData {
 
-  final String uid;
-  List votedIdeas;
-  final String name;
+  String uid;
+  var votedIdeas;
+  String name;
 
-  UserData({this.uid, this.name, this.votedIdeas});
+  UserData(uid, name, list) {
+    this.uid = uid;
+    this.name = name;
+    this.votedIdeas = List.from(list);
+  }
 
   hasVoted(String idea)
   {
@@ -28,6 +32,11 @@ class UserData {
 
   vote(String idea) {
     votedIdeas.add(idea);
+  }
+
+  removeIdea(String idea) {
+    //votedIdeas.removeWhere((item) => item.name == 'idea');
+    votedIdeas.remove(idea);
   }
 
 }

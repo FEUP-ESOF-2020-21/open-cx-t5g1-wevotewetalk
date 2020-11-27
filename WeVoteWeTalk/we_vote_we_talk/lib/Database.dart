@@ -16,7 +16,7 @@ class DatabaseService {
     return await usersCollection.document(uid).setData({
       'name' : name,
       'uid' : uid,
-      'likedIdeas' : [],
+      'likedIdeas' : new List<String>(),
     });
   }
 
@@ -45,11 +45,7 @@ class DatabaseService {
   }
 
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
-        uid: uid,
-        name: snapshot.data['name'],
-        votedIdeas: snapshot.data['likedIdeas'],
-    );
+    return UserData(uid, snapshot.data['name'], snapshot.data['likedIdeas']);
   }
 
   Stream<List<Idea>> get ideas {

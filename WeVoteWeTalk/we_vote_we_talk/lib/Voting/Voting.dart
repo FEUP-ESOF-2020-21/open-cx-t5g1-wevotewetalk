@@ -71,12 +71,19 @@ class _VotingState extends State<Voting> {
                                           child: IconButton(
                                               icon:
                                               Icon(userData.hasVoted(ideas[index].name)? Icons.favorite_outlined : Icons.favorite_border_outlined),
-                                              onPressed: () async {
-                                                if(userData.hasVoted(ideas[index].name))
-                                                  await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes-1, ideas[index].documentID);
-                                                else
-                                                  await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes+1, ideas[index].documentID);
-                                                userData.vote(ideas[index].name);
+                                              onPressed: () {
+                                                setState(() async {
+                                                  if(userData.hasVoted(ideas[index].name)) {
+                                                    await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes-1, ideas[index].documentID);
+                                                    userData.removeIdea(ideas[index].name);
+
+                                                  }
+                                                  else {
+                                                    await DatabaseService().updateIdeas(ideas[index].name, ideas[index].votes+1, ideas[index].documentID);
+                                                    userData.vote(ideas[index].name);
+                                                  }
+                                                });
+
                                               }
                                           ),
                                         ),

@@ -23,6 +23,7 @@ class _MainMenuState extends State<MainMenu> {
           title: Text('We Vote We Talk'),
           actions: <Widget>[
             FlatButton.icon(
+              key: const Key('logoutButton'),
               icon: Icon(Icons.person),
               label: Text('Logout'),
               onPressed: () async {

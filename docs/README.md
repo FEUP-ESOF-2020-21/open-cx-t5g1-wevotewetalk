@@ -156,6 +156,9 @@ Use cross-links to the code repository and only embed real fragments of code whe
 Currently we have automated tests for the following features:
 
 * User Login
+* Brainstorm
+* Vote
+* Join Talks
 
 All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated.
 

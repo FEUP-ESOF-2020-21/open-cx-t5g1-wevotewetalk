@@ -17,9 +17,12 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   @override
   Widget build(BuildContext context) {
+    talks.add("Cats");
+    /*
     for (int i = 0; i < ideasList.length; i++) {
       if (ideasList[i].name != null) talks.add(ideasList[i].name);
     }
+     */
 
     return Scaffold(
         appBar: AppBar(

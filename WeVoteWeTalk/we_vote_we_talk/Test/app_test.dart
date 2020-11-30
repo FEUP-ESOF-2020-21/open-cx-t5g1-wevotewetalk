@@ -7,7 +7,7 @@ import 'Steps/Login_Step.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
-    ..features = [Glob(r"Test/Features/**.feature")]
+    ..features = [Glob(r"Test/Features/Login.feature")]
     ..reporters = [
       ProgressReporter(),
       TestRunSummaryReporter(),

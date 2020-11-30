@@ -14,4 +14,3 @@ Feature: Login
     And I type "diogoreis" in the password field
     And I press the login button
     Then User is logged in
-

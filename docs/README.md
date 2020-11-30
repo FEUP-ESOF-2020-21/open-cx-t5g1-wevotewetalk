@@ -32,7 +32,6 @@ Thank you!
 [José Eduardo Henriques](https://github.com/Zeze35H)  
 [Ricardo Cardoso](https://github.com/ricardofdc)  
 
-
 ---
 
 ## Product Vision
@@ -112,7 +111,6 @@ As a participant,
 I want to participate on a talk
 so that the participants and the host can interact with each other.
 
-
 ---
 
 ## Architecture and Design
@@ -151,18 +149,19 @@ While not necessary, sometimes it might be useful to explain a few aspects of th
 Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
 
 ---
+
 ## Test
 
 Currently we have automated tests for the following features:
 
 * User Login
 * Brainstorm
-* Vote
 * Join Talks
 
-All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated.
+All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated. The automated tests of this features can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/tree/gherkin/WeVoteWeTalk/we_vote_we_talk/Test).
 
 ---
+
 ## Configuration and change management
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
@@ -192,3 +191,4 @@ We recommend to use the simplest tool that can possibly work for the team.
 ## Evolution - contributions to open-cx
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+

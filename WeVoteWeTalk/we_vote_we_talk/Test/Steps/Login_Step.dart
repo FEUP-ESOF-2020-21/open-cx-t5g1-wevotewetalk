@@ -54,6 +54,15 @@ StepDefinitionGeneric LoginSucess() {
   );
 }
 
+StepDefinitionGeneric LoginFail() {
+  return then<FlutterWorld>(
+    'User is not logged in',
+        (StepContext<FlutterWorld> context) async {
+      await FlutterDriverUtils.waitForFlutter(context.world.driver);
+    },
+  );
+}
+
 /*
 Feature: Counter
 The counter should be incremented when the button is pressed.

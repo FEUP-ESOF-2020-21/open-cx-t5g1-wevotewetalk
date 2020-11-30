@@ -153,13 +153,11 @@ Use cross-links to the code repository and only embed real fragments of code whe
 ---
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+Currently we have automated tests for the following features:
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+* User Login
+
+All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated.
 
 ---
 ## Configuration and change management

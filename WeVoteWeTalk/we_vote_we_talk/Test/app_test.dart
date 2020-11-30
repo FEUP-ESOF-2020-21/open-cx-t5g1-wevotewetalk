@@ -14,7 +14,7 @@ Future<void> main() {
       JsonReporter(path: './Report.json')
     ] // you can include the "StdoutReporter()" without the message level parameter for verbose log information
     ..hooks = []
-    ..stepDefinitions = [GivenLoginPage(), TypeEmail(), TypePassword(), PressLogin(), LoginSucess()]
+    ..stepDefinitions = [GivenLoginPage(), TypeEmail(), TypePassword(), PressLogin(), LoginFail(), LoginSucess()]
     ..customStepParameterDefinitions = []
     ..restartAppBetweenScenarios = true
     ..targetAppPath = "Test/app.dart"

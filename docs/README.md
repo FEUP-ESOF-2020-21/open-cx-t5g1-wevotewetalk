@@ -57,7 +57,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-![Use-Cases](use-cases-diagram.png) 
+![Use-Cases](images/use-cases-diagram.png) 
 
 ##### Suggest Themes
 
@@ -114,31 +114,61 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### User stories
 
-#### User Storie 1
-As a participant,
-I want to give my idea of a theme
-so that other users can vote on my idea.
+#### Story 1 - Navigate the App
+- **Story:** As a user, I want to open to see a Main Page when I open the app so that I can navigate around the map.
+- **User Interface Mockups:**
 
-#### User Storie 2
-As a participant,
-I want to vote on the ideas I like the most
-so that I can learn more about that topic.
+<img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">
 
-#### User Storie 3
-As a moderator,
-I want to organize the schedule
-so that most participants can hear the talks they most want to learn about.
+- **Acceptance tests:**
+- **Value and Effort:**
 
-#### User Storie 4
-As a participant,
-I want to be be able to leave and enter new talks
-so that I'm not stuck in a talk I'm no longer interested in.
+#### Story 2 - User interaction
+- **Story:** As a participant, I want to participate on a session so that the participants can interact with each other.
+- **User Interface Mockups:**
 
-#### User Storie 5
-As a participant,
-I want to participate on a talk
-so that the participants and the host can interact with each other.
+<img src="images/story2/join_talks.png" width="303" height="538"> <img src="images/story2/choose_conf.png" width="303" height="538">
+<img src="images/story2/conf_settings.png" width="303" height="538">
 
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 3 - Prepare conferences
+- **Story:** As a moderator, I want to organize the schedule so that most participants can hear the talks they most want to learn about.
+- **User Interface Mockups:**
+
+<img src="images/story3/moderator_options.png" width="303" height="538"> <img src="images/story3/manage_schedule.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 4 - Suggest themes
+- **Story:** As a participant, I want to give my idea of a theme so that other users can vote on my idea.
+- **User Interface Mockups:**
+
+<img src="images/story4/brainstorm.png" width="303" height="538"> <img src="images/story4/suggest_themes.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 5 - Voting
+- **Story:** As a participant, I want to vote on the ideas I like the most, so that I can learn more about that topic.
+- **User Interface Mockups:**
+
+<img src="images/story5/voting.png" width="303" height="538"> <img src="images/story5/vote_on.png" width="303" height="538">
+<img src="images/story5/liked.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 6 - Enter / Leave Talks
+- **Story:** As a participant, I want to be able to leave and enter new talks so that I'm not stuck in a talk I'm no longer interested in.
+- **User Interface Mockups:**
+
+<img src="images/story6/leave_meeting.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
 
 ---
 

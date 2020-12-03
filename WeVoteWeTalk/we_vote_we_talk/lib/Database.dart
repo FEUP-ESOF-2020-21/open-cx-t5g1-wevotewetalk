@@ -20,6 +20,14 @@ class DatabaseService {
     });
   }
 
+  Future<void> updateUser(UserData userData) async {
+    return await usersCollection.document(uid).setData({
+      'name' : userData.name,
+      'uid' : userData.uid,
+      'likedIdeas' : List.from(userData.votedIdeas),
+    });
+  }
+
   Future<void> addIdea(String idea, int votes) async {
     return await ideasCollection.add({
       'name' : idea,

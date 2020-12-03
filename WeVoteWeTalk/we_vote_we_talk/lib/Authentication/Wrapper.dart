@@ -18,8 +18,6 @@ class Wrapper extends StatelessWidget {
       return Authenticate();
     } else {
       return ConferenceSelect(user_id: user.uid);
-      //return MainMenu(user_id: user.uid);
     }
-
   }
 }

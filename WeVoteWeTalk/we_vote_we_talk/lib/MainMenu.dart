@@ -13,30 +13,33 @@ import 'package:we_vote_we_talk/Voting/Voting.dart';
 
 class MainMenu extends StatefulWidget {
   final user_id;
-  MainMenu({this.user_id});
+  final talk_id;
+  MainMenu({this.user_id, this.talk_id});
 
 
   @override
-  _MainMenuState createState() => _MainMenuState(user_id: this.user_id);
+  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _MainMenuState extends State<MainMenu> {
   final AuthService _auth = AuthService();
   final user_id;
+  final talk_id;
 
-  _MainMenuState({this.user_id});
+  _MainMenuState({this.user_id, this.talk_id});
 
 
   @override
   Widget build(BuildContext context) {
-
-    //print("MainMenu");
-    //print(user_id);
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user_id).userData,
+    print("MainMenu");
+    print(user_id);
+    print(talk_id);
+    return StreamBuilder<ConferenceUserData>(
+        stream: DatabaseService(user_id, talk_id).conferenceUserData,
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            UserData userData = snapshot.data;
+            ConferenceUserData userData = snapshot.data;
+            DatabaseService(user_id, talk_id).addUserToTalk(userData);
             return Scaffold(
                 appBar: AppBar(
                   title: Text('We Vote We Talk'),
@@ -58,7 +61,7 @@ class _MainMenuState extends State<MainMenu> {
                           SizedBox(height: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: DatabaseService(uid: user_id).isModerator() ? moderatorUser() : generalUser(),  // test
+                            children: userData.moderator ? moderatorUser() : generalUser(),
                           )
                         ]
 
@@ -95,7 +98,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToVote() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToTalks() async {

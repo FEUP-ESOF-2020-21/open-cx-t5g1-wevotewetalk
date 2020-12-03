@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_vote_we_talk/Database.dart';
 import 'package:we_vote_we_talk/Shared/Constants.dart';
 import '../MainMenu.dart';
 
@@ -44,6 +45,10 @@ class _JoinConferenceState extends State<JoinConference> {
                 setState(() => conferenceCode = val);
               },
             ),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14.0),
+            ),
             SizedBox(height: 20.0),
             RaisedButton(
                 color: Colors.pink[400],
@@ -54,24 +59,24 @@ class _JoinConferenceState extends State<JoinConference> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    bool result = true;
-                    //bool result = await //verificar se existe a conferencia;
+                    bool result = await DatabaseService(user_id, conferenceCode).existsConference();
                     if (result == true) {
                       navigateToMainMenu();
+                    }
+                    else{
+                      setState(() {
+                        error = "Wrong conference code.";
+                      });
                     }
                   }
                   else{
                     setState(() {
                       conferenceCode = "";
-                      error = "Wrong conference code.";
+                      error = "Insert a conference code.";
                     });
                   }
                 }),
             SizedBox(height: 12.0),
-            Text(
-              error,
-              style: TextStyle(color: Colors.red, fontSize: 14.0),
-            ),
           ],
         ),
       ),
@@ -81,7 +86,7 @@ class _JoinConferenceState extends State<JoinConference> {
   }
 
   Future navigateToMainMenu() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conferenceCode)));
   }
 
 }

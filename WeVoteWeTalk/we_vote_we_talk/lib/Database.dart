@@ -1,13 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'Shared/Idea.dart';
 import 'Shared/User.dart';
 
 class DatabaseService {
 
   final String uid;
-  DatabaseService({ this.uid });
+  final String code;
+  bool moderator;
+  DatabaseService(this.uid, this.code);
 
   // collection reference
+
+  final CollectionReference talksCollection = Firestore.instance.collection('talks');
+
   final CollectionReference ideasCollection = Firestore.instance.collection('ideas');
 
   final CollectionReference usersCollection = Firestore.instance.collection('users');
@@ -17,6 +23,15 @@ class DatabaseService {
       'name' : name,
       'uid' : uid,
       'likedIdeas' : new List<String>(),
+    });
+  }
+
+  Future<void> addUserToTalk(ConferenceUserData userData) async {
+    return await talksCollection.document(code).collection('users').document(uid).setData({
+      'name' : userData.name,
+      'uid' : uid,
+      'likedIdeas' : new List<String>(),
+      'moderator' : userData.moderator,
     });
   }
 
@@ -64,11 +79,25 @@ class DatabaseService {
     return usersCollection.document(this.uid).snapshots().map(_userDataFromSnapshot);
   }
 
-  bool isModerator(){
-    return true;
-    //return talksCollection.document(talk_id).colection('users').document(uid).snapshot('moderator');
+  ConferenceUserData _conferenceUserDataFromSnapshot(DocumentSnapshot snapshot) {
+    print(snapshot.data['moderator']);
+    print(snapshot.data['name']);
+    print(snapshot.data['likedIdeas']);
+    return ConferenceUserData(uid, snapshot.data['moderator'], snapshot.data['name'], snapshot.data['likedIdeas']);
   }
 
+  Stream<ConferenceUserData> get conferenceUserData {
+    return usersCollection.document(this.uid).snapshots().map(_conferenceUserDataFromSnapshot);
+  }
+
+
+
+  Future<bool> existsConference() async {
+    var doc = await talksCollection.document(code).get();
+    return doc.exists;
+  }
+
+/*
   Future<void> addConference(String name) async {
     CollectionReference newTalk = await talksCollection.add({
       'name' : name,
@@ -83,5 +112,5 @@ class DatabaseService {
 
 
   }
-
+*/
 }

@@ -17,7 +17,7 @@ class _BrainstormState extends State<Brainstorm> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Idea>>.value(
-        //value: DatabaseService().ideas,
+        value: DatabaseService().ideas,
         child: Scaffold(
           appBar: AppBar(
             title: Text('We Vote We Talk'),

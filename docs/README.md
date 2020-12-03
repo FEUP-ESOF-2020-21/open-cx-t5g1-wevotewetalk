@@ -32,17 +32,18 @@ Thank you!
 [José Eduardo Henriques](https://github.com/Zeze35H)  
 [Ricardo Cardoso](https://github.com/ricardofdc)  
 
-
 ---
 
 ## Product Vision
 
-We Vote We Talk - An online event running Open Space Technology, where participants choose what they want to talk about based on their personal interests.
+We Vote We Talk - An online event running Open Space Technology, where participants are able to join talks based on their personal interests by voting from a group of talks to then generate a schedule with the top voted topics.
 
 ---
 ## Elevator Pitch
-We want to increase people's interest in an online conference event. What better way to do so than to talk about what people actually want to listen to? 
-We let people say want they want to talk about, then vote on the ideas that were given and finnaly a moderator generates a schedule that best suits all the attendant's interests.
+
+Have you ever been to an online Open Space event, and your concentration and interests level are slowly but surely fading away? What better way to increase your interest in the event than to talk about what you actually want to listen to? 
+That's exactly what WeVoteWeTalk does: we want to increase people's interest in an online Open Space event. 
+We let people say want they want to talk about, then vote on the ideas that were given and finnaly a moderator generates a schedule that best suits all the attendant's interests so that everyone's experience in the event is surely improved!
 After that the talks begin! Any user is free to enter/leave any talk at any moment. Thanks to this there are two roles that a participant can have: bumblebees and buterflies. Bumblebees fly from group to group cross-pollinating the discussions while Butterflies sit around looking relaxed.
 Interesting discussions emerge around them as people find them and pause to chat.
 
@@ -55,51 +56,118 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-![Use-Cases](use-cases-diagram.png)
+![Use-Cases](images/use-cases-diagram.png) 
 
-Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
+##### Suggest Themes
 
-Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun. 
+* **Actor**: User
+* **Description**: This use case's purpose is to allow the user to enter a theme that he would like to talk about.
+* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
+* **Postconditions**: After he suggests a theme, the theme will appear in real time as an existing suggestion for all users.
+* **Normal Flow**:
+  1. The User logs in to his account.
+  2. The User presses the brainstorm button to start suggesting themes.
+  3. The User writes the theme he desires.
+  4. The User presses the send button and the theme is suggested.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User presses the brainstorm button to start suggesting themes.
+  3. The User writes a theme that already exists in the themes list.
+  4. The App rejects the theme and asks the user to rewrite.
 
-Briefly describe each use case mentioning the following:
+##### Vote on Themes
 
-* **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks. 
-* **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case. 
-* **Preconditions and Postconditions**. Include any activities that must take place, or any conditions that must be true, before the use case can be started (preconditions). Describe also the state of the system at the conclusion of the use case execution (postconditions). 
+* **Actor**: User
+* **Description**: This use case's purpose is to allow the user to vote on themes that have already been suggested by users, and approved by moderators.
+* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
+* **Postconditions**: After he votes on a theme, he can continue voting, or not.
+* **Normal Flow**:
+  1. The User logs in to his account.
+  2. The User presses the vote button to start voting.
+  3. The User likes the themes he desires to.
+  4. The User keeps liking other themes, disliking already liked themes, or not.
 
-* **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system. 
-* **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions. 
+##### Join Talks
 
+* **Actor**: User
+* **Description**: This use case's purpose is to allow the user to join the talk based on the theme he desires to.
+* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
+* **Postconditions**: After he joins a talk, he can stay there for as long as it lasts, or leave whenever he wants.
+* **Normal Flow**:
+  1. The User logs in to his account.
+  2. The User presses the Join Talks button.
+  3. The User chosees the conference's theme he wants to hear or talk about.
+  4. The User can (but is not obliged to) change some settings regarding the conference he is entering.
+  5. The User presses the Join Meeting button.
+
+##### Manage
+
+* **Actor**: Moderator
+* **Description**: This use case's purpose is to allow the moderator to manage everything he need to for the good functioning of the app.
+* **Preconditions**: The moderator must have previously logged in or registered into his account for the app as a moderator. 
+* **Postconditions**: He can decide whatever he wants to manage and take care of.
+* **Normal Flow**:
+  1. The Moderator logs in to his account.
+  2. The Moderator presses the manage button.
+  3. The Moderator chooses what he wants to manage on the app by clicking on it.
 
 ### User stories
 
-#### User Storie 1
-As a participant,
-I want to give my idea of a theme
-so that other users can vote on my idea.
+#### Story 1 - Navigate the App
+- **Story:** As a user, I want to open to see a Main Page when I open the app so that I can navigate around the map.
+- **User Interface Mockups:**
 
-#### User Storie 2
-As a participant,
-I want to vote on the ideas I like the most
-so that I can learn more about that topic.
+<img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">
 
-#### User Storie 3
-As a moderator,
-I want to organize the schedule
-so that most participants can hear the talks they most want to learn about.
+- **Acceptance tests:**
+- **Value and Effort:**
 
-#### User Storie 4
-As a participant,
-I want to be be able to leave and enter new talks
-so that I'm not stuck in a talk I'm no longer interested in.
+#### Story 2 - User interaction
+- **Story:** As a participant, I want to participate on a session so that the participants can interact with each other.
+- **User Interface Mockups:**
 
-#### User Storie 5
-As a participant,
-I want to participate on a talk
-so that the participants and the host can interact with each other.
+<img src="images/story2/join_talks.png" width="303" height="538"> <img src="images/story2/choose_conf.png" width="303" height="538">
+<img src="images/story2/conf_settings.png" width="303" height="538">
 
+- **Acceptance tests:**
+- **Value and Effort:**
 
----
+#### Story 3 - Prepare conferences
+- **Story:** As a moderator, I want to organize the schedule so that most participants can hear the talks they most want to learn about.
+- **User Interface Mockups:**
+
+<img src="images/story3/moderator_options.png" width="303" height="538"> <img src="images/story3/manage_schedule.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 4 - Suggest themes
+- **Story:** As a participant, I want to give my idea of a theme so that other users can vote on my idea.
+- **User Interface Mockups:**
+
+<img src="images/story4/brainstorm.png" width="303" height="538"> <img src="images/story4/suggest_themes.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 5 - Voting
+- **Story:** As a participant, I want to vote on the ideas I like the most, so that I can learn more about that topic.
+- **User Interface Mockups:**
+
+<img src="images/story5/voting.png" width="303" height="538"> <img src="images/story5/vote_on.png" width="303" height="538">
+<img src="images/story5/liked.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
+
+#### Story 6 - Enter / Leave Talks
+- **Story:** As a participant, I want to be able to leave and enter new talks so that I'm not stuck in a talk I'm no longer interested in.
+- **User Interface Mockups:**
+
+<img src="images/story6/leave_meeting.png" width="303" height="538">
+
+- **Acceptance tests:**
+- **Value and Effort:**
 
 ## Architecture and Design
 The architecture of a software system encompasses the set of key decisions about its overall organization. 
@@ -137,17 +205,19 @@ While not necessary, sometimes it might be useful to explain a few aspects of th
 Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
 
 ---
+
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+Currently we have automated tests for the following features:
 
-In this section it is only expected to include the following:
-* test plan describing the list of features to be tested and the testing methods and tools;
-* test case specifications to verify the functionalities, using unit tests and acceptance tests.
- 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+* User Login
+* Brainstorm
+* Join Talks
+
+All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated. The automated tests for this features can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/tree/master/WeVoteWeTalk/we_vote_we_talk/Test).
 
 ---
+
 ## Configuration and change management
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).

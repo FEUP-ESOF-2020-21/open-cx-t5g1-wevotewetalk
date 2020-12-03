@@ -30,6 +30,7 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   Widget build(BuildContext context) {
+
     print("MainMenu");
     print(user_id);
     return StreamBuilder<UserData>(
@@ -69,6 +70,7 @@ class _MainMenuState extends State<MainMenu> {
             return Loading();
           }
         }
+
     );
   }
 

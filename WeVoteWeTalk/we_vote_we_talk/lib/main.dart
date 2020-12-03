@@ -1,5 +1,5 @@
 import 'Authentication/Auth.dart';
-import 'Authentication/User.dart';
+import 'Shared/User.dart';
 import 'Authentication/Wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_vote_we_talk/shared/Loading.dart';
-import 'Idea.dart';
+import '../Shared/Idea.dart';
 import '../TalksOverview.dart';
 
 class IdeasList extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Idea.dart';
+import '../Shared/Idea.dart';
 import 'IdeasList.dart';
 import 'package:we_vote_we_talk/Database.dart';
 import 'package:provider/provider.dart';

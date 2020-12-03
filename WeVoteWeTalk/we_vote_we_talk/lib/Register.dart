@@ -107,7 +107,7 @@ class _RegisterState extends State<Register> {
                           else {
                             setState(() => loading = true);
                             dynamic result = await _auth
-                                .registerWithEmailAndPassword(email, password);
+                                .registerWithEmailAndPassword(name, email, password);
                             if (result == null) {
                               setState(() {
                                 loading = false;

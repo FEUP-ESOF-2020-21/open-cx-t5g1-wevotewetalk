@@ -5,9 +5,13 @@ import 'Shared/User.dart';
 class DatabaseService {
 
   final String uid;
-  DatabaseService({ this.uid });
+  final String code;
+  DatabaseService(this.uid, this.code);
 
   // collection reference
+
+  final CollectionReference talksCollection = Firestore.instance.collection('talks');
+
   final CollectionReference ideasCollection = Firestore.instance.collection('ideas');
 
   final CollectionReference usersCollection = Firestore.instance.collection('users');
@@ -17,6 +21,15 @@ class DatabaseService {
       'name' : name,
       'uid' : uid,
       'likedIdeas' : new List<String>(),
+    });
+  }
+
+  Future<void> addUserToTalk(UserData userData) async {
+    return await talksCollection.document(code).collection('users').document(uid).setData({
+      'name' : userData.name,
+      'uid' : uid,
+      'likedIdeas' : new List<String>(),
+      'moderator' : true,
     });
   }
 

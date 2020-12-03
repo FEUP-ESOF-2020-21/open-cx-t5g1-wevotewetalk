@@ -13,19 +13,21 @@ import 'package:we_vote_we_talk/Voting/Voting.dart';
 
 class MainMenu extends StatefulWidget {
   final user_id;
-  MainMenu({this.user_id});
+  final talk_id;
+  MainMenu({this.user_id, this.talk_id});
 
 
   @override
-  _MainMenuState createState() => _MainMenuState(user_id: this.user_id);
+  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _MainMenuState extends State<MainMenu> {
   bool _moderator = true;
   final AuthService _auth = AuthService();
   final user_id;
+  final talk_id;
 
-  _MainMenuState({this.user_id});
+  _MainMenuState({this.user_id, this.talk_id});
 
 
   @override
@@ -33,11 +35,13 @@ class _MainMenuState extends State<MainMenu> {
 
     print("MainMenu");
     print(user_id);
+    print(talk_id);
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user_id).userData,
+        stream: DatabaseService(user_id, talk_id).userData,
         builder: (context, snapshot) {
           if(snapshot.hasData){
             UserData userData = snapshot.data;
+            DatabaseService(user_id, talk_id).addUserToTalk(userData);
             return Scaffold(
                 appBar: AppBar(
                   title: Text('We Vote We Talk'),
@@ -96,7 +100,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToVote() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToTalks() async {

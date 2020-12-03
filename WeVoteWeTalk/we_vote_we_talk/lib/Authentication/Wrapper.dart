@@ -1,3 +1,4 @@
+import 'package:we_vote_we_talk/ConferenceSelection/ConferenceSelect.dart';
 import 'package:we_vote_we_talk/Database.dart';
 
 import '../Authenticate.dart';
@@ -16,7 +17,8 @@ class Wrapper extends StatelessWidget {
     if (user == null){
       return Authenticate();
     } else {
-      return MainMenu(user_id: user.uid);
+      return ConferenceSelect(user_id: user.uid);
+      //return MainMenu(user_id: user.uid);
     }
 
   }

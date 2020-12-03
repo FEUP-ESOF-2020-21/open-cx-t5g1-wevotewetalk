@@ -64,4 +64,24 @@ class DatabaseService {
     return usersCollection.document(this.uid).snapshots().map(_userDataFromSnapshot);
   }
 
+  bool isModerator(){
+    return true;
+    //return talksCollection.document(talk_id).colection('users').document(uid).snapshot('moderator');
+  }
+
+  Future<void> addConference(String name) async {
+    CollectionReference newTalk = await talksCollection.add({
+      'name' : name,
+    });
+
+
+    await newTalk.document(uid).setData({
+      'name' : userData.name,
+      'uid' : userData.uid,
+      'likedIdeas' : List.from(userData.votedIdeas),
+    });
+
+
+  }
+
 }

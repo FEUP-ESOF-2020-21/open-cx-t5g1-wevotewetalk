@@ -21,7 +21,6 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
-  bool _moderator = true;
   final AuthService _auth = AuthService();
   final user_id;
 
@@ -31,8 +30,8 @@ class _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
 
-    print("MainMenu");
-    print(user_id);
+    //print("MainMenu");
+    //print(user_id);
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user_id).userData,
         builder: (context, snapshot) {
@@ -59,7 +58,7 @@ class _MainMenuState extends State<MainMenu> {
                           SizedBox(height: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children:_moderator ? moderatorUser() : generalUser(),
+                            children: DatabaseService(uid: user_id).isModerator() ? moderatorUser() : generalUser(),  // test
                           )
                         ]
 

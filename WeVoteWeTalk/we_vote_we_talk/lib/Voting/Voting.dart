@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:we_vote_we_talk/Shared/GenericWidgets.dart';
 import 'package:we_vote_we_talk/Shared/Loading.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
 import '../Shared/Idea.dart';
-import 'VotingList.dart';
 import '../Database.dart';
 
 class Voting extends StatefulWidget {

@@ -26,11 +26,11 @@ class _VotingState extends State<Voting> {
   @override
   Widget build(BuildContext context) {
     print("Voting");
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(user_id, talk_id).userData,
+    return StreamBuilder<ConferenceUserData>(
+        stream: DatabaseService(user_id, talk_id).conferenceUserData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            UserData userData = snapshot.data;
+            ConferenceUserData userData = snapshot.data;
             return StreamBuilder<List<Idea>>(
               stream: DatabaseService(user_id, talk_id).ideas,
               builder: (context, snapshot) {

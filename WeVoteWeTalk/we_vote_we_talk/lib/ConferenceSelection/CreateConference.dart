@@ -4,32 +4,33 @@ import 'package:we_vote_we_talk/Shared/Constants.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
 import '../MainMenu.dart';
 
-class JoinConference extends StatefulWidget {
+class CreateConference extends StatefulWidget {
 
   final user_id;
   UserData userData;
-  JoinConference({this.user_id, this.userData});
+  CreateConference({this.user_id, this.userData});
 
 
   @override
-  _JoinConferenceState createState() => _JoinConferenceState(user_id: user_id, userData: userData);
+  _CreateConferenceState createState() => _CreateConferenceState(user_id: user_id, userData: userData);
 }
 
-class _JoinConferenceState extends State<JoinConference> {
+class _CreateConferenceState extends State<CreateConference> {
 
   final user_id;
   UserData userData;
-  _JoinConferenceState({this.user_id,  this.userData});
+  _CreateConferenceState({this.user_id, this.userData});
 
   final _formKey = GlobalKey<FormState>();
-  String conferenceCode = "";
+  String conferenceName = "";
   String error = "";
   bool loading = false;
+  String confCode;
 
 
   @override
   Widget build(BuildContext context) {
-    print("im in join");
+    print("im in create");
     return Scaffold(
       appBar: AppBar(
         title: Text('We Vote We Talk'),
@@ -40,13 +41,13 @@ class _JoinConferenceState extends State<JoinConference> {
           children: <Widget>[
             SizedBox(height: 20.0),
             TextFormField(
-              key: const Key('conferenceCode'),
+              key: const Key('conferenceName'),
               decoration:
-              textInputDecoration.copyWith(hintText: 'Conference Code'),
+              textInputDecoration.copyWith(hintText: 'Conference Name'),
               validator: (val) =>
-              val.isEmpty ? 'Enter a valid code' : null,
+              val.isEmpty ? 'Enter a name' : null,
               onChanged: (val) {
-                setState(() => conferenceCode = val);
+                setState(() => conferenceName = val);
               },
             ),
             Text(
@@ -57,26 +58,18 @@ class _JoinConferenceState extends State<JoinConference> {
             RaisedButton(
                 color: Colors.pink[400],
                 child: Text(
-                  'Join Talk',
+                  'Create Conference',
                   style: TextStyle(color: Colors.white),
-                  key: const Key('joinButton'),
+                  key: const Key('createButton'),
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    bool result = await DatabaseService(user_id, conferenceCode).existsConferenceWithoutUser();
-                    if (result == true) {
-                      DatabaseService(user_id, conferenceCode).addUserToTalk(userData);
-                      navigateToMainMenu();
-                    }
-                    else{
-                      setState(() {
-                        error = "Wrong conference code.";
-                      });
-                    }
+                    confCode = DatabaseService(user_id, "").createConference(conferenceName, userData);
+                    navigateToMainMenu();
                   }
                   else{
                     setState(() {
-                      conferenceCode = "";
+                      conferenceName = "";
                       error = "Insert a conference code.";
                     });
                   }
@@ -91,7 +84,7 @@ class _JoinConferenceState extends State<JoinConference> {
   }
 
   Future navigateToMainMenu() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conferenceCode)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: confCode)));
   }
 
 }

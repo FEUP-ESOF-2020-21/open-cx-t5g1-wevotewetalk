@@ -39,7 +39,6 @@ class _MainMenuState extends State<MainMenu> {
         builder: (context, snapshot) {
           if(snapshot.hasData){
             ConferenceUserData userData = snapshot.data;
-            DatabaseService(user_id, talk_id).addUserToTalk(userData);
             return Scaffold(
                 appBar: AppBar(
                   title: Text('We Vote We Talk'),
@@ -94,7 +93,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToBrainstorm() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Brainstorm()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Brainstorm(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToVote() async {
@@ -102,7 +101,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToTalks() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => TalksOverview()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => TalksOverview(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToModeratorOptions() async {

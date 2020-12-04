@@ -13,7 +13,7 @@ class _IdeasListState extends State<IdeasList> {
   @override
   Widget build(BuildContext context) {
     final ideas = Provider.of<List<Idea>>(context);
-    ideasList = ideas;
+
     if (ideas != null) {
       ideas.sort();
       return ListView.builder(

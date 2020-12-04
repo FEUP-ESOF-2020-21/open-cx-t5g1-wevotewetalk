@@ -111,7 +111,7 @@ class _RegisterState extends State<Register> {
                             if (result == null) {
                               setState(() {
                                 loading = false;
-                                error = 'Please enter a valid e-mail';
+                                error = 'That email is already in use.';
                               });
                             }
                           }

@@ -82,7 +82,7 @@ class _VotingState extends State<Voting> {
                                                   userData.vote(ideas[index].name);
                                                 }
 
-                                                await DatabaseService(user_id, talk_id).updateUser(userData);
+                                                await DatabaseService(user_id, talk_id).updateUserTalk(userData);
 
                                               }
                                           ),

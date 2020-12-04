@@ -63,15 +63,27 @@ class _JoinConferenceState extends State<JoinConference> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    bool result = await DatabaseService(user_id, conferenceCode).existsConferenceWithoutUser();
-                    if (result == true) {
-                      DatabaseService(user_id, conferenceCode).addUserToTalk(userData);
-                      navigateToMainMenu();
-                    }
-                    else{
-                      setState(() {
-                        error = "Wrong conference code.";
-                      });
+                    int result = await DatabaseService(user_id, conferenceCode).existsConferenceWithoutUser();
+                    switch (result)
+                    {
+                      case 0:
+                        DatabaseService(user_id, conferenceCode).addUserToTalk(userData);
+                        userData.addConference(conferenceCode);
+                        DatabaseService(user_id, conferenceCode).updateUser(userData);
+                        navigateToMainMenu();
+                        break;
+                      case 1:
+                        setState(() {
+                        error = "Conference does not exist.";
+                        });
+                        break;
+                      case 2:
+                        setState(() {
+                        error = "You have already joined this conference.";
+                        });
+                        break;
+                      default:
+                        break;
                     }
                   }
                   else{

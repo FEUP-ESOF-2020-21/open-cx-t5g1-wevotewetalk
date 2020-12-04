@@ -11,32 +11,17 @@ class User {
 class UserData {
 
   String uid;
-  var votedIdeas;
+  var joinedConferences;
   String name;
 
   UserData(uid, name, list) {
     this.uid = uid;
     this.name = name;
-    this.votedIdeas = List.from(list);
+    this.joinedConferences = List.from(list);
   }
 
-  hasVoted(String idea)
-  {
-    for(int i = 0; i < votedIdeas.length; i++)
-    {
-      if(votedIdeas[i] == idea)
-        return true;
-    }
-    return false;
-  }
-
-  vote(String idea) {
-    votedIdeas.add(idea);
-  }
-
-  removeIdea(String idea) {
-    //votedIdeas.removeWhere((item) => item.name == 'idea');
-    votedIdeas.remove(idea);
+  addConference(String code) {
+    joinedConferences.add(code);
   }
 
 }

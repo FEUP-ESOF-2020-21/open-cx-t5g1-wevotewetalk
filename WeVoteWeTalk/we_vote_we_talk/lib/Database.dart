@@ -20,7 +20,7 @@ class DatabaseService {
     return await usersCollection.document(uid).setData({
       'name' : name,
       'uid' : uid,
-      'conferencesJoined' : new List<String>(),
+      'joinedConferences' : new List<String>(),
     });
   }
 
@@ -33,7 +33,15 @@ class DatabaseService {
     });
   }
 
-  Future<void> updateUser(ConferenceUserData userData) async {
+  Future<void> updateUser(UserData userData) async {
+    return await usersCollection.document(uid).setData({
+      'name' : userData.name,
+      'uid' : userData.uid,
+      'joinedConferences' : List.from(userData.joinedConferences),
+    });
+  }
+
+  Future<void> updateUserTalk(ConferenceUserData userData) async {
     return await talksCollection.document(code).collection("users").document(uid).setData({
       'name' : userData.name,
       'uid' : userData.uid,
@@ -67,10 +75,12 @@ class DatabaseService {
   }
 
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    print("_userDataFromSnapshot");
+    print(uid);
     print(snapshot.data['name']);
-    print(snapshot.data['likedIdeas']);
+    print(snapshot.data['joinedConferences']);
 
-    return UserData(uid, snapshot.data['name'], snapshot.data['likedIdeas']);
+    return UserData(uid, snapshot.data['name'], snapshot.data['joinedConferences']);
   }
 
   Stream<List<Idea>> get ideas {
@@ -92,15 +102,17 @@ class DatabaseService {
     return talksCollection.document(code).collection('users').document(uid).snapshots().map(_conferenceUserDataFromSnapshot);
   }
 
-  Future<bool> existsConferenceWithoutUser() async {
-    print("ayo im here");
+  Future<int> existsConferenceWithoutUser() async {
     var doc = await talksCollection.document(code).get();
     if(doc.exists)
     {
       var usr = await talksCollection.document(code).collection('users').document(uid).get();
-      return !usr.exists;
+      if(!usr.exists) // user nao existe
+        return 0;
+      else
+        return 2; // user exite
     }
-    return false;
+    return 1; // conferencia nao existe
   }
 
   String createConference(String conferenceName, UserData userData) {
@@ -122,20 +134,12 @@ class DatabaseService {
     return docID;
   }
 
-/*
-  Future<void> addConference(String name) async {
-    CollectionReference newTalk = await talksCollection.add({
-      'name' : name,
-    });
-
-
-    await newTalk.document(uid).setData({
-      'name' : userData.name,
-      'uid' : userData.uid,
-      'likedIdeas' : List.from(userData.votedIdeas),
-    });
-
-
+  String getConferenceName()
+  {
+    String name;
+    talksCollection.document(code).get().then((value) => name = value.data['name']);
+    print("the conference name is " + name);
+    return name;
   }
-*/
+  
 }

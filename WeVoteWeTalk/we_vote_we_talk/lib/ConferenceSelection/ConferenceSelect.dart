@@ -7,6 +7,7 @@ import 'package:we_vote_we_talk/Shared/Loading.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
 import 'package:we_vote_we_talk/Voting/Voting.dart';
 
+import '../Login.dart';
 import '../MainMenu.dart';
 import 'CreateConference.dart';
 import 'JoinConference.dart';
@@ -46,6 +47,7 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
                       label: Text('Logout'),
                       onPressed: () async {
                         await _auth.signOut();
+                        navigateBackToLogin();
                       },
                     ),
                   ],
@@ -76,6 +78,15 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
     //criar nova conferencia
 
     Navigator.push(context, MaterialPageRoute(builder: (context) => CreateConference(user_id: user_id, userData: userData)));
+  }
+
+
+  Future navigateBackToLogin() async {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+          (Route<dynamic> route) => false,
+    );
   }
 
 }

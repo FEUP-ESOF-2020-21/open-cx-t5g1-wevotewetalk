@@ -114,7 +114,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 ### User stories
 
 #### Story 0 - Navigate the App
-- **Story:** As a user, I want to open to see a Main Page when I enter the app so that I can navigate around the map.
+- **Story:** As a user, I want to login or register when I open the app to then see a Main Page and navigate around the app.
 - **User Interface Mockups:**
 
 <img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">

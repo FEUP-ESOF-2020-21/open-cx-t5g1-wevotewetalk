@@ -7,7 +7,6 @@ class User {
 
 }
 
-
 class UserData {
 
   String uid;

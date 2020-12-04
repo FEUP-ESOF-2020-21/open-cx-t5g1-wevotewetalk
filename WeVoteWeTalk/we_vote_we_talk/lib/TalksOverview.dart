@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Shared/Idea.dart';
 import 'TalkJoin.dart';
-import 'Brainstorm/IdeasList.dart';
+import 'Voting/VotingList.dart';
 
 List<Idea> ideasList;
 
@@ -17,12 +17,10 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   @override
   Widget build(BuildContext context) {
-    talks.add("Cats");
-    /*
+    ideasList.sort((a, b) => b.votes.compareTo(a.votes));
     for (int i = 0; i < ideasList.length; i++) {
-      if (ideasList[i].name != null) talks.add(ideasList[i].name);
+      if (ideasList[i].name != null) talks.add(ideasList[i].name + " - " + ideasList[i].votes.toString() + " Votes");
     }
-     */
 
     return Scaffold(
         appBar: AppBar(

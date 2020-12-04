@@ -78,7 +78,7 @@ class _EnterConferenceState extends State<EnterConference> {
                 color: Colors.black87,
                 child: Text(name),
                 onPressed: () {
-                  navigateToConference(conference);
+                  navigateToConference(conference, name);
                 },
                 minWidth: 200.0,
                 height: 45.0,
@@ -92,9 +92,9 @@ class _EnterConferenceState extends State<EnterConference> {
     );
   }
 
-  Future navigateToConference(conference) async {
+  Future navigateToConference(conference, name) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conference)));
+        context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conference, talk_name: name)));
   }
 
 }

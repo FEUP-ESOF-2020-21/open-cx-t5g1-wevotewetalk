@@ -14,19 +14,21 @@ import 'package:we_vote_we_talk/Voting/Voting.dart';
 class MainMenu extends StatefulWidget {
   final user_id;
   final talk_id;
-  MainMenu({this.user_id, this.talk_id});
+  final talk_name;
+  MainMenu({this.user_id, this.talk_id, this.talk_name});
 
 
   @override
-  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id);
+  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id, talk_name: this.talk_name);
 }
 
 class _MainMenuState extends State<MainMenu> {
   final AuthService _auth = AuthService();
   final user_id;
   final talk_id;
+  final talk_name;
 
-  _MainMenuState({this.user_id, this.talk_id});
+  _MainMenuState({this.user_id, this.talk_id, this.talk_name});
 
 
   @override
@@ -58,6 +60,8 @@ class _MainMenuState extends State<MainMenu> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Welcome ' + userData.name + '!',),
+                          SizedBox(height: 20),
+                          Text('Welcome ' + talk_name + '!',),
                           SizedBox(height: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,

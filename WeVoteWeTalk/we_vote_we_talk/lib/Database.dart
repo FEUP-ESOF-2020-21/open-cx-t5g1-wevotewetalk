@@ -7,7 +7,6 @@ class DatabaseService {
 
   final String uid;
   final String code;
-  bool moderator;
   DatabaseService(this.uid, this.code);
 
   // collection reference
@@ -134,12 +133,15 @@ class DatabaseService {
     return docID;
   }
 
-  String getConferenceName()
-  {
-    String name;
-    talksCollection.document(code).get().then((value) => name = value.data['name']);
-    print("the conference name is " + name);
-    return name;
+
+
+  String _conferenceNameFromSnapshot(DocumentSnapshot snapshot) {
+    return snapshot.data['name'];
   }
+
+  Stream<String> get conferenceName {
+    return talksCollection.document(code).snapshots().map(_conferenceNameFromSnapshot);
+  }
+
   
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:we_vote_we_talk/Database.dart';
 import 'package:we_vote_we_talk/Shared/Constants.dart';
+import 'package:we_vote_we_talk/Shared/Loading.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
 import '../MainMenu.dart';
 
@@ -17,11 +18,11 @@ class EnterConference extends StatefulWidget {
 
 class _EnterConferenceState extends State<EnterConference> {
 
-  var conferences = new List();
-
   final user_id;
   UserData userData;
   _EnterConferenceState({this.user_id,  this.userData});
+
+  var conferences = new List();
 
   bool loading = false;
 
@@ -30,20 +31,28 @@ class _EnterConferenceState extends State<EnterConference> {
   Widget build(BuildContext context) {
     print("im in enter");
     print(userData.joinedConferences);
+    conferences = List.from(userData.joinedConferences);
     return Scaffold(
         appBar: AppBar(
           title: Text('We Vote We Talk'),
         ),
         body: Center(
-            child: ListView(
-              shrinkWrap: true,
-              children: getListTalks(),
-            )));
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Your joined conferences:"),
+                ListView(
+                  shrinkWrap: true,
+                  children: getListTalks(),
+                ),
+              ],
+            )
+        ));
   }
 
   List<Widget> getListTalks() {
     List<Widget> list = new List();
-    for (var conference in userData.joinedConferences) {
+    for (var conference in conferences) {
       list.add(conferenceButton(conference));
     }
     return list;
@@ -51,25 +60,36 @@ class _EnterConferenceState extends State<EnterConference> {
 
   Widget conferenceButton(conference) {
 
-    String name = DatabaseService(user_id, conference).getConferenceName();
+    print("conferene id in button: " +conference);
 
-    return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 5.0,
-          horizontal: 20.0,
-        ),
-        child: MaterialButton(
-          textColor: Colors.white,
-          color: Colors.black87,
-          child: Text(name),
-          onPressed: () {
-            navigateToConference(conference);
-          },
-          minWidth: 200.0,
-          height: 45.0,
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        ));
+    return StreamBuilder<Object>(
+      stream: DatabaseService(user_id, conference).conferenceName,
+      builder: (context, snapshot) {
+        if(snapshot.hasData) {
+          String name = snapshot.data;
+          print("conferene name in button: " +name);
+          return Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: 5.0,
+                horizontal: 20.0,
+              ),
+              child: MaterialButton(
+                textColor: Colors.white,
+                color: Colors.black87,
+                child: Text(name),
+                onPressed: () {
+                  navigateToConference(conference);
+                },
+                minWidth: 200.0,
+                height: 45.0,
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              ));
+        }
+        else
+          return Loading();
+      }
+    );
   }
 
   Future navigateToConference(conference) async {

@@ -5,10 +5,8 @@ import 'package:we_vote_we_talk/Database.dart';
 import 'package:we_vote_we_talk/Shared/GenericWidgets.dart';
 import 'package:we_vote_we_talk/Shared/Loading.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
-import 'package:we_vote_we_talk/Voting/Voting.dart';
+import 'package:we_vote_we_talk/main.dart';
 
-import '../Login.dart';
-import '../MainMenu.dart';
 import 'CreateConference.dart';
 import 'JoinConference.dart';
 
@@ -84,7 +82,7 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
   Future navigateBackToLogin() async {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => Login()),
+      MaterialPageRoute(builder: (context) => App()),
           (Route<dynamic> route) => false,
     );
   }

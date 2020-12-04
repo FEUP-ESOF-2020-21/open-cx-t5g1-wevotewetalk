@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:we_vote_we_talk/Register.dart';
-import 'Login.dart';
 import 'Shared/User.dart';
 import 'Authentication/Auth.dart';
 import 'Brainstorm/Brainstorm.dart';
 import 'Database.dart';
 import 'Shared/Loading.dart';
+import 'main.dart';
 import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
 import 'TalksOverview.dart';
@@ -49,7 +48,7 @@ class _MainMenuState extends State<MainMenu> {
                       label: Text('Logout'),
                       onPressed: () async {
                         await _auth.signOut();
-
+                        navigateBackToLogin();
                       },
                     ),
                   ],
@@ -113,7 +112,7 @@ class _MainMenuState extends State<MainMenu> {
   Future navigateBackToLogin() async {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => Login()),
+      MaterialPageRoute(builder: (context) => App()),
           (Route<dynamic> route) => false,
     );
   }

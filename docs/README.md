@@ -113,26 +113,62 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### User stories
 
-#### Story 1 - Navigate the App
-- **Story:** As a user, I want to open to see a Main Page when I open the app so that I can navigate around the map.
+#### Story 0 - Navigate the App
+- **Story:** As a user, I want to open to see a Main Page when I enter the app so that I can navigate around the map.
 - **User Interface Mockups:**
 
 <img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User login fail
+    Given I am on the login page
+    When I type "valid@test.mail" in the email field
+    And I type "wrongpassword" in the password field
+    And I press the login button
+    Then User is not logged in
+```
+```
+  Scenario: User login
+    Given I am on the login page
+    When I type "valid@test.mail" in the email field
+    And I type "validpassword" in the password field
+    And I press the login button
+    Then User is logged in
+```
+```
+  Scenario: User register
+    Given I am on the register page
+    When I type "newemail@test.mail" in the email field
+    And I type "newpassword" in the password field
+    And I press the register button
+    Then User is added to the database
+```
 - **Value and Effort:**
+*Value:* Must have
+*Effort:* 5
 
-#### Story 2 - User interaction
-- **Story:** As a participant, I want to participate on a session so that the participants can interact with each other.
+#### Story 1 - User interaction
+- **Story:** As a participant, I want to participate on a talk so that the participants can interact with each other.
 - **User Interface Mockups:**
 
 <img src="images/story2/join_talks.png" width="303" height="538"> <img src="images/story2/choose_conf.png" width="303" height="538">
 <img src="images/story2/conf_settings.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User join talk
+    Given I am on the main menu page
+    When I press the join talks button
+    And I press a theme button
+    And I press the join meeting button
+    Then User joined a talk on jitsi
+```
 - **Value and Effort:**
+*Value:* Must have
+*Effort:* 5
 
-#### Story 3 - Prepare conferences
+#### Story 2 - Prepare conferences
 - **Story:** As a moderator, I want to organize the schedule so that most participants can hear the talks they most want to learn about.
 - **User Interface Mockups:**
 
@@ -140,17 +176,29 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - **Acceptance tests:**
 - **Value and Effort:**
+*Value:* Could have
+*Effort:* 10
 
-#### Story 4 - Suggest themes
+#### Story 3 - Suggest themes
 - **Story:** As a participant, I want to give my idea of a theme so that other users can vote on my idea.
 - **User Interface Mockups:**
 
 <img src="images/story4/brainstorm.png" width="303" height="538"> <img src="images/story4/suggest_themes.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User sends theme idea
+    Given I am on the main menu page
+    When I press the brainstorm button
+    And I type "testtheme" in the text field
+    And I press the send button
+    Then "testtheme" should be added to the theme list
+```
 - **Value and Effort:**
+*Value:* Must have
+*Effort:* 4
 
-#### Story 5 - Voting
+#### Story 4 - Voting
 - **Story:** As a participant, I want to vote on the ideas I like the most, so that I can learn more about that topic.
 - **User Interface Mockups:**
 
@@ -158,16 +206,41 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 <img src="images/story5/liked.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User votes on theme
+    Given I am on the vote page
+    When I press a "theme" button I like
+    Then "theme" vote value should be incremented
+```
 - **Value and Effort:**
+*Value:* Must have
+*Effort:* 2
 
-#### Story 6 - Enter / Leave Talks
+#### Story 5 - Enter / Leave Talks
 - **Story:** As a participant, I want to be able to leave and enter new talks so that I'm not stuck in a talk I'm no longer interested in.
 - **User Interface Mockups:**
 
 <img src="images/story6/leave_meeting.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User enters or leaves talk
+    Given I am in a talk in jitsi
+    When I press the hang up button
+    Then User left a talk on jitsi
+```
 - **Value and Effort:**
+*Value:* Must have
+*Effort:* 1
+
+#### Story 6 - Participate / Create Conferences
+- **Story:** As a user, I want to participate / create in different conferences.
+- **User Interface Mockups:**
+
+- **Acceptance tests:**
+- **Value and Effort:**
+*Value:* Must have
+*Effort:* 10
 
 ## Architecture and Design
 The architecture of a software system encompasses the set of key decisions about its overall organization. 

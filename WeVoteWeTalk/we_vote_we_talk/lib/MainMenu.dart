@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:we_vote_we_talk/Register.dart';
 import 'Shared/User.dart';
 import 'Authentication/Auth.dart';
 import 'Brainstorm/Brainstorm.dart';
 import 'Database.dart';
 import 'Shared/Loading.dart';
+import 'main.dart';
 import 'shared/GenericWidgets.dart';
 import 'Moderator/ModeratorOptions.dart';
 import 'TalksOverview.dart';
@@ -13,31 +13,34 @@ import 'package:we_vote_we_talk/Voting/Voting.dart';
 
 class MainMenu extends StatefulWidget {
   final user_id;
-  MainMenu({this.user_id});
+  final talk_id;
+  final talk_name;
+  MainMenu({this.user_id, this.talk_id, this.talk_name});
 
 
   @override
-  _MainMenuState createState() => _MainMenuState(user_id: this.user_id);
+  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id, talk_name: this.talk_name);
 }
 
 class _MainMenuState extends State<MainMenu> {
-  bool _moderator = true;
   final AuthService _auth = AuthService();
   final user_id;
+  final talk_id;
+  final talk_name;
 
-  _MainMenuState({this.user_id});
+  _MainMenuState({this.user_id, this.talk_id, this.talk_name});
 
 
   @override
   Widget build(BuildContext context) {
-
     print("MainMenu");
     print(user_id);
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user_id).userData,
+    print(talk_id);
+    return StreamBuilder<ConferenceUserData>(
+        stream: DatabaseService(user_id, talk_id).conferenceUserData,
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            UserData userData = snapshot.data;
+            ConferenceUserData userData = snapshot.data;
             return Scaffold(
                 appBar: AppBar(
                   title: Text('We Vote We Talk'),
@@ -47,6 +50,7 @@ class _MainMenuState extends State<MainMenu> {
                       label: Text('Logout'),
                       onPressed: () async {
                         await _auth.signOut();
+                        navigateBackToLogin();
                       },
                     ),
                   ],
@@ -57,9 +61,11 @@ class _MainMenuState extends State<MainMenu> {
                         children: [
                           Text('Welcome ' + userData.name + '!',),
                           SizedBox(height: 20),
+                          Text('Welcome ' + talk_name + '!',),
+                          SizedBox(height: 20),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children:_moderator ? moderatorUser() : generalUser(),
+                            children: userData.moderator ? moderatorUser() : generalUser(),
                           )
                         ]
 
@@ -92,19 +98,27 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToBrainstorm() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Brainstorm()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Brainstorm(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToVote() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id)));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Voting(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToTalks() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => TalksOverview()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => TalksOverview(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToModeratorOptions() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions()));
+  }
+
+  Future navigateBackToLogin() async {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => App()),
+          (Route<dynamic> route) => false,
+    );
   }
 
 }

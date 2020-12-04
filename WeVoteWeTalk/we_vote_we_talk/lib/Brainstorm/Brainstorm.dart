@@ -7,17 +7,29 @@ import 'package:provider/provider.dart';
 import 'IdeaInput.dart';
 
 class Brainstorm extends StatefulWidget {
+
+  final user_id;
+  final talk_id;
+  Brainstorm({this.user_id, this.talk_id});
+
   @override
-  _BrainstormState createState() => _BrainstormState();
+  _BrainstormState createState() => _BrainstormState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _BrainstormState extends State<Brainstorm> {
+
+  final user_id;
+  final talk_id;
+
+  _BrainstormState({this.user_id, this.talk_id});
+
+
   TextEditingController tecThemeIdea = new TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Idea>>.value(
-        value: DatabaseService().ideas,
+        value: DatabaseService(user_id, talk_id).ideas,
         child: Scaffold(
           appBar: AppBar(
             title: Text('We Vote We Talk'),
@@ -66,7 +78,7 @@ class _BrainstormState extends State<Brainstorm> {
 
   sendThemeIdea() async {
     if (formKey.currentState.validate()) {
-      await DatabaseService().addIdea(tecThemeIdea.text, 0);
+      await DatabaseService(user_id, talk_id).addIdea(tecThemeIdea.text, 0);
       tecThemeIdea.text = "";
     }
   }

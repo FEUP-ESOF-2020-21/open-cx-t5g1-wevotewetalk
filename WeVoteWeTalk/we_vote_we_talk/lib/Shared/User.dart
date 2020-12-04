@@ -10,13 +10,35 @@ class User {
 class UserData {
 
   String uid;
-  var votedIdeas;
+  var joinedConferences;
   String name;
 
   UserData(uid, name, list) {
     this.uid = uid;
     this.name = name;
+    this.joinedConferences = List.from(list);
+  }
+
+  addConference(String code) {
+    joinedConferences.add(code);
+  }
+
+}
+
+class ConferenceUserData {
+
+  String uid;
+  var votedIdeas;
+  String name;
+  bool moderator;
+
+  ConferenceUserData(uid, moderator, name, list) {
+    this.uid = uid;
+    this.name = name;
     this.votedIdeas = List.from(list);
+    print("crl");
+    print(moderator);
+    this.moderator = moderator;
   }
 
   hasVoted(String idea)

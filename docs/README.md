@@ -213,6 +213,7 @@ Currently we have automated tests for the following features:
 * User Login
 * Brainstorm
 * Join Talks
+* Voting
 
 All the tests are implemented using a package for flutter named [gherkin_flutter](https://pub.dev/packages/flutter_gherkin) and are completely automated. The automated tests for this features can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/tree/master/WeVoteWeTalk/we_vote_we_talk/Test).
 

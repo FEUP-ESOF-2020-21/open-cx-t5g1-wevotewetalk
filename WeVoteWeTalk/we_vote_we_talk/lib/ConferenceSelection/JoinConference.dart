@@ -63,7 +63,9 @@ class _JoinConferenceState extends State<JoinConference> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    print("the result is:");
                     int result = await DatabaseService(user_id, conferenceCode).existsConferenceWithoutUser();
+                    print(result);
                     switch (result)
                     {
                       case 0:

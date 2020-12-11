@@ -74,11 +74,6 @@ class DatabaseService {
   }
 
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    print("_userDataFromSnapshot");
-    print(uid);
-    print(snapshot.data['name']);
-    print(snapshot.data['joinedConferences']);
-
     return UserData(uid, snapshot.data['name'], snapshot.data['joinedConferences']);
   }
 
@@ -91,9 +86,6 @@ class DatabaseService {
   }
 
   ConferenceUserData _conferenceUserDataFromSnapshot(DocumentSnapshot snapshot) {
-    print(snapshot.data['moderator']);
-    print(snapshot.data['name']);
-    print(snapshot.data['likedIdeas']);
     return ConferenceUserData(uid, snapshot.data['moderator'], snapshot.data['name'], snapshot.data['likedIdeas']);
   }
 
@@ -132,7 +124,6 @@ class DatabaseService {
 
     return docID;
   }
-
 
 
   String _conferenceNameFromSnapshot(DocumentSnapshot snapshot) {

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'Database.dart';
+import 'Shared/Idea.dart';
 import 'TalkJoin.dart';
+import 'Brainstorm/IdeasList.dart';
+
 
 class TalksOverview extends StatefulWidget {
   final user_id;
@@ -20,24 +24,32 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   _TalksOverviewState({this.user_id, this.talk_id});
 
-  /*
-    ideasList.sort((a, b) => b.votes.compareTo(a.votes));
-    for (int i = 0; i < ideasList.length; i++) {
-      if (ideasList[i].name != null) talks.add(ideasList[i].name + " - " + ideasList[i].votes.toString() + " Votes");
-    }
-   */
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('We Vote We Talk'),
-        ),
-        body: Center(
-            child: ListView(
-          shrinkWrap: true,
-          children: getListTalks(),
-        )));
+
+
+    return StreamBuilder<List<Idea>>(
+        stream: DatabaseService(user_id, talk_id).ideas,
+        builder: (context, snapshot) {
+          List<Idea> ideasList = snapshot.data;
+
+          ideasList.sort((a, b) => b.votes.compareTo(a.votes));
+          for (int i = 0; i < ideasList.length; i++) {
+            if (ideasList[i].name != null) talks.add(ideasList[i].name + " - " + ideasList[i].votes.toString() + " Votes");
+          }
+          return Scaffold(
+              appBar: AppBar(
+                title: Text('We Vote We Talk'),
+              ),
+              body: Center(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: getListTalks(),
+                  )
+              )
+            );
+        }
+    );
+
   }
 
   List<Widget> getListTalks() {

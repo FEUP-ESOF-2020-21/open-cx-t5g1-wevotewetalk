@@ -14,21 +14,19 @@ import 'package:we_vote_we_talk/Voting/Voting.dart';
 class MainMenu extends StatefulWidget {
   final user_id;
   final talk_id;
-  final talk_name;
-  MainMenu({this.user_id, this.talk_id, this.talk_name});
+  MainMenu({this.user_id, this.talk_id});
 
 
   @override
-  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id, talk_name: this.talk_name);
+  _MainMenuState createState() => _MainMenuState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _MainMenuState extends State<MainMenu> {
   final AuthService _auth = AuthService();
   final user_id;
   final talk_id;
-  final talk_name;
 
-  _MainMenuState({this.user_id, this.talk_id, this.talk_name});
+  _MainMenuState({this.user_id, this.talk_id,});
 
 
   @override
@@ -41,36 +39,46 @@ class _MainMenuState extends State<MainMenu> {
         builder: (context, snapshot) {
           if(snapshot.hasData){
             ConferenceUserData userData = snapshot.data;
-            return Scaffold(
-                appBar: AppBar(
-                  title: Text('We Vote We Talk'),
-                  actions: <Widget>[
-                    FlatButton.icon(
-                      icon: Icon(Icons.person),
-                      label: Text('Logout'),
-                      onPressed: () async {
-                        await _auth.signOut();
-                        navigateBackToLogin();
-                      },
+            print(userData.uid);
+            print(userData.name);
+            print(userData.votedIdeas);
+            print(userData.moderator);
+            return StreamBuilder<String>(
+              stream: DatabaseService(user_id, talk_id).conferenceName,
+              builder: (context, snapshot) {
+                String talkName = snapshot.data;
+                return Scaffold(
+                    appBar: AppBar(
+                      title: Text('We Vote We Talk'),
+                      actions: <Widget>[
+                        FlatButton.icon(
+                          icon: Icon(Icons.person),
+                          label: Text('Logout'),
+                          onPressed: () async {
+                            await _auth.signOut();
+                            navigateBackToLogin();
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                body: Center(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Welcome ' + userData.name + '!',),
-                          SizedBox(height: 20),
-                          Text('Welcome ' + talk_name + '!',),
-                          SizedBox(height: 20),
-                          Column(
+                    body: Center(
+                        child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: userData.moderator ? moderatorUser() : generalUser(),
-                          )
-                        ]
+                            children: [
+                              Text('Welcome ' + userData.name + '!',),
+                              SizedBox(height: 20),
+                              Text('Welcome ' + talkName + '!',),
+                              SizedBox(height: 20),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: userData.moderator ? moderatorUser() : generalUser(),
+                              )
+                            ]
 
+                        )
                     )
-                )
+                );
+              }
             );
           } else {
             return Loading();

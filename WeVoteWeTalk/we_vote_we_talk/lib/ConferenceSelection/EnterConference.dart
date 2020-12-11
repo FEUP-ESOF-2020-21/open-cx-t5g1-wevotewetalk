@@ -94,7 +94,7 @@ class _EnterConferenceState extends State<EnterConference> {
 
   Future navigateToConference(conference, name) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conference, talk_name: name)));
+        context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conference)));
   }
 
 }

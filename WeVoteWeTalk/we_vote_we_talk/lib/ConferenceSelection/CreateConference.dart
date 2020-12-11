@@ -66,7 +66,7 @@ class _CreateConferenceState extends State<CreateConference> {
                   if (_formKey.currentState.validate()) {
                     confCode = DatabaseService(user_id, "").createConference(conferenceName, userData);
                     userData.addConference(confCode);
-                    DatabaseService(user_id, confCode).updateUser(userData);
+                    await DatabaseService(user_id, confCode).updateUser(userData);
                     navigateToMainMenu();
                   }
                   else{

@@ -36,8 +36,6 @@ class ConferenceUserData {
     this.uid = uid;
     this.name = name;
     this.votedIdeas = List.from(list);
-    print("crl");
-    print(moderator);
     this.moderator = moderator;
   }
 

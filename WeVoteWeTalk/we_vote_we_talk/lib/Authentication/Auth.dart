@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // ignore: non_constant_identifier_names
   User user_user;
 
   // create user obj based on firebase user

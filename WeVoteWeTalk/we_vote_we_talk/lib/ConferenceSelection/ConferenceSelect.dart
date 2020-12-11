@@ -36,6 +36,8 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
         builder: (context, snapshot) {
           if(snapshot.hasData){
             userData = snapshot.data;
+            print(userData.uid);
+            print(userData.name);
             print(userData.joinedConferences);
             return Scaffold(
                 appBar: AppBar(

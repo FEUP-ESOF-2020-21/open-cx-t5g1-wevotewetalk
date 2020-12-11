@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:we_vote_we_talk/Database.dart';
-import 'Shared/Idea.dart';
 import 'TalkJoin.dart';
-import 'Voting/VotingList.dart';
 
 class TalksOverview extends StatefulWidget {
-
   final user_id;
   final talk_id;
 
   TalksOverview({this.user_id, this.talk_id});
 
   @override
-  _TalksOverviewState createState() => _TalksOverviewState(user_id: this.user_id, talk_id: this.talk_id);
+  _TalksOverviewState createState() =>
+      _TalksOverviewState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _TalksOverviewState extends State<TalksOverview> {
@@ -23,11 +20,15 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   _TalksOverviewState({this.user_id, this.talk_id});
 
+  /*
     ideasList.sort((a, b) => b.votes.compareTo(a.votes));
     for (int i = 0; i < ideasList.length; i++) {
       if (ideasList[i].name != null) talks.add(ideasList[i].name + " - " + ideasList[i].votes.toString() + " Votes");
     }
+   */
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('We Vote We Talk'),

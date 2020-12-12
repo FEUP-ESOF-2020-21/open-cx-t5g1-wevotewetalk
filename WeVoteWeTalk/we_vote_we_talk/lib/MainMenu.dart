@@ -50,6 +50,7 @@ class _MainMenuState extends State<MainMenu> {
                 return Scaffold(
                     appBar: AppBar(
                       title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
                       actions: <Widget>[
                         FlatButton.icon(
                           icon: Icon(Icons.person),
@@ -65,16 +66,36 @@ class _MainMenuState extends State<MainMenu> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Welcome ' + userData.name + '!',),
+                              Container(
+                                  width: 200.0,
+                                  height: 200.0,
+                                  alignment: Alignment.center,
+                                  decoration: new BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage('assets/wevotewetalklogo.png'),
+                                        fit: BoxFit.fill
+                                    ),
+                                  ),
+                              ),
+                              SizedBox(height: 30),
+                              Text('Welcome ' + userData.name + '!',  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),) ,
                               SizedBox(height: 20),
-                              Text('Welcome ' + talkName + '!',),
-                              SizedBox(height: 20),
+                              Text('You\'re in ' + talkName + '!', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Code: ", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                  SelectableText(talk_id, style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
+                                ],
+                              ),
+                              SizedBox(height: 25),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: userData.moderator ? moderatorUser() : generalUser(),
-                              )
+                              ),
+                              SizedBox(height: 30),
                             ]
-
                         )
                     )
                 );

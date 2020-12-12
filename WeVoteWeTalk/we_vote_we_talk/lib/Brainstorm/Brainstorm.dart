@@ -32,9 +32,11 @@ class _BrainstormState extends State<Brainstorm> {
         value: DatabaseService(user_id, talk_id).ideas,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
           ),
           body: Column(children: [
+            SizedBox(height: 15,),
             Expanded(flex: 6, child: IdeasList()),
             Expanded(
                 flex: 3,

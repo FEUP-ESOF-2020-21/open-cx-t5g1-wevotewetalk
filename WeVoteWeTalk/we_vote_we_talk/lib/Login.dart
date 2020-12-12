@@ -30,6 +30,7 @@ class _LoginState extends State<Login> {
             backgroundColor: Colors.grey[200],
             appBar: AppBar(
               title: Text('Login'),
+              backgroundColor: Color(0xFF106799),
               actions: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.person),

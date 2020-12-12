@@ -10,7 +10,8 @@ class SignInForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
         ),
         body: new ListView(
           children: getListWidgets(context),

@@ -32,22 +32,26 @@ class _EnterConferenceState extends State<EnterConference> {
     print("im in enter");
     print(userData.joinedConferences);
     conferences = List.from(userData.joinedConferences);
+
     return Scaffold(
         appBar: AppBar(
-          title: Text('We Vote We Talk'),
+            title: Text('We Vote We Talk'),
+            backgroundColor: Color(0xFF106799),
         ),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Your joined conferences:"),
+                Text("Your joined conferences:", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                SizedBox(height: 20),
                 ListView(
                   shrinkWrap: true,
                   children: getListTalks(),
                 ),
               ],
             )
-        ));
+        )
+    );
   }
 
   List<Widget> getListTalks() {

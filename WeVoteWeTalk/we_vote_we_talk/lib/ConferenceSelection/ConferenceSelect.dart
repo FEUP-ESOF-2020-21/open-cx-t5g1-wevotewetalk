@@ -41,7 +41,8 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
             print(userData.joinedConferences);
             return Scaffold(
                 appBar: AppBar(
-                  title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
                   actions: <Widget>[
                     FlatButton.icon(
                       icon: Icon(Icons.person),
@@ -57,6 +58,18 @@ class _ConferenceSelectState extends State<ConferenceSelect> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Container(
+                            width: 200.0,
+                            height: 200.0,
+                            alignment: Alignment.center,
+                            decoration: new BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/wevotewetalklogo.png'),
+                                  fit: BoxFit.fill
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 30),
                           button('Join Conference', navigateToJoinConference),
                           button('Create Conference', createConference),
                           button('Enter Conference', enterConference),

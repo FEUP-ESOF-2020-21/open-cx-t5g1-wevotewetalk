@@ -33,51 +33,55 @@ class _CreateConferenceState extends State<CreateConference> {
     print("im in create");
     return Scaffold(
       appBar: AppBar(
-        title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
       ),
       body: Form(
         key: _formKey,
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: 20.0),
-            TextFormField(
-              key: const Key('conferenceName'),
-              decoration:
-              textInputDecoration.copyWith(hintText: 'Conference Name'),
-              validator: (val) =>
-              val.isEmpty ? 'Enter a name' : null,
-              onChanged: (val) {
-                setState(() => conferenceName = val);
-              },
-            ),
-            Text(
-              error,
-              style: TextStyle(color: Colors.red, fontSize: 14.0),
-            ),
-            SizedBox(height: 20.0),
-            RaisedButton(
-                color: Colors.pink[400],
-                child: Text(
-                  'Create Conference',
-                  style: TextStyle(color: Colors.white),
-                  key: const Key('createButton'),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    confCode = DatabaseService(user_id, "").createConference(conferenceName, userData);
-                    userData.addConference(confCode);
-                    await DatabaseService(user_id, confCode).updateUser(userData);
-                    navigateToMainMenu();
-                  }
-                  else{
-                    setState(() {
-                      conferenceName = "";
-                      error = "Insert a conference code.";
-                    });
-                  }
-                }),
-            SizedBox(height: 12.0),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 20.0),
+              TextFormField(
+                key: const Key('conferenceName'),
+                decoration:
+                textInputDecoration.copyWith(hintText: 'Conference Name'),
+                validator: (val) =>
+                val.isEmpty ? 'Enter a name' : null,
+                onChanged: (val) {
+                  setState(() => conferenceName = val);
+                },
+              ),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 14.0),
+              ),
+              SizedBox(height: 20.0),
+              RaisedButton(
+                  color: Colors.pink[400],
+                  child: Text(
+                    'Create Conference',
+                    style: TextStyle(color: Colors.white),
+                    key: const Key('createButton'),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      confCode = DatabaseService(user_id, "").createConference(conferenceName, userData);
+                      userData.addConference(confCode);
+                      await DatabaseService(user_id, confCode).updateUser(userData);
+                      navigateToMainMenu();
+                    }
+                    else{
+                      setState(() {
+                        conferenceName = "";
+                        error = "Insert a conference code.";
+                      });
+                    }
+                  }),
+              SizedBox(height: 100.0),
+            ],
+          ),
         ),
       ),
     );

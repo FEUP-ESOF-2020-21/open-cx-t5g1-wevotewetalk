@@ -26,10 +26,15 @@ class _IdeasListState extends State<IdeasList> {
                 vertical: 5.0,
                 horizontal: 20.0,
               ),
-              child: Text(
-                ideas[index].name,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 10,),
+                  Text(
+                    ideas[index].name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400),
+                  ),
+                ],
               ),
             );
           });

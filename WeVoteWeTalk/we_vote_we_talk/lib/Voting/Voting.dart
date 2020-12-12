@@ -37,7 +37,8 @@ class _VotingState extends State<Voting> {
                 List<Idea> ideas = snapshot.data;
                 return Scaffold(
                   appBar: AppBar(
-                    title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
                   ),
                   body: Column(children: [
                     Expanded(
@@ -52,11 +53,6 @@ class _VotingState extends State<Voting> {
                                     vertical: 5.0,
                                     horizontal: 20.0,
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 5.0,
-                                      horizontal: 20.0,
-                                    ),
                                     child: Row(
                                       children: [
                                         Expanded(
@@ -64,6 +60,7 @@ class _VotingState extends State<Voting> {
                                             child: Text(
                                               ideas[index].name,
                                               textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w400),
                                             )
                                         ),
                                         Expanded(
@@ -89,14 +86,13 @@ class _VotingState extends State<Voting> {
                                         ),
                                       ],
                                     ),
-                                  )
                               );
                             })),
                     Expanded(
                         flex: 1,
                         child: Padding(
                             padding: EdgeInsets.symmetric(
-                              vertical: 10.0,
+                              vertical: 20.0,
                               horizontal: 20.0,
                             ),
                             child:

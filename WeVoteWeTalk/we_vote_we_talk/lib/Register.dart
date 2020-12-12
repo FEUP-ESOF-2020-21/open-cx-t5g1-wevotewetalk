@@ -37,6 +37,7 @@ class _RegisterState extends State<Register> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text('Register'),
+        backgroundColor: Color(0xFF106799),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),

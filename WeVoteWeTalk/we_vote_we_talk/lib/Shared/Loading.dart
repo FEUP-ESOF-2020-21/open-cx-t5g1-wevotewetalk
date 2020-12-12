@@ -10,7 +10,8 @@ class Loading extends StatelessWidget {
     final AuthService _auth = AuthService();
     return Scaffold(
         appBar: AppBar(
-          title: Text('We Vote We Talk'),
+                      title: Text('We Vote We Talk'),
+                      backgroundColor: Color(0xFF106799),
         ),
         body: InkWell(
           onTap: () async {

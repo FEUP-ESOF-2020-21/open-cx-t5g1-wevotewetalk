@@ -242,6 +242,10 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 *Value:* Must have
 *Effort:* 10
 
+### Domain Model
+
+![Domain Model](images/ProblemDomain.png) 
+
 ## Architecture and Design
 The architecture of a software system encompasses the set of key decisions about its overall organization. 
 
@@ -258,10 +262,14 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 * horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts; 
 * vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
 
+![Domain Model](images/LogicalArchitecture.png) 
+
 ### Physical architecture
 The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
 
 It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+
+![Domain Model](images/PhysicalArchitecture.png) 
 
 ### Prototype
 To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.

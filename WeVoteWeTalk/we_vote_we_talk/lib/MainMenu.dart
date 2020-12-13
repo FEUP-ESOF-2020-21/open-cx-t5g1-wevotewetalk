@@ -148,7 +148,7 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Future navigateToModeratorOptions() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ModeratorOptions(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateBackToLogin() async {

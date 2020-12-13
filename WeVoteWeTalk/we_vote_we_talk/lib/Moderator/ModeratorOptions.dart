@@ -9,11 +9,22 @@ import 'OrderVotes.dart';
 import 'ManageIdeas.dart';
 
 class ModeratorOptions extends StatefulWidget {
+
+  final user_id;
+  final talk_id;
+
+  ModeratorOptions({this.user_id, this.talk_id});
+
   @override
-  _ModeratorOptionsState createState() => _ModeratorOptionsState();
+  _ModeratorOptionsState createState() => _ModeratorOptionsState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class _ModeratorOptionsState extends State<ModeratorOptions> {
+
+  final user_id;
+  final talk_id;
+
+  _ModeratorOptionsState({this.user_id, this.talk_id});
 
   final AuthService _auth = AuthService();
 
@@ -54,7 +65,7 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
 
 
   Future navigateToManageIdeas() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageIdeas()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageIdeas(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToManageSchedule() async {

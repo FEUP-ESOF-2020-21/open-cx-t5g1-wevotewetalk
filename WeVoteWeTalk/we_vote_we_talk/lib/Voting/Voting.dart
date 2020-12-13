@@ -67,10 +67,7 @@ class _VotingState extends State<Voting> {
                                                   child: Text(
                                                     ideas[index].name,
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        fontSize: 17.0,
-                                                        fontWeight: FontWeight
-                                                            .w400),
+                                                    style: TextStyle( fontSize: 17.0, fontWeight: FontWeight.w400),
                                                   )
                                               ),
                                               Expanded(

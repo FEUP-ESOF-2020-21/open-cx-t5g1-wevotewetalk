@@ -4,6 +4,7 @@ import '../shared/GenericWidgets.dart';
 import 'ManageUsers.dart';
 import 'MaganeUserInterface.dart';
 import 'ManageSchedule.dart';
+import 'OrderVotes.dart';
 import 'ManageThemes.dart';
 
 class ModeratorOptions extends StatefulWidget {
@@ -31,6 +32,7 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
     list.add(button('Manage Themes', navigateToManageThemes));
     list.add(button('Manage Schedule', navigateToManageSchedule));
     list.add(button('Manage Users', navigateToBanUser));
+    list.add(button('Order Votes', navigateToOrderVotes));
     list.add(button('Main Menu', navigateBackToMainMenu));
     return list;
   }
@@ -51,6 +53,10 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
 
   Future navigateToBanUser() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUsers()));
+  }
+
+  Future navigateToOrderVotes() async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
   }
 
   Future navigateBackToMainMenu() async {

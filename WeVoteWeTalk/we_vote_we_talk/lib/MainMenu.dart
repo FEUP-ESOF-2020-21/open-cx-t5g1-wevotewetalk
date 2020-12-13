@@ -63,39 +63,41 @@ class _MainMenuState extends State<MainMenu> {
                       ],
                     ),
                     body: Center(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  width: 200.0,
-                                  height: 200.0,
-                                  alignment: Alignment.center,
-                                  decoration: new BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage('assets/wevotewetalklogo.png'),
-                                        fit: BoxFit.fill
+                        child: SingleChildScrollView(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                    width: 200.0,
+                                    height: 200.0,
+                                    alignment: Alignment.center,
+                                    decoration: new BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage('assets/wevotewetalklogo.png'),
+                                          fit: BoxFit.fill
+                                      ),
                                     ),
-                                  ),
-                              ),
-                              SizedBox(height: 30),
-                              Text('Welcome ' + userData.name + '!',  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),) ,
-                              SizedBox(height: 20),
-                              Text('You\'re in ' + talkName + '!', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Code: ", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
-                                  SelectableText(talk_id, style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
-                                ],
-                              ),
-                              SizedBox(height: 25),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: userData.moderator ? moderatorUser() : generalUser(),
-                              ),
-                              SizedBox(height: 30),
-                            ]
+                                ),
+                                SizedBox(height: 30),
+                                Text('Welcome ' + userData.name + '!',  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),) ,
+                                SizedBox(height: 20),
+                                Text('You\'re in ' + talkName + '!', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Code: ", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                    SelectableText(talk_id, style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                                SizedBox(height: 25),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: userData.moderator ? moderatorUser() : generalUser(),
+                                ),
+                                SizedBox(height: 30),
+                              ]
+                          ),
                         )
                     )
                 );

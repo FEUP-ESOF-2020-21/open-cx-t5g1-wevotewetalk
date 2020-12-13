@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ManageThemes extends StatefulWidget {
+class ManageIdeas extends StatefulWidget {
 
   @override
-  _ManageThemesState createState() => _ManageThemesState();
+  _ManageIdeasState createState() => _ManageIdeasState();
 }
 
-class _ManageThemesState extends State<ManageThemes> {
+class _ManageIdeasState extends State<ManageIdeas> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

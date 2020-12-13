@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:we_vote_we_talk/Authentication/Auth.dart';
 
+import '../main.dart';
 import '../shared/GenericWidgets.dart';
 import 'ManageUsers.dart';
-import 'MaganeUserInterface.dart';
 import 'ManageSchedule.dart';
 import 'OrderVotes.dart';
-import 'ManageThemes.dart';
+import 'ManageIdeas.dart';
 
 class ModeratorOptions extends StatefulWidget {
   @override
@@ -14,9 +15,25 @@ class ModeratorOptions extends StatefulWidget {
 
 class _ModeratorOptionsState extends State<ModeratorOptions> {
 
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('We Vote We Talk'),
+          backgroundColor: Color(0xFF106799),
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Logout'),
+              onPressed: () async {
+                await _auth.signOut();
+                navigateBackToLogin();
+              },
+            ),
+          ],
+        ),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -28,23 +45,16 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
 
   List<Widget> options(){
     List<Widget> list = new List();
-    list.add(button('Manage User Interface', navigateToManageUserInterface));
-    list.add(button('Manage Themes', navigateToManageThemes));
-    list.add(button('Manage Schedule', navigateToManageSchedule));
+    list.add(button('Close Brainstorm and Manage Ideas', navigateToManageIdeas));
+    list.add(button('Close Voting and Manage Schedule', navigateToManageSchedule));
     list.add(button('Manage Users', navigateToBanUser));
-    list.add(button('Order Votes', navigateToOrderVotes));
-    list.add(button('Main Menu', navigateBackToMainMenu));
     return list;
   }
 
 
 
-  Future navigateToManageUserInterface() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUserInterface()));
-  }
-
-  Future navigateToManageThemes() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageThemes()));
+  Future navigateToManageIdeas() async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageIdeas()));
   }
 
   Future navigateToManageSchedule() async {
@@ -55,12 +65,12 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUsers()));
   }
 
-  Future navigateToOrderVotes() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
-  }
-
-  Future navigateBackToMainMenu() async {
-    Navigator.pop(context);
+  Future navigateBackToLogin() async {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => App()),
+          (Route<dynamic> route) => false,
+    );
   }
 
 }

@@ -20,6 +20,26 @@ Widget button(text, onPressedFunction) {
   );
 }
 
+Widget closedButton(text) {
+  return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 5.0,
+        horizontal: 20.0,
+      ),
+      child:MaterialButton(
+        textColor: Colors.white,
+        color: Colors.grey[700],
+        child: Text(text),
+        onPressed: () {
+          //do nothing
+        },
+        minWidth: 200.0,
+        height: 45.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      )
+  );
+}
+
 Widget blueButton(text, onPressedFunction) {
   return Padding(
     padding: EdgeInsets.symmetric(

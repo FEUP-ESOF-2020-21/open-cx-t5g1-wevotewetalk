@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
 import 'Shared/Idea.dart';
 import 'Shared/User.dart';
+import 'Shared/Conference.dart';
 
 class DatabaseService {
 
@@ -112,6 +114,10 @@ class DatabaseService {
 
     talksCollection.document(docID).setData({
       'name' : conferenceName,
+      'brainstorm' : true,
+      'voting' : false,
+      'joinTalks' : false,
+      'banned' : new List<String>(),
     });
 
     talksCollection.document(docID).collection('ideas');
@@ -126,12 +132,12 @@ class DatabaseService {
   }
 
 
-  String _conferenceNameFromSnapshot(DocumentSnapshot snapshot) {
-    return snapshot.data['name'];
+  ConferenceData _conferenceDataFromSnapshot(DocumentSnapshot snapshot) {
+    return ConferenceData(snapshot.data['name'], snapshot.data['brainstorm'], snapshot.data['voting'], snapshot.data['joinTalks'], snapshot.data['banned']);
   }
 
-  Stream<String> get conferenceName {
-    return talksCollection.document(code).snapshots().map(_conferenceNameFromSnapshot);
+  Stream<ConferenceData> get conferenceData {
+    return talksCollection.document(code).snapshots().map(_conferenceDataFromSnapshot);
   }
 
   

@@ -246,11 +246,23 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ![Domain Model](images/ProblemDomain.png) 
 
+This project is built based on five main classes:
+
+The **User** class represents every person that downloads and uses our application. This person can vote on any theme Idea and participate in any Session of the Conferences he knows about.
+
+The **Moderator** is a special User. This is the person that creates a Conference and each Conference has one and only one Moderator. This person has the power to manage all the Conference related stuff.
+
+The **Conference** is the most imortant class of our project. This makes the connection between the Users, the Ideas, the Votes and the Sessions. One Conference can have multiple Users that can give and vote on theme Ideas for the Sessions and then participate on the most voted Sessions.
+
+The **Idea** is the Session theme. If it has enough votes there will be a Session about it.
+
+The **Session** represents a Jitsi call where all the Users can talk to each other about the Session theme.  
+
 ## Architecture and Design
 
 ### Logical architecture
 
-![Domain Model](images/LogicalArchitecture.png) 
+![Logical Architecture](images/LogicalArchitecture.png) 
 
 To represent our logical architecture we use a 3-layer representation.
 
@@ -262,7 +274,8 @@ Finally, the third layer called Presentation Tier shows everything that the user
 
 ### Physical architecture
 
-![Domain Model](images/PhysicalArchitecture.png) 
+![Physical Architecture](images/PhysicalArchitecture.png) 
+
 
 Our project's physical architecture uses two blocks which communicate through HTTP:
 * The client side block where the Flutter app is installed.

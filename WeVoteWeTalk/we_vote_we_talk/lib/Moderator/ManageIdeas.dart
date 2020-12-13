@@ -9,7 +9,6 @@ class ManageIdeas extends StatefulWidget {
 class _ManageIdeasState extends State<ManageIdeas> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
 import 'Database.dart';
 import 'Shared/Idea.dart';
 import 'TalkJoin.dart';
@@ -27,26 +28,53 @@ class _TalksOverviewState extends State<TalksOverview> {
   Widget build(BuildContext context) {
 
 
-    return StreamBuilder<List<Idea>>(
-        stream: DatabaseService(user_id, talk_id).ideas,
+    return StreamBuilder<ConferenceData>(
+        stream: DatabaseService(user_id, talk_id).conferenceData,
         builder: (context, snapshot) {
-          List<Idea> ideasList = snapshot.data;
+          ConferenceData conferenceData = snapshot.data;
+          if(conferenceData.joinTalks)
+          {
+            return StreamBuilder<List<Idea>>(
+                stream: DatabaseService(user_id, talk_id).ideas,
+                builder: (context, snapshot) {
+                  List<Idea> ideasList = snapshot.data;
 
-          ideasList.sort((a, b) => b.votes.compareTo(a.votes));
-          for (int i = 0; i < ideasList.length; i++) {
-            if (ideasList[i].name != null) talks.add(ideasList[i].name + " - " + ideasList[i].votes.toString() + " Votes");
+                  ideasList.sort((a, b) => b.votes.compareTo(a.votes));
+                  for (int i = 0; i < ideasList.length; i++) {
+                    if (ideasList[i].name != null) talks.add(
+                        ideasList[i].name + " - " +
+                            ideasList[i].votes.toString() + " Votes");
+                  }
+                  return Scaffold(
+                      appBar: AppBar(
+                        title: Text('We Vote We Talk'),
+                        backgroundColor: Color(0xFF106799),
+                      ),
+                      body: Center(
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: getListTalks(),
+                          )
+                      )
+                  );
+                }
+            );
           }
-          return Scaffold(
-              appBar: AppBar(
-                      title: Text('We Vote We Talk'),
-                      backgroundColor: Color(0xFF106799),
-              ),
-              body: Center(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: getListTalks(),
-                  )
-              )
+          else
+            return Scaffold(
+                appBar: AppBar(
+                  title: Text('We Vote We Talk'),
+                  backgroundColor: Color(0xFF106799),
+                ),
+                body: Center(
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Join Talks was closed by the Moderator.', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                        Text('Please return to The main Menu.', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
+                      ],
+                    )
+                )
             );
         }
     );

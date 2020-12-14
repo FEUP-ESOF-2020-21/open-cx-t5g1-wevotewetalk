@@ -231,7 +231,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 ```
 - **Value and Effort:**
 *Value:* Must have
-*Effort:* 1
+*Effort:* 2
 
 #### Story 6 - Participate / Create Conferences
 - **Story:** As a user, I want to participate / create in different conferences.

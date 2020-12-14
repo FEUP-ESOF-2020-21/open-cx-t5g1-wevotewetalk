@@ -117,7 +117,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - **Story:** As a user, I want to login or register when I open the app to then see a Main Page and navigate around the app.
 - **User Interface Mockups:**
 
-<img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">
+<img src="images/story1/open_app.png" width="303" height="538"> <img src="images/story1/login.png" width="303" height="538"> <img src="images/story1/main_menu.png" width="303" height="538">
 
 - **Acceptance tests:**
 ```
@@ -236,6 +236,8 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 #### Story 6 - Participate / Create Conferences
 - **Story:** As a user, I want to participate / create in different conferences.
 - **User Interface Mockups:**
+
+<img src="images/story7/main_page.png" width="303" height="538"> <img src="images/story7/join_conf.png" width="303" height="538"> <img src="images/story7/create_conf.png" width="303" height="538"> <img src="images/story7/enter_conf.png" width="303" height="538">
 
 - **Acceptance tests:**
 - **Value and Effort:**

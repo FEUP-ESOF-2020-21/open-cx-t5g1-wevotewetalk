@@ -3,7 +3,6 @@ import 'package:we_vote_we_talk/Database.dart';
 import 'package:we_vote_we_talk/Shared/Conference.dart';
 import 'package:we_vote_we_talk/Shared/Constants.dart';
 import 'package:we_vote_we_talk/Shared/Idea.dart';
-import 'package:we_vote_we_talk/Shared/GenericWidgets.dart';
 
 class ManageIdeas extends StatefulWidget {
 

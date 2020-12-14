@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:we_vote_we_talk/Authentication/Auth.dart';
-
 import '../main.dart';
 import '../shared/GenericWidgets.dart';
-import 'ManageUsers.dart';
 import 'ManageSchedule.dart';
-import 'OrderVotes.dart';
+import 'ManageUsers.dart';
 import 'ManageIdeas.dart';
 
 class ModeratorOptions extends StatefulWidget {
@@ -62,8 +60,6 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
     return list;
   }
 
-
-
   Future navigateToManageIdeas() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => ManageIdeas(user_id: user_id, talk_id: talk_id)));
   }
@@ -83,5 +79,4 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
           (Route<dynamic> route) => false,
     );
   }
-
 }

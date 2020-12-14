@@ -28,12 +28,25 @@ enum DraggingMode {
 class _ManageScheduleState extends State<ManageSchedule> {
   List<ItemData> _items;
 
+  void getTalks(talks) {
+    StreamBuilder<List<Idea>>(
+        stream: DatabaseService("tRVsLxrobzXY2SszVrHZwBMwprO2", "qcKv50UTq7NHkj7qW2dy").ideas,
+        // ignore: missing_return
+        builder: (context, snapshot) {
+          List<Idea> ideas = snapshot.data;
+          talks.add(ideas.toString());
+        });
+  }
+
   _ManageScheduleState() {
     _items = List();
     String label = "Cães - 0 Votes";
     _items.add(ItemData(label, ValueKey(0)));
     label = "Gatos - 1 Votes";
     _items.add(ItemData(label, ValueKey(1)));
+    var talks = List();
+    getTalks(talks);
+    print("Talks = " + talks.toString());
   }
 
   int _indexOfKey(Key key) {
@@ -61,48 +74,40 @@ class _ManageScheduleState extends State<ManageSchedule> {
   DraggingMode _draggingMode = DraggingMode.iOS;
 
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Idea>>(
-        stream: DatabaseService("", "").ideas,
-        builder: (context, snapshot) {
-          List<Idea> ideas = snapshot.data;
-          return Scaffold(
-            body: ReorderableList(
-              onReorder: this._reorderCallback,
-              onReorderDone: this._reorderDone,
-              child: CustomScrollView(
-                // cacheExtent: 3000,
-                slivers: <Widget>[
-                  SliverAppBar(
-                    title: Text('We Vote We Talk'),
-                    backgroundColor: Color(0xFF106799),
-                    actions: <Widget>[],
-                    pinned: true,
-                  ),
-                  SliverPadding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery
-                              .of(context)
-                              .padding
-                              .bottom),
-                      sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                            return Item(
-                              data: _items[index],
-                              // first and last attributes affect border drawn during dragging
-                              isFirst: index == 0,
-                              isLast: index == _items.length - 1,
-                              draggingMode: _draggingMode,
-                            );
-                          },
-                          childCount: _items.length,
-                        ),
-                      )),
-                ],
-              ),
+    return Scaffold(
+      body: ReorderableList(
+        onReorder: this._reorderCallback,
+        onReorderDone: this._reorderDone,
+        child: CustomScrollView(
+          // cacheExtent: 3000,
+          slivers: <Widget>[
+            SliverAppBar(
+              title: Text('We Vote We Talk'),
+              backgroundColor: Color(0xFF106799),
+              actions: <Widget>[],
+              pinned: true,
             ),
-          );
-        });
+            SliverPadding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).padding.bottom),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return Item(
+                        data: _items[index],
+                        // first and last attributes affect border drawn during dragging
+                        isFirst: index == 0,
+                        isLast: index == _items.length - 1,
+                        draggingMode: _draggingMode,
+                      );
+                    },
+                    childCount: _items.length,
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
   }
 }
 

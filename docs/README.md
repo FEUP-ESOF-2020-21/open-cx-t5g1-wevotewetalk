@@ -62,43 +62,71 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 * **Actor**: User
 * **Description**: This use case's purpose is to allow the user to enter a theme that he would like to talk about.
-* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
-* **Postconditions**: After he suggests a theme, the theme will appear in real time as an existing suggestion for all users.
+* **Preconditions**: The user must have previously logged in or registered into his account for the app, and entered a conference. 
+* **Postconditions**: After he suggests a theme, the theme will appear in real time in the list of suggested themes.
 * **Normal Flow**:
   1. The User logs in to his account.
-  2. The User presses the brainstorm button to start suggesting themes.
-  3. The User writes the theme he desires.
-  4. The User presses the send button and the theme is suggested.
+  2. The User enters a conference.
+  3. The User presses the brainstorm button to start suggesting themes.
+  4. The User writes the theme he desires.
+  5. The User presses the send button and the theme is suggested.
+  6. The theme is added to the list of suggested themes.
 * **Alternative Flows and Exceptions**:
   1. The User logs in to his account.
-  2. The User presses the brainstorm button to start suggesting themes.
-  3. The User writes a theme that already exists in the themes list.
-  4. The App rejects the theme and asks the user to rewrite.
+  2. The User enters a conference.
+  3. The User presses the brainstorm button to start suggesting themes.
+  4. The User writes a theme that already exists in the themes list.
+  5. The App rejects the theme and asks the user to rewrite.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User enters a conference.
+  3. The Brainstorm feature was closed by the moderator.
+  4. The User has to wait.
 
 ##### Vote on Themes
 
 * **Actor**: User
 * **Description**: This use case's purpose is to allow the user to vote on themes that have already been suggested by users, and approved by moderators.
-* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
-* **Postconditions**: After he votes on a theme, he can continue voting, or not.
+* **Preconditions**: The user must have previously logged in or registered into his account for the app, and entered a conference.  
+* **Postconditions**: After he votes on a theme, that theme will gain one more vote.
 * **Normal Flow**:
   1. The User logs in to his account.
-  2. The User presses the vote button to start voting.
-  3. The User likes the themes he desires to.
-  4. The User keeps liking other themes, disliking already liked themes, or not.
+  2. The User enters a conference.
+  3. The User presses the vote button to start voting.
+  4. The User likes the themes he desires to.
+  5. The voted theme gains a vote.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User enters a conference.
+  3. The User presses the vote button to start voting.
+  4. The User likes the themes he desires to.
+  5. The voted theme gains a vote.
+  6. The User removes his like from that same theme.
+  7. That theme loses a vote.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User enters a conference.
+  3. The Voting feature was closed by the moderator.
+  4. The User has to wait.
 
 ##### Join Talks
 
 * **Actor**: User
 * **Description**: This use case's purpose is to allow the user to join the talk based on the theme he desires to.
-* **Preconditions**: The user must have previously logged in or registered into his account for the app. 
+* **Preconditions**: The user must have previously logged in or registered into his account for the app, and entered a conference. 
 * **Postconditions**: After he joins a talk, he can stay there for as long as it lasts, or leave whenever he wants.
 * **Normal Flow**:
   1. The User logs in to his account.
+  2. The User enters a conference.
   2. The User presses the Join Talks button.
   3. The User chosees the conference's theme he wants to hear or talk about.
   4. The User can (but is not obliged to) change some settings regarding the conference he is entering.
   5. The User presses the Join Meeting button.
+* **Alternative Flows and Exceptions**:
+  1. The User logs in to his account.
+  2. The User enters a conference.
+  3. The Join Talks feature isn't available because the moderator is still to make the schedule.
+  4. The User has to wait.
 
 ##### Manage
 
@@ -108,8 +136,14 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 * **Postconditions**: He can decide whatever he wants to manage and take care of.
 * **Normal Flow**:
   1. The Moderator logs in to his account.
-  2. The Moderator presses the manage button.
-  3. The Moderator chooses what he wants to manage on the app by clicking on it.
+  2. The Moderator creates a conference.
+  3. The Moderator presses the manage button.
+
+      3.1. The Moderator closes Brainstorm and Manages the suggested ideas for future voting
+      
+      3.2. The Moderator closes Voting and Manages the Schedule.
+
+      3.3. The Moderator manages the Users of the app.
 
 ### User stories
 

@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_reorderable_list/flutter_reorderable_list.dart';
 import '../Database.dart';
 import '../Shared/Idea.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
 
 class ManageSchedule extends StatefulWidget {
   ManageSchedule();
@@ -28,25 +31,27 @@ enum DraggingMode {
 class _ManageScheduleState extends State<ManageSchedule> {
   List<ItemData> _items;
 
-  void getTalks(talks) {
-    StreamBuilder<List<Idea>>(
-        stream: DatabaseService("tRVsLxrobzXY2SszVrHZwBMwprO2", "qcKv50UTq7NHkj7qW2dy").ideas,
+  Widget getList() {
+    return StreamBuilder<List<Idea>>(
+        stream: DatabaseService("tRVsLxrobzXY2SszVrHZwBMwprO2", "KIp9UPbVdt8HihM4zDjY").ideas,
         // ignore: missing_return
         builder: (context, snapshot) {
           List<Idea> ideas = snapshot.data;
-          talks.add(ideas.toString());
+          print("Ideas = " + ideas.toString());
         });
   }
 
+  // ignore: missing_return
+  Widget saveList() {
+  }
+
   _ManageScheduleState() {
-    _items = List();
-    String label = "Cães - 0 Votes";
+    getList();
+    _items = List<ItemData>();
+    String label = "Cães";
     _items.add(ItemData(label, ValueKey(0)));
-    label = "Gatos - 1 Votes";
+    label = "Gatos";
     _items.add(ItemData(label, ValueKey(1)));
-    var talks = List();
-    getTalks(talks);
-    print("Talks = " + talks.toString());
   }
 
   int _indexOfKey(Key key) {
@@ -74,6 +79,7 @@ class _ManageScheduleState extends State<ManageSchedule> {
   DraggingMode _draggingMode = DraggingMode.iOS;
 
   Widget build(BuildContext context) {
+    print("Items = " + _items[0].title + ", " + _items[1].title);
     return Scaffold(
       body: ReorderableList(
         onReorder: this._reorderCallback,

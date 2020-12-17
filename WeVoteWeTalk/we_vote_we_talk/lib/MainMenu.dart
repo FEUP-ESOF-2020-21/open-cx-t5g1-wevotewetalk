@@ -8,6 +8,7 @@ import 'Database.dart';
 import 'Shared/Loading.dart';
 import 'main.dart';
 import 'Shared/GenericWidgets.dart';
+import 'Shared/Banned.dart';
 import 'Moderator/ModeratorOptions.dart';
 import 'TalksOverview.dart';
 import 'package:we_vote_we_talk/Voting/Voting.dart';
@@ -109,7 +110,7 @@ class _MainMenuState extends State<MainMenu> {
                   );
                 }
                 else
-                  return Text("banned lol");
+                  return Banned();
 
               }
             );

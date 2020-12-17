@@ -65,7 +65,7 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
   }
 
   Future navigateToManageSchedule() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageSchedule()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageSchedule(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateToBanUser() async {

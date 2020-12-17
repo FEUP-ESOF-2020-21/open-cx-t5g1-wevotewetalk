@@ -4,22 +4,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_reorderable_list/flutter_reorderable_list.dart';
+import 'package:we_vote_we_talk/Shared/Loading.dart';
 import '../Database.dart';
 import '../Shared/Idea.dart';
 import 'package:we_vote_we_talk/Shared/Conference.dart';
 
+// ignore: non_constant_identifier_names
+var first_time = true;
+
+
 class ManageSchedule extends StatefulWidget {
-  ManageSchedule();
+
+  final user_id;
+  final talk_id;
+
+
+  ManageSchedule({this.user_id, this.talk_id});
 
   @override
-  _ManageScheduleState createState() => _ManageScheduleState();
+  _ManageScheduleState createState() => _ManageScheduleState(user_id: this.user_id, talk_id: this.talk_id);
 }
 
 class ItemData {
-  ItemData(this.title, this.key);
+  ItemData(this.idea, this.key);
 
-  final String title;
-
+  final Idea idea;
   final Key key;
 }
 
@@ -29,30 +38,154 @@ enum DraggingMode {
 }
 
 class _ManageScheduleState extends State<ManageSchedule> {
-  List<ItemData> _items;
+  List<ItemData> _items = List<ItemData>();
+  final user_id;
+  final talk_id;
 
-  Widget getList() {
+  bool _exit = false;
+
+  _ManageScheduleState({this.user_id, this.talk_id});/* {
+    String label = "Cães";
+    _items.add(ItemData(label, ValueKey(0)));
+    label = "Gatos";
+    _items.add(ItemData(label, ValueKey(1)));
+  }*/
+
+  /*Widget getList() {
     return StreamBuilder<List<Idea>>(
-        stream: DatabaseService("tRVsLxrobzXY2SszVrHZwBMwprO2", "KIp9UPbVdt8HihM4zDjY").ideas,
+        stream: DatabaseService(user_id, talk_id).ideas,
         // ignore: missing_return
         builder: (context, snapshot) {
           List<Idea> ideas = snapshot.data;
           print("Ideas = " + ideas.toString());
         });
+  }*/
+
+  fillIdeas(List<Idea> ideas)
+  {
+    ideas.sort((a, b) => b.votes.compareTo(a.votes));
+    if(first_time)
+    {
+      var i = 0;
+      for(var idea in ideas)
+      {
+        if (i == 15)
+          break;
+        _items.add(ItemData(idea, ValueKey(i)));
+        i++;
+      }
+    }
+
   }
 
-  // ignore: missing_return
-  Widget saveList() {
+  Widget build(BuildContext context) {
+    //print("Items = " + _items[0].title + ", " + _items[1].title);
+    return WillPopScope(
+      child: StreamBuilder<ConferenceData>(
+          stream: DatabaseService(user_id, talk_id).conferenceData,
+          builder: (context, snapshot) {
+            if(snapshot.hasData)
+            {
+              ConferenceData conferenceData = snapshot.data;
+              if(!_exit)
+                DatabaseService(user_id, talk_id).updateConference(ConferenceData(conferenceData.name, false, false, false, conferenceData.banned));
+              return StreamBuilder<List<Idea>>(
+                  stream: DatabaseService(user_id, talk_id).ideas,
+                  builder: (context, snapshot) {
+                    if(snapshot.hasData)
+                    {
+                      List<Idea> ideas = snapshot.data;
+                      fillIdeas(ideas);
+                      first_time = false;
+                      return Scaffold(
+                        body: Column(
+                          children: [
+                            Expanded(
+                              child: ReorderableList(
+                                onReorder: this._reorderCallback,
+                                onReorderDone: this._reorderDone,
+                                child: CustomScrollView(
+                                  // cacheExtent: 3000,
+                                  slivers: <Widget>[
+                                    SliverAppBar(
+                                      leading: Builder(
+                                          builder: (BuildContext context) {
+                                            return IconButton(
+                                              icon: Icon(Icons.arrow_back),
+                                              onPressed: () => navigateBackToModeratorOptions(),
+                                            );
+                                          }),
+
+                                      title: Text('We Vote We Talk'),
+                                      //automaticallyImplyLeading: false,
+                                      backgroundColor: Color(0xFF106799),
+                                      pinned: true,
+                                    ),
+                                    SliverPadding(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context).padding.bottom),
+                                        sliver: SliverList(
+                                          delegate: SliverChildBuilderDelegate(
+                                                (BuildContext context, int index) {
+                                              return Item(
+                                                data: _items[index],
+                                                // first and last attributes affect border drawn during dragging
+                                                isFirst: index == 0,
+                                                isLast: index == _items.length - 1,
+                                                draggingMode: _draggingMode,
+                                              );
+                                            },
+                                            childCount: _items.length,
+                                          ),
+                                        )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 5.0,
+                                  horizontal: 20.0,
+                                ),
+                                child:MaterialButton(
+                                  textColor: Colors.white,
+                                  color: Colors.green,
+                                  child: Text('Finish and Open Voting'),
+                                  onPressed: () async {
+                                    for(var i = 0; i < 3; i++)
+                                    {
+                                      print(_items[i].idea.name);
+                                      await DatabaseService(user_id, talk_id).updateIdeas(_items[i].idea.name, _items[i].idea.votes, _items[i].idea.documentID, i);
+                                    }
+                                    _exit = true;
+                                    await DatabaseService(user_id, talk_id).updateConference(ConferenceData(conferenceData.name, false, false, true, conferenceData.banned));
+                                    navigateBackToModeratorOptions();
+                                  },
+                                  minWidth: 200.0,
+                                  height: 45.0,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                )
+                            ),
+                            SizedBox(height: 10.0,)
+                          ],
+                        ),
+                      );
+                    }
+                    else
+                      return Loading();
+                  }
+              );
+            }
+            else
+              return Loading();
+          }
+      ),
+      onWillPop: () async {
+        return navigateBackToModeratorOptions();
+      }
+    );
   }
 
-  _ManageScheduleState() {
-    getList();
-    _items = List<ItemData>();
-    String label = "Cães";
-    _items.add(ItemData(label, ValueKey(0)));
-    label = "Gatos";
-    _items.add(ItemData(label, ValueKey(1)));
-  }
 
   int _indexOfKey(Key key) {
     return _items.indexWhere((ItemData d) => d.key == key);
@@ -73,49 +206,19 @@ class _ManageScheduleState extends State<ManageSchedule> {
 
   void _reorderDone(Key item) {
     final draggedItem = _items[_indexOfKey(item)];
-    debugPrint("Reordering finished for ${draggedItem.title}}");
+    debugPrint("Reordering finished for ${draggedItem.idea.name}}");
   }
 
   DraggingMode _draggingMode = DraggingMode.iOS;
 
-  Widget build(BuildContext context) {
-    print("Items = " + _items[0].title + ", " + _items[1].title);
-    return Scaffold(
-      body: ReorderableList(
-        onReorder: this._reorderCallback,
-        onReorderDone: this._reorderDone,
-        child: CustomScrollView(
-          // cacheExtent: 3000,
-          slivers: <Widget>[
-            SliverAppBar(
-              title: Text('We Vote We Talk'),
-              backgroundColor: Color(0xFF106799),
-              actions: <Widget>[],
-              pinned: true,
-            ),
-            SliverPadding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).padding.bottom),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return Item(
-                        data: _items[index],
-                        // first and last attributes affect border drawn during dragging
-                        isFirst: index == 0,
-                        isLast: index == _items.length - 1,
-                        draggingMode: _draggingMode,
-                      );
-                    },
-                    childCount: _items.length,
-                  ),
-                )),
-          ],
-        ),
-      ),
-    );
-  }
+  navigateBackToModeratorOptions() {
+  first_time = true;
+  Navigator.pop(context);
 }
+
+}
+
+// ==============================================================================================================================
 
 class Item extends StatelessWidget {
   Item({
@@ -180,8 +283,8 @@ class Item extends StatelessWidget {
                       child: Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: 14.0, horizontal: 14.0),
-                    child: Text(data.title,
-                        style: Theme.of(context).textTheme.subtitle1),
+                          child: Text(data.idea.name + " (" + data.idea.votes.toString() + " votes)",
+                          style: Theme.of(context).textTheme.subtitle1),
                   )),
                   // Triggers the reordering
                   dragHandle,

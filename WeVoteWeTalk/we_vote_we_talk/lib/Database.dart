@@ -55,13 +55,15 @@ class DatabaseService {
     return await talksCollection.document(code).collection("ideas").add({
       'name' : idea,
       'votes' : votes,
+      'index' : -1,
     });
   }
 
-  Future<void> updateIdeas(String idea, int votes, docID) async {
+  Future<void> updateIdeas(String idea, int votes, docID, int index) async {
     return await talksCollection.document(code).collection("ideas").document(docID).updateData({
       'name' : idea,
       'votes' : votes,
+      'index' : index
     });
   }
 
@@ -126,7 +128,9 @@ class DatabaseService {
       return Idea(
           name: doc.data['name'] ?? '',
           votes: doc.data['votes'] ?? 0,
-          documentID: doc.documentID);
+          documentID: doc.documentID,
+          index: doc.data['index'] ?? -1
+      );
     }).toList();
   }
 

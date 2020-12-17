@@ -81,26 +81,12 @@ class _VotingState extends State<Voting> {
                                                     onPressed: () async {
                                                       if (userData.hasVoted(
                                                           ideas[index].name)) {
-                                                        await DatabaseService(
-                                                            user_id, talk_id)
-                                                            .updateIdeas(
-                                                            ideas[index].name,
-                                                            ideas[index].votes -
-                                                                1, ideas[index]
-                                                            .documentID);
-                                                        userData.removeIdea(
-                                                            ideas[index].name);
+                                                        await DatabaseService(user_id, talk_id).updateIdeas(ideas[index].name, ideas[index].votes - 1, ideas[index].documentID, ideas[index].index);
+                                                        userData.removeIdea(ideas[index].name);
                                                       }
                                                       else {
-                                                        await DatabaseService(
-                                                            user_id, talk_id)
-                                                            .updateIdeas(
-                                                            ideas[index].name,
-                                                            ideas[index].votes +
-                                                                1, ideas[index]
-                                                            .documentID);
-                                                        userData.vote(
-                                                            ideas[index].name);
+                                                        await DatabaseService(user_id, talk_id).updateIdeas(ideas[index].name, ideas[index].votes + 1, ideas[index].documentID, ideas[index].index);
+                                                        userData.vote(ideas[index].name);
                                                       }
 
                                                       await DatabaseService(

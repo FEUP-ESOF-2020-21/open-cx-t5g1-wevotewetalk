@@ -82,7 +82,14 @@ class _MainMenuState extends State<MainMenu> {
                                 SizedBox(height: 30),
                                 Text('Welcome ' + userData.name + '!',  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),) ,
                                 SizedBox(height: 20),
-                                Text('You\'re in ' + conferenceData.name + '!', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('You\'re in ', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                    Text(conferenceData.name, style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500, color: Color(0xFF106799)),),
+                                    Text('!', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+                                  ],
+                                ),
                                 SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -126,9 +133,9 @@ class _MainMenuState extends State<MainMenu> {
       list.add(closedButton('Vote'));
 
     if(conferenceData.joinTalks)
-      list.add(button('Join Talks', navigateToTalks));
+      list.add(button('Join Sessions', navigateToTalks));
     else
-      list.add(closedButton('Join Talks'));
+      list.add(closedButton('Join Sessions'));
 
     if(isModerator)
       list.add(button('Moderator Options', navigateToModeratorOptions));

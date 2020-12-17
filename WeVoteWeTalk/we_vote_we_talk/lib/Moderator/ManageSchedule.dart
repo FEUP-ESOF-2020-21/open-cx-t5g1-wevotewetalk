@@ -149,7 +149,7 @@ class _ManageScheduleState extends State<ManageSchedule> {
                                 child:MaterialButton(
                                   textColor: Colors.white,
                                   color: Colors.green,
-                                  child: Text('Finish and Open Voting'),
+                                  child: Text('Finish and Open Sessions'),
                                   onPressed: () async {
                                     for(var i = 0; i < 3; i++)
                                     {

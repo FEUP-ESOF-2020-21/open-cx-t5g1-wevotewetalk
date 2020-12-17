@@ -60,7 +60,7 @@ class _JoinConferenceState extends State<JoinConference> {
               RaisedButton(
                   color: Colors.pink[400],
                   child: Text(
-                    'Join Talk',
+                    'Join Conference',
                     style: TextStyle(color: Colors.white),
                     key: const Key('joinButton'),
                   ),

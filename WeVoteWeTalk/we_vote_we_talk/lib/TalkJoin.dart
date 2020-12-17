@@ -44,98 +44,96 @@ class _TalkJoinState extends State<TalkJoin> {
   Widget build(BuildContext context) {
     roomText.text = widget.talk.replaceAll(new RegExp(r"\s+"), "");
     roomText.text += "_WVWT";
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Join A Talk"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Join A Session"),
+        backgroundColor: Color(0xFF106799),
+      ),
+      body: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
         ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 50.0,
-                  child: Center(
-                    child: Text(
-                      "Joining " + widget.talk,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 25.0, color: Colors.blue),
-                    ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 50.0,
+                child: Center(
+                  child: Text(
+                    "Joining " + widget.talk,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 25.0, color: Color(0xFF106799)),
                   ),
                 ),
-                SizedBox(
-                  height: 16.0,
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              TextField(
+                controller: nameText,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Text Chat Username (Optional)",
                 ),
-                TextField(
-                  controller: nameText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Text Chat Username (Optional)",
+              ),
+              /*
+              SizedBox(
+                height: 16.0,
+              ),
+              TextField(
+                controller: emailText,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Email",
+                ),
+              ),
+               */
+              SizedBox(
+                height: 16.0,
+              ),
+              CheckboxListTile(
+                title: Text("Audio Only"),
+                value: isAudioOnly,
+                onChanged: _onAudioOnlyChanged,
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              CheckboxListTile(
+                title: Text("Audio Muted"),
+                value: isAudioMuted,
+                onChanged: _onAudioMutedChanged,
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              CheckboxListTile(
+                title: Text("Video Muted"),
+                value: isVideoMuted,
+                onChanged: _onVideoMutedChanged,
+              ),
+              Divider(
+                height: 48.0,
+                thickness: 2.0,
+              ),
+              SizedBox(
+                height: 64.0,
+                width: double.maxFinite,
+                child: RaisedButton(
+                  onPressed: () {
+                    _joinMeeting();
+                  },
+                  child: Text(
+                    "Join Meeting",
+                    style: TextStyle(color: Colors.white),
                   ),
+                  color: Color(0xFF106799),
                 ),
-                /*
-                SizedBox(
-                  height: 16.0,
-                ),
-                TextField(
-                  controller: emailText,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Email",
-                  ),
-                ),
-                 */
-                SizedBox(
-                  height: 16.0,
-                ),
-                CheckboxListTile(
-                  title: Text("Audio Only"),
-                  value: isAudioOnly,
-                  onChanged: _onAudioOnlyChanged,
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                CheckboxListTile(
-                  title: Text("Audio Muted"),
-                  value: isAudioMuted,
-                  onChanged: _onAudioMutedChanged,
-                ),
-                SizedBox(
-                  height: 16.0,
-                ),
-                CheckboxListTile(
-                  title: Text("Video Muted"),
-                  value: isVideoMuted,
-                  onChanged: _onVideoMutedChanged,
-                ),
-                Divider(
-                  height: 48.0,
-                  thickness: 2.0,
-                ),
-                SizedBox(
-                  height: 64.0,
-                  width: double.maxFinite,
-                  child: RaisedButton(
-                    onPressed: () {
-                      _joinMeeting();
-                    },
-                    child: Text(
-                      "Join Meeting",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: Colors.blue,
-                  ),
-                ),
-                SizedBox(
-                  height: 48.0,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
+            ],
           ),
         ),
       ),

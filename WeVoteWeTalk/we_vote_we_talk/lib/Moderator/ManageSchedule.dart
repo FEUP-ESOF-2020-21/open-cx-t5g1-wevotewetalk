@@ -79,7 +79,6 @@ class _ManageScheduleState extends State<ManageSchedule> {
   }
 
   Widget build(BuildContext context) {
-    //print("Items = " + _items[0].title + ", " + _items[1].title);
     return WillPopScope(
       child: StreamBuilder<ConferenceData>(
           stream: DatabaseService(user_id, talk_id).conferenceData,

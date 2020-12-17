@@ -47,7 +47,7 @@ class _TalksOverviewState extends State<TalksOverview> {
                     ideasList.sort((a, b) => a.index.compareTo(b.index));
 
                     var j = -1;
-                    for (int i = 0; i < ideasList.length; i++) {
+                    for (int i = 0; i < ideasList.length && i < 15; i++) {
                       if(i % 3 == 0)
                         j++;
                       if (ideasList[i].name != null) talks.add(

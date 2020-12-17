@@ -111,7 +111,7 @@ class _TalksOverviewState extends State<TalksOverview> {
           color: Colors.black87,
           child: Text(talk),
           onPressed: () {
-            navigateToTalk(talk);
+            navigateToTalk(talk.substring(0,talk.length - 14));
           },
           minWidth: 200.0,
           height: 45.0,

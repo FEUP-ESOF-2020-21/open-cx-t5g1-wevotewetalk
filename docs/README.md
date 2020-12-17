@@ -137,13 +137,10 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 * **Normal Flow**:
   1. The Moderator logs in to his account.
   2. The Moderator creates a conference.
-  3. The Moderator presses the manage button.
-
-      3.1. The Moderator closes Brainstorm and Manages the suggested ideas for future voting
-      
-      3.2. The Moderator closes Voting and Manages the Schedule.
-
-      3.3. The Moderator manages the Users of the app.
+  3. The Moderator presses the manage button.  
+      iii.i. The Moderator closes Brainstorm and Manages the suggested ideas for future voting  
+      iii.ii. The Moderator closes Voting and Manages the Schedule.  
+      iii.iii. The Moderator manages the Users of the app.
 
 ### User stories
 

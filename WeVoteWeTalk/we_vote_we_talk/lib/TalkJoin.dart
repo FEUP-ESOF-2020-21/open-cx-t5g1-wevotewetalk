@@ -8,7 +8,9 @@ import 'package:jitsi_meet/room_name_constraint.dart';
 import 'package:jitsi_meet/room_name_constraint_type.dart';
 
 import 'Database.dart';
+import 'Shared/Banned.dart';
 import 'Shared/Conference.dart';
+import 'Shared/Loading.dart';
 
 class TalkJoin extends StatefulWidget {
   final String talk;
@@ -58,42 +60,44 @@ class _TalkJoinState extends State<TalkJoin> {
     return StreamBuilder<ConferenceData>(
         stream: DatabaseService(user_id, talk_id).conferenceData,
         builder: (context, snapshot) {
-          ConferenceData conferenceData = snapshot.data;
-          if(!conferenceData.isBanned(user_id))
+          if(snapshot.hasData)
           {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text("Join A Session"),
-                backgroundColor: Color(0xFF106799),
-              ),
-              body: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
+            ConferenceData conferenceData = snapshot.data;
+            if(!conferenceData.isBanned(user_id))
+            {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text("Join A Session"),
+                  backgroundColor: Color(0xFF106799),
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50.0,
-                        child: Center(
-                          child: Text(
-                            "Joining " + widget.talk,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 25.0, color: Color(0xFF106799)),
+                body: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 50.0,
+                          child: Center(
+                            child: Text(
+                              "Joining " + widget.talk,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 25.0, color: Color(0xFF106799)),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      TextField(
-                        controller: nameText,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Text Chat Username (Optional)",
+                        SizedBox(
+                          height: 16.0,
                         ),
-                      ),
-                      /*
+                        TextField(
+                          controller: nameText,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Text Chat Username (Optional)",
+                          ),
+                        ),
+                        /*
                   SizedBox(
                     height: 16.0,
                   ),
@@ -105,60 +109,62 @@ class _TalkJoinState extends State<TalkJoin> {
                     ),
                   ),
                    */
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      CheckboxListTile(
-                        title: Text("Audio Only"),
-                        value: isAudioOnly,
-                        onChanged: _onAudioOnlyChanged,
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      CheckboxListTile(
-                        title: Text("Audio Muted"),
-                        value: isAudioMuted,
-                        onChanged: _onAudioMutedChanged,
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      CheckboxListTile(
-                        title: Text("Video Muted"),
-                        value: isVideoMuted,
-                        onChanged: _onVideoMutedChanged,
-                      ),
-                      Divider(
-                        height: 48.0,
-                        thickness: 2.0,
-                      ),
-                      SizedBox(
-                        height: 64.0,
-                        width: double.maxFinite,
-                        child: RaisedButton(
-                          onPressed: () {
-                            _joinMeeting();
-                          },
-                          child: Text(
-                            "Join Meeting",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          color: Color(0xFF106799),
+                        SizedBox(
+                          height: 16.0,
                         ),
-                      ),
-                      SizedBox(
-                        height: 48.0,
-                      ),
-                    ],
+                        CheckboxListTile(
+                          title: Text("Audio Only"),
+                          value: isAudioOnly,
+                          onChanged: _onAudioOnlyChanged,
+                        ),
+                        SizedBox(
+                          height: 16.0,
+                        ),
+                        CheckboxListTile(
+                          title: Text("Audio Muted"),
+                          value: isAudioMuted,
+                          onChanged: _onAudioMutedChanged,
+                        ),
+                        SizedBox(
+                          height: 16.0,
+                        ),
+                        CheckboxListTile(
+                          title: Text("Video Muted"),
+                          value: isVideoMuted,
+                          onChanged: _onVideoMutedChanged,
+                        ),
+                        Divider(
+                          height: 48.0,
+                          thickness: 2.0,
+                        ),
+                        SizedBox(
+                          height: 64.0,
+                          width: double.maxFinite,
+                          child: RaisedButton(
+                            onPressed: () {
+                              _joinMeeting();
+                            },
+                            child: Text(
+                              "Join Meeting",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            color: Color(0xFF106799),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 48.0,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
+              );
+            }
+            else
+              return Banned();
           }
           else
-            return Text("banned lol");
-
+            return Loading();
       }
     );
   }

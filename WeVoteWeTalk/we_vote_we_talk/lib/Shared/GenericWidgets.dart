@@ -68,3 +68,22 @@ Widget blueButton(text, onPressedFunction) {
     ),
   );
 }
+
+Widget closedInterface(String stage)
+{
+  return Scaffold(
+      appBar: AppBar(
+        title: Text('We Vote We Talk'),
+        backgroundColor: Color(0xFF106799),
+      ),
+      body: Center(
+          child:  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(stage + ' was closed by the Moderator.', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+              Text('Please return to The main Menu.', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
+            ],
+          )
+      )
+  );
+}

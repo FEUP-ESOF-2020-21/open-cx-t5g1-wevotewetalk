@@ -14,6 +14,15 @@ class ConferenceData {
     this.banned = List.from(list);
   }
 
+  isBanned(String uid) {
+    for(int i = 0; i < banned.length; i++)
+    {
+      if(banned[i] == uid)
+        return true;
+    }
+    return false;
+  }
+
   ban(String uid) {
     banned.add(uid);
   }

@@ -69,7 +69,7 @@ class _ModeratorOptionsState extends State<ModeratorOptions> {
   }
 
   Future navigateToBanUser() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUsers()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageUsers(user_id: user_id, talk_id: talk_id)));
   }
 
   Future navigateBackToLogin() async {

@@ -122,6 +122,6 @@ class _TalksOverviewState extends State<TalksOverview> {
 
   Future navigateToTalk(talk) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => TalkJoin(talk: talk)));
+        context, MaterialPageRoute(builder: (context) => TalkJoin(talk: talk, user_id: user_id, talk_id: talk_id)));
   }
 }

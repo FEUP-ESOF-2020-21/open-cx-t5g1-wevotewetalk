@@ -154,6 +154,17 @@ class DatabaseService {
     return talksCollection.document(code).collection('users').document(uid).snapshots().map(_conferenceUserDataFromSnapshot);
   }
 
+  List<ConferenceUserData> conferenceUsersDataListFromSnapshot(QuerySnapshot snapshot)
+  {
+    return snapshot.documents.map((doc){
+      return ConferenceUserData(doc.data['uid'], doc.data['moderator'], doc.data['name'], doc.data['likedIdeas']);
+    }).toList();
+  }
+
+  Stream<List<ConferenceUserData>> get conferenceAllUsersData {
+    return talksCollection.document(code).collection("users").snapshots().map(conferenceUsersDataListFromSnapshot);
+  }
+
   ConferenceData _conferenceDataFromSnapshot(DocumentSnapshot snapshot) {
     return ConferenceData(snapshot.data['name'], snapshot.data['brainstorm'], snapshot.data['voting'], snapshot.data['joinTalks'], snapshot.data['banned']);
   }

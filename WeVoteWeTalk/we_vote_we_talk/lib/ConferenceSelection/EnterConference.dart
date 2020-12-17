@@ -39,19 +39,21 @@ class _EnterConferenceState extends State<EnterConference> {
             title: Text('We Vote We Talk'),
             backgroundColor: Color(0xFF106799),
         ),
-        body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Your joined conferences:", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
-                SizedBox(height: 20),
-                ListView(
-                  shrinkWrap: true,
+        body: new Column(
+          children: [
+            SizedBox(height: 10),
+            Text("Your joined conferences:", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500)),
+            SizedBox(height: 10),
+            new Expanded(
+                child: ListView(
                   children: getListTalks(),
                 ),
-              ],
-            )
-        )
+            ),
+            SizedBox(height: 10),
+
+          ],
+        ),
+
     );
   }
 
@@ -92,7 +94,15 @@ class _EnterConferenceState extends State<EnterConference> {
               ));
         }
         else
-          return Loading();
+          return MaterialButton(
+            textColor: Colors.white,
+            color: Colors.black87,
+            child: Text(conference + " not found."),
+            minWidth: 200.0,
+            height: 45.0,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          );
       }
     );
   }

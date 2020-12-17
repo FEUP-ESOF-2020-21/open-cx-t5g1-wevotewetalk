@@ -184,6 +184,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_reorderable_list">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_reorderable_list-0.1.5/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_spinkit">
           <value>
             <list>
@@ -596,6 +603,7 @@
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_gherkin-1.1.9/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_reorderable_list-0.1.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-4.1.2+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/gherkin-1.1.9/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/glob-1.2.0/lib" />

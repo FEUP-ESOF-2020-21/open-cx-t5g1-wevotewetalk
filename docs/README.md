@@ -200,7 +200,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 *Effort:* 5
 
 #### Story 2 - Prepare conferences
-- **Story:** As a moderator, I want to organize the schedule so that most participants can hear the talks they most want to learn about.
+- **Story:** As a moderator, I want to have access to a control panel so that I can control the flow of the conference.
 - **User Interface Mockups:**
 
 <img src="images/story3/moderator_options.png" width="303" height="538"> <img src="images/story3/manage_schedule.png" width="303" height="538">

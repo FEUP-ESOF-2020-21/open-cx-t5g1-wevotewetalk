@@ -75,7 +75,6 @@ class _ManageScheduleState extends State<ManageSchedule> {
         i++;
       }
     }
-
   }
 
   Widget build(BuildContext context) {
@@ -151,7 +150,7 @@ class _ManageScheduleState extends State<ManageSchedule> {
                                   color: Colors.green,
                                   child: Text('Finish and Open Sessions'),
                                   onPressed: () async {
-                                    for(var i = 0; i < 3; i++)
+                                    for(var i = 0; i < _items.length; i++)
                                     {
                                       print(_items[i].idea.name);
                                       await DatabaseService(user_id, talk_id).updateIdeas(_items[i].idea.name, _items[i].idea.votes, _items[i].idea.documentID, i);

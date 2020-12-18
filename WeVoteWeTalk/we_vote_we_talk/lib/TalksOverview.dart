@@ -49,7 +49,7 @@ class _TalksOverviewState extends State<TalksOverview> {
                       if(snapshot.hasData)
                       {
                         List<Idea> ideasList = snapshot.data;
-
+                        ideasList.removeWhere((element) => element.index == -1);
                         ideasList.sort((a, b) => a.index.compareTo(b.index));
 
                         var j = -1;

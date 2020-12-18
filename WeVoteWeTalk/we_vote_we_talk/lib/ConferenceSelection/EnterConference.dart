@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_vote_we_talk/Database.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
 import 'package:we_vote_we_talk/Shared/Constants.dart';
 import 'package:we_vote_we_talk/Shared/Loading.dart';
 import 'package:we_vote_we_talk/Shared/User.dart';
@@ -38,19 +39,21 @@ class _EnterConferenceState extends State<EnterConference> {
             title: Text('We Vote We Talk'),
             backgroundColor: Color(0xFF106799),
         ),
-        body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Your joined conferences:", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
-                SizedBox(height: 20),
-                ListView(
-                  shrinkWrap: true,
+        body: new Column(
+          children: [
+            SizedBox(height: 10),
+            Text("Your joined conferences:", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500)),
+            SizedBox(height: 10),
+            new Expanded(
+                child: ListView(
                   children: getListTalks(),
                 ),
-              ],
-            )
-        )
+            ),
+            SizedBox(height: 10),
+
+          ],
+        ),
+
     );
   }
 
@@ -67,11 +70,11 @@ class _EnterConferenceState extends State<EnterConference> {
     print("conferene id in button: " +conference);
 
     return StreamBuilder<Object>(
-      stream: DatabaseService(user_id, conference).conferenceName,
+      stream: DatabaseService(user_id, conference).conferenceData,
       builder: (context, snapshot) {
         if(snapshot.hasData) {
-          String name = snapshot.data;
-          print("conferene name in button: " +name);
+          ConferenceData conferenceData = snapshot.data;
+          print("conferene name in button: " +conferenceData.name);
           return Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 5.0,
@@ -80,9 +83,9 @@ class _EnterConferenceState extends State<EnterConference> {
               child: MaterialButton(
                 textColor: Colors.white,
                 color: Colors.black87,
-                child: Text(name),
+                child: Text(conferenceData.name),
                 onPressed: () {
-                  navigateToConference(conference, name);
+                  navigateToConference(conference);
                 },
                 minWidth: 200.0,
                 height: 45.0,
@@ -91,12 +94,20 @@ class _EnterConferenceState extends State<EnterConference> {
               ));
         }
         else
-          return Loading();
+          return MaterialButton(
+            textColor: Colors.white,
+            color: Colors.black87,
+            child: Text(conference + " not found."),
+            minWidth: 200.0,
+            height: 45.0,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          );
       }
     );
   }
 
-  Future navigateToConference(conference, name) async {
+  Future navigateToConference(conference) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => MainMenu(user_id: user_id, talk_id: conference)));
   }

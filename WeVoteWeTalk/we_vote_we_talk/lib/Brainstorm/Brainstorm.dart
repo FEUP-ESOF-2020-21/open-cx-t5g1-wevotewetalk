@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:we_vote_we_talk/Shared/Banned.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
+import 'package:we_vote_we_talk/Shared/GenericWidgets.dart';
+import 'package:we_vote_we_talk/Shared/Loading.dart';
 import '../Shared/Idea.dart';
 import 'IdeasList.dart';
 import 'package:we_vote_we_talk/Database.dart';
@@ -28,34 +32,56 @@ class _BrainstormState extends State<Brainstorm> {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Idea>>.value(
-        value: DatabaseService(user_id, talk_id).ideas,
-        child: Scaffold(
-          appBar: AppBar(
+    return StreamBuilder<ConferenceData>(
+      stream: DatabaseService(user_id, talk_id).conferenceData,
+      builder: (context, snapshot) {
+        if(snapshot.hasData)
+        {
+          ConferenceData conferenceData = snapshot.data;
+          if(!conferenceData.isBanned(user_id))
+          {
+            if(conferenceData.brainstorm)
+            {
+              return StreamProvider<List<Idea>>.value(
+                  value: DatabaseService(user_id, talk_id).ideas,
+                  child: Scaffold(
+                    appBar: AppBar(
                       title: Text('We Vote We Talk'),
                       backgroundColor: Color(0xFF106799),
-          ),
-          body: Column(children: [
-            SizedBox(height: 15,),
-            Expanded(flex: 6, child: IdeasList()),
-            Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            flex: 8,
-                            child: IdeaInput(
-                                formKey: formKey, tecThemeIdea: tecThemeIdea)),
-                        Expanded(flex: 3, child: sendButton()),
-                      ],
                     ),
-                  ],
-                )),
-          ]),
-        ));
+                    body: Column(children: [
+                      SizedBox(height: 15,),
+                      Expanded(flex: 6, child: IdeasList()),
+                      Expanded(
+                          flex: 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                      flex: 8,
+                                      child: IdeaInput(
+                                          formKey: formKey, tecThemeIdea: tecThemeIdea)),
+                                  Expanded(flex: 3, child: sendButton()),
+                                ],
+                              ),
+                            ],
+                          )),
+                    ]),
+                  )
+              );
+            }
+            else
+              return closedInterface('Brainstorm');
+          }
+          else
+            return Banned();
+        }
+        else
+          return Loading();
+      }
+    );
   }
 
   Widget sendButton() {

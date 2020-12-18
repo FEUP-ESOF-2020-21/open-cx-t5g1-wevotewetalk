@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:we_vote_we_talk/Shared/Conference.dart';
 import 'Shared/Idea.dart';
 import 'Shared/User.dart';
+import 'Shared/Conference.dart';
 
 class DatabaseService {
 
@@ -53,45 +55,33 @@ class DatabaseService {
     return await talksCollection.document(code).collection("ideas").add({
       'name' : idea,
       'votes' : votes,
+      'index' : -1,
     });
   }
 
-  Future<void> updateIdeas(String idea, int votes, docID) async {
+  Future<void> updateIdeas(String idea, int votes, docID, int index) async {
     return await talksCollection.document(code).collection("ideas").document(docID).updateData({
       'name' : idea,
       'votes' : votes,
+      'index' : index
     });
   }
 
-  List<Idea> ideaListFromSnapshot(QuerySnapshot snapshot)
-  {
-    return snapshot.documents.map((doc){
-      return Idea(
-          name: doc.data['name'] ?? '',
-          votes: doc.data['votes'] ?? 0,
-          documentID: doc.documentID);
-    }).toList();
+  Future<void> removeIdea(docID) async {
+    return await talksCollection.document(code).collection("ideas").document(docID).delete();
   }
 
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(uid, snapshot.data['name'], snapshot.data['joinedConferences']);
+  Future<void> updateConference(ConferenceData conferenceData) async {
+    return await talksCollection.document(code).setData({
+      'name' : conferenceData.name,
+      'brainstorm' : conferenceData.brainstorm,
+      'voting' : conferenceData.voting,
+      'joinTalks' : conferenceData.joinTalks,
+      'banned' : List.from(conferenceData.banned),
+    });
   }
 
-  Stream<List<Idea>> get ideas {
-    return talksCollection.document(code).collection("ideas").snapshots().map(ideaListFromSnapshot);
-  }
 
-  Stream<UserData> get userData {
-    return usersCollection.document(uid).snapshots().map(_userDataFromSnapshot);
-  }
-
-  ConferenceUserData _conferenceUserDataFromSnapshot(DocumentSnapshot snapshot) {
-    return ConferenceUserData(uid, snapshot.data['moderator'], snapshot.data['name'], snapshot.data['likedIdeas']);
-  }
-
-  Stream<ConferenceUserData> get conferenceUserData {
-    return talksCollection.document(code).collection('users').document(uid).snapshots().map(_conferenceUserDataFromSnapshot);
-  }
 
   Future<int> existsConferenceWithoutUser() async {
     var doc = await talksCollection.document(code).get();
@@ -112,6 +102,10 @@ class DatabaseService {
 
     talksCollection.document(docID).setData({
       'name' : conferenceName,
+      'brainstorm' : true,
+      'voting' : false,
+      'joinTalks' : false,
+      'banned' : new List<String>(),
     });
 
     talksCollection.document(docID).collection('ideas');
@@ -126,12 +120,57 @@ class DatabaseService {
   }
 
 
-  String _conferenceNameFromSnapshot(DocumentSnapshot snapshot) {
-    return snapshot.data['name'];
+  /* GETS*/
+
+  List<Idea> ideaListFromSnapshot(QuerySnapshot snapshot)
+  {
+    return snapshot.documents.map((doc){
+      return Idea(
+          name: doc.data['name'] ?? '',
+          votes: doc.data['votes'] ?? 0,
+          documentID: doc.documentID,
+          index: doc.data['index'] ?? -1
+      );
+    }).toList();
   }
 
-  Stream<String> get conferenceName {
-    return talksCollection.document(code).snapshots().map(_conferenceNameFromSnapshot);
+  Stream<List<Idea>> get ideas {
+    return talksCollection.document(code).collection("ideas").snapshots().map(ideaListFromSnapshot);
+  }
+
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(uid, snapshot.data['name'], snapshot.data['joinedConferences']);
+  }
+
+  Stream<UserData> get userData {
+    return usersCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
+  ConferenceUserData _conferenceUserDataFromSnapshot(DocumentSnapshot snapshot) {
+    return ConferenceUserData(uid, snapshot.data['moderator'], snapshot.data['name'], snapshot.data['likedIdeas']);
+  }
+
+  Stream<ConferenceUserData> get conferenceUserData {
+    return talksCollection.document(code).collection('users').document(uid).snapshots().map(_conferenceUserDataFromSnapshot);
+  }
+
+  List<ConferenceUserData> conferenceUsersDataListFromSnapshot(QuerySnapshot snapshot)
+  {
+    return snapshot.documents.map((doc){
+      return ConferenceUserData(doc.data['uid'], doc.data['moderator'], doc.data['name'], doc.data['likedIdeas']);
+    }).toList();
+  }
+
+  Stream<List<ConferenceUserData>> get conferenceAllUsersData {
+    return talksCollection.document(code).collection("users").snapshots().map(conferenceUsersDataListFromSnapshot);
+  }
+
+  ConferenceData _conferenceDataFromSnapshot(DocumentSnapshot snapshot) {
+    return ConferenceData(snapshot.data['name'], snapshot.data['brainstorm'], snapshot.data['voting'], snapshot.data['joinTalks'], snapshot.data['banned']);
+  }
+
+  Stream<ConferenceData> get conferenceData {
+    return talksCollection.document(code).snapshots().map(_conferenceDataFromSnapshot);
   }
 
   

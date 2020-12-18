@@ -388,7 +388,9 @@ For the purpose of ESOF, we will use a very simple approach, just to manage feat
 
 ## Project management
 
-In this project, to be able to properly manage our project we used Github Projects. That way we were able to register the tasks we had done, tasks we were doing and the tasks still to do. In addition, we were able to assign group members to each task, as well as being able to add effort estimations to each task.
+In this project, to be able to properly manage our project we used Github Projects. 
+That way we were able to register the tasks we had done, tasks we were doing and the tasks still to do. 
+In addition, we were able to assign group members to each task, as well as being able to add effort estimations to each task.
 
 Our board can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/projects/1).
 

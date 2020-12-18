@@ -348,9 +348,36 @@ Our project's physical architecture uses two blocks which communicate through HT
 We chose Firebase due to it's pre-built authentication capabilities and due to it's real-time synchronization which is necessary for a functioning voting system.  
 
 ### Prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+In the initial phase of our project, we were unsure on what would be our user stories. 
+As we brainstormed and started having a more clear vision of what we wanted our app to look like, 
+we made up our minds on the main features our app would have:
+- The user being able to suggest themes
+- The user being able to vote on those themes
+- The user being able to enter a talk  
+
+We then started creating user stories, while starting the implementation of the app.
+
+The first minor setup encountered by the group was adapting to the totally new environment in Flutter and Dart
+, but has we started to get more used to it, 
+we started by taking care of the login and register features in our app using firebase, and then focused on the main features enlisted above.
+
+We were able to integrate jitsi into our app, therefore being able to join existing talks. 
+After taking care of the brainstorm and voting features, we started focusing on the connectivity between all these features: 
+the number of fotes being visible when deciding which talk to join, being able to vote on recently suggested themes, etc.  
+
+Afterwards, we started turning our attention to the conference side of the app.
+We made implementations so that after logging in, you can either join, create (as a moderator), or enter a conference.
+Inside that conference you would then find the main features we have already talked about in the beginning of the prototype section.
+
+Finally, we focused on the moderator options in the app, and on the design side of WeVoteWeTalk.  
+We created our logo (whitch we are very proud of):
+
+![Logo](images/logo.png)
+
+We were able to give the moderator power to close the brainstorm section, manage the given ideas and close the voting section, generate a schedule.  
+
+We finished off by polishing any possible errors and minor bugs, to give you the best app we can!
 
 ---
 
@@ -398,5 +425,12 @@ Our board can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-w
 
 ## Evolution - contributions to open-cx
 
-Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+To be able to add and contribute to openCX, our app provides sessions that are tailor-made for the openCX attendee.  
 
+By brainstorming the topics they most want to talk about, and voting on the available topics, 
+every attendee is able to actively participate in the creation of the conference's schedule and main topics.  
+
+That way, the attendee only has to listen and talk about what he wants to, and can leave whenever he wants, 
+therefore creating a better openCX experience.
+
+Accordingly, we trully believe WeVoteWeTalk has the potencial to integrate the Open-CX.

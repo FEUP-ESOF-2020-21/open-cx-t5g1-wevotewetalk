@@ -188,8 +188,8 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 - **Acceptance tests:**
 ```
-  Scenario: User join talk
-    Given I am on the main menu page
+  Scenario: User joins talk
+    Given I am on the main menu page after entering, joining or creating a conference
     When I press the join talks button
     And I press a theme button
     And I press the join meeting button
@@ -206,6 +206,13 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 <img src="images/story3/moderator_options.png" width="303" height="538"> <img src="images/story3/manage_schedule.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: Moderator manages the schedule
+    Given I am on the main menu page after entering, joining or creating a conference
+    When I press the moderator options button
+    And I press the close voting and manage schedule button
+    Then User will be able to generate a schedule of sessions as I wish.
+```
 - **Value and Effort:**
 *Value:* Could have
 *Effort:* 10
@@ -219,7 +226,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - **Acceptance tests:**
 ```
   Scenario: User sends theme idea
-    Given I am on the main menu page
+    Given I am on the main menu page after entering, joining or creating a conference
     When I press the brainstorm button
     And I type "testtheme" in the text field
     And I press the send button
@@ -239,7 +246,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - **Acceptance tests:**
 ```
   Scenario: User votes on theme
-    Given I am on the vote page
+    Given I am on the voting page
     When I press a "theme" button I like
     Then "theme" vote value should be incremented
 ```
@@ -271,6 +278,30 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 <img src="images/story7/main_page.png" width="303" height="538"> <img src="images/story7/join_conf.png" width="303" height="538"> <img src="images/story7/create_conf.png" width="303" height="538"> <img src="images/story7/enter_conf.png" width="303" height="538">
 
 - **Acceptance tests:**
+```
+  Scenario: User joins a conference
+    Given I have logged in or registered
+    When I press the join conference button
+    And I insert a conference code in the conference code field
+    And the conference code is valid
+    And I press the Join Talk button
+    Then User has entered an Open Space conference
+```
+```
+  Scenario: Moderator creates a conference
+    Given I have logged in or registered
+    When I press the create conference button
+    And I insert a name conference name field
+    And I press the create conference button
+    Then Moderator has created an Open Space conference
+```
+```
+  Scenario: User enters a conference
+    Given I have logged in or registered
+    When I press the enter conference button
+    And I press one of the available conference buttons
+    Then User has entered that Open Space conference
+```
 - **Value and Effort:**
 *Value:* Must have
 *Effort:* 10

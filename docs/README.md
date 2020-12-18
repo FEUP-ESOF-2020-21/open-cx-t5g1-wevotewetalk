@@ -355,11 +355,10 @@ In this subsection please describe in more detail which, and how, user(s) story(
 ---
 
 ## Implementation
-Regular product increments are a good practice of product management. 
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+The main product increments can be found [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/releases).
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+A more datailed description of the increments in our implementation can be seen in our commit history [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/commits/master).
 
 ---
 
@@ -385,23 +384,13 @@ Configuration and change management are key activities to control change to, and
 
 For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
-
 ---
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+In this project, to be able to properly manage our project we used Github Projects. That way we were able to register the tasks we had done, tasks we were doing and the tasks still to do. In addition, we were able to assign group members to each task, as well as being able to add effort estimations to each task.
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-  * [Trello.com](https://trello.com)
-  * [Github Projects](https://github.com/features/project-management/com)
-  * [Pivotal Tracker](https://www.pivotaltracker.com)
-  * [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
-
+Our board can be seen [here](https://github.com/FEUP-ESOF-2020-21/open-cx-t5g1-wevotewetalk/projects/1).
 
 ---
 
